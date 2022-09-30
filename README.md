@@ -5,7 +5,7 @@
 This application is a **text-based adventure game** with some minor point-and-click elements. 
 The GUI will be a simple screen with text and interactive elements like buttons and text 
 input. The story features the player as a tourist visiting a mysterious town and discovering
-the dark secret behind it. Gaming people will use this application.
+the dark secret behind it. This application is meant for people who enjoy story games.
 
 In my free time, I enjoy playing games, particularly story-based ones.  Hence, I chose to 
 make a game for my term project.
