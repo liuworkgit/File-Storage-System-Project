@@ -15,7 +15,7 @@ make a game for my term project.
 
 - As a user, I want to be able to click on a choice and see new text load as the scene changes.
 - As a user, I want to be able to view my stats.
-- As a user, I want to be able to view information on all the characters I've met.
+- As a user, I want to be able to view info on all the characters I've met.
 - As a user, I want to be able to save and load my games.
 - As a user, I want to add an item to my inventory, and use said item, removing it from my inventory.
 - As a user, I want to be able to customize my background and skills.
