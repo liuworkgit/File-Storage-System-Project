@@ -10,6 +10,9 @@ import java.util.ArrayList;
 public class PageFolder {
     private ArrayList<Page> listPages;
 
+    // REQUIRES:
+    // MODIFIES:
+    // EFFECTS:
     public void PageFolder() {}
 
     // REQUIRES:

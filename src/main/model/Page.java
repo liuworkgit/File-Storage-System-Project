@@ -42,5 +42,5 @@ public class Page {
         return 0;
     }
 
-    private void getParagraph() {}
+    private void getParagraphList() {}
 }
