@@ -12,20 +12,25 @@ public class Paragraph {
         this.id = 1;
     }
 
-    // REQUIRES: text cannot be empty
+    // REQUIRES: text cannot be null
     // MODIFIES: this
-    // EFFECTS: deletes text for as long as backspace is held. once there's no more text, the paragraph
+    // EFFECTS: adds text to the paragraph
+    public void addText(String text) {}
+
+    // REQUIRES: text cannot be null and must be in this.text
+    // MODIFIES: this
+    // EFFECTS: deletes the inputted text from the paragraph. once there's no more text, the paragraph
     // disappears from the page
     // page list - tips on implement?
     // ASK TA ABOUT THIS !!!!!!!!!!!!!
-    public void deleteText() {}
+    public void deleteText(String text) {}
 
-    // REQUIRES: text cannot be empty
+    // REQUIRES: this.text cannot be null
     // MODIFIES: this
-    // EFFECTS: puts double asterixes around the text
-    public void boldText() {}
+    // EFFECTS: bolds the text by putting double asterixes around the chosen text
+    public void boldText(String text) {}
 
-    // REQUIRES: text cannot be empty
+    // REQUIRES: this.text cannot be null
     // EFFECTS: returns the paragraph's text
     public String getText() {
         return text;
