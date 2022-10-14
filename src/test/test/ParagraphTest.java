@@ -47,7 +47,7 @@ public class ParagraphTest {
     }
 
     @Test
-    void testBoldAddAndDelete() {
+    void testBoldAddAndDelete() { // help? how to deal with bold markdown stuff when delete?
         testParagraph.boldText("paragraph!");
         assertEquals("This is a **paragraph!**", testParagraph.getText());
         testParagraph.addText(" [[[[[[[[");

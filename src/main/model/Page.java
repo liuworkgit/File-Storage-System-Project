@@ -1,6 +1,6 @@
 package model;
 
-// Represents a page
+// Represents a page with an id, paragraphs (text) and links to other pages
 
 // (METHOD CREATED) As a user, I want to be able to create a new page and have it be added to my list of existing pages.
 //- Page (represents an empty page)
@@ -16,12 +16,15 @@ package model;
 //- functionality in page? (ask TA)
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Page {
     private String name;
     private int pageId;
-    private ArrayList<Paragraph> listParagraphs;
+    private List<Paragraph> listParagraphs;
+    private List<String> listLinks;
 
+    // !!!!!!
     // REQUIRES:
     // MODIFIES:
     // EFFECTS: creates a page
@@ -29,18 +32,31 @@ public class Page {
         this.name = name;
     }
 
+    // !!!!!!
     // REQUIRES:
     // MODIFIES:
     // EFFECTS:
-    public void highlightText() {} // (?) how to know when method should be public or private?
-
-    private String getName() {
+    public String getName() {
         return "";
     }
 
-    private int getPageId() {
+    // !!!!!!
+    // REQUIRES:
+    // MODIFIES:
+    // EFFECTS:
+    public int getPageId() {
         return 0;
     }
 
-    private void getParagraphList() {}
+    // !!!!!!
+    // REQUIRES:
+    // MODIFIES:
+    // EFFECTS:
+    public List<Paragraph> getParagraphList() {}
+
+    // !!!!!!
+    // REQUIRES:
+    // MODIFIES:
+    // EFFECTS:
+    public List<String> getListLinks() {}
 }
