@@ -33,12 +33,14 @@ public class ParagraphTest {
     }
 
     @Test
+    // tests if can bold part of the paragraph
     void testBoldPartOfText() {
         testParagraph.boldText("This is ");
         assertEquals("**This is ** a paragraph!", testParagraph.getText());
     }
 
     @Test
+    // tests if can add text, then delete it
     void testAddThenDelete() {
         testParagraph.addText("123456789!!!");
         assertEquals("This is a paragraph!123456789!!!", testParagraph.getText());
@@ -47,6 +49,7 @@ public class ParagraphTest {
     }
 
     @Test
+    // tests if can bold text, then add more, then delete text
     void testBoldAddAndDelete() { // help? how to deal with bold markdown stuff when delete?
         testParagraph.boldText("paragraph!");
         assertEquals("This is a **paragraph!**", testParagraph.getText());

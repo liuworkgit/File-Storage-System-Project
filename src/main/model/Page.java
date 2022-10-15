@@ -22,41 +22,57 @@ public class Page {
     private String name;
     private int pageId;
     private List<Paragraph> listParagraphs;
-    private List<String> listLinks;
+    private List<String> listLinks; // LINK TO PAGE AND PARAGRAPH+PAGE IT'S IN, save as list strings of name or name|id
 
-    // !!!!!!
+    // !!!!!! what about id?
     // REQUIRES:
     // MODIFIES:
-    // EFFECTS: creates a page
+    // EFFECTS: creates a page with no paragraphs and links
     public Page(String name) {
         this.name = name;
+        this.pageId = 1; // PLACEHOLDER
+        this.listParagraphs = new ArrayList<>();
+        this.listLinks = new ArrayList<>();
     }
+
+    public void addParagraph(String text) {} // calls Paragraph, increments paragraph id by 1
+
+    public void deleteParagraph(String text) {} // calls deleteParagraph, inputted text gets deleted
+
+    public void addLink(String name) {}
+
+    public void deleteLink(String name) {}
+
+
+    // getters
 
     // !!!!!!
     // REQUIRES:
-    // MODIFIES:
-    // EFFECTS:
+    // EFFECTS: gets the name of the page
     public String getName() {
         return "";
     }
 
+    public void changeName(String newName) {}
+
     // !!!!!!
     // REQUIRES:
-    // MODIFIES:
-    // EFFECTS:
+    // EFFECTS: gets the id of the page
     public int getPageId() {
         return 0;
     }
 
     // !!!!!!
     // REQUIRES:
-    // MODIFIES:
-    // EFFECTS:
-    public List<Paragraph> getParagraphList() {}
+    // EFFECTS: gets the list of paragraphs of the page
+    public List<Paragraph> getListParagraphs() {
+        return ArrayList<>();
+    }
 
     // !!!!!!
     // REQUIRES:
-    // MODIFIES:
-    // EFFECTS:
-    public List<String> getListLinks() {}
+    // EFFECTS: get the list of links of the page
+    public List<String> getListLinks() {
+        return ArrayList<>();
+    }
 }

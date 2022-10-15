@@ -9,7 +9,7 @@ public class Paragraph {
     // EFFECTS: creates a new paragraph
     public Paragraph(String text) {
         this.text = text;
-        this.id = 1;
+        this.id = 1; // ID OF PARAGRAPH IS NUMBER OF ITEMS IN PAGE'S PARAGRAPHLIST + 1
     }
 
     // REQUIRES: text cannot be empty string
@@ -30,22 +30,17 @@ public class Paragraph {
     // EFFECTS: bolds the text by putting double asterixes around the chosen text
     public void boldText(String text) {}
 
+
+    // getters and setters
+
     // REQUIRES: this.text cannot be empty string
-    // EFFECTS: returns the paragraph's text
     public String getText() {
         return text;
     }
 
-    // EFFECTS: returns the paragraph's id
     public int getId() {
         return id;
     }
 
-    // when make methods private/public
-    // - depends on who's using it
-    // how to do id - increment values
-    // - in page,
-    //
-    // how to implement delete stuff in string?
-
+    public void setId() {}
 }
