@@ -10,7 +10,6 @@ import java.util.List;
 // a list of note pages
 public class PageFolder {
     private String name;
-    private int id;
     private List<Page> listPages;
 
     // REQUIRES:
@@ -22,15 +21,13 @@ public class PageFolder {
     // MODIFIES:
     // EFFECTS: adds a page to the list of note pages
     // potentially rename to more general if Directory shares interface?
-    public void addPage() {} // addPage calls Page()
+    public void addPage(String name) {} // addPage calls Page()
 
-    public void removePage() {}
+    public void deletePage(String name) {}
 
 
     // getters and setters
     public String getName() {}
-
-    public int getId() {}
 
     public List<Page> getListPages() {}
 

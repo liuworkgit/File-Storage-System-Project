@@ -37,7 +37,7 @@ public class Page {
 
     public void addParagraph(String text) {} // calls Paragraph, increments paragraph id by 1
 
-    public void deleteParagraph(String text) {} // calls deleteParagraph, inputted text gets deleted
+    public void deleteParagraph(String text) {} // calls deleteParagraph, can choose paragraph to delete?
 
     public void addLink(String name) {}
 

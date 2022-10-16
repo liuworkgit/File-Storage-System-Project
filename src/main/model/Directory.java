@@ -1,16 +1,22 @@
 package model;
 
-import java.util.ArrayList;
+import java.util.List;
 
 // a folder of all note page folders
 public class Directory {
-    private ArrayList<PageFolder> listFolders;
+    private List<PageFolder> listFolders;
 
     public Directory() {
         listFolders = new ArrayList<>();
     }
 
-    public void addFolder() {} // addFolder calls PageFolder()
+    public void addFolder(String name) {}
+    // addFolder calls PageFolder(), if same name as other folder add (2) on end
 
-    public void removeFolder() {}
+    public void removeFolder(String name) {}
+
+
+    // getters
+
+    public List<PageFolder> getListFolders() {}
 }

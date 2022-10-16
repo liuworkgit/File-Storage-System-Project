@@ -76,9 +76,11 @@ class PageTest {
     @Test
     // tests if can add and delete multiple times
     void testAddMultipleDeleteMultiple() {
-        testPage.addParagraph("This is some text! booboboboboobbobobobob");
-        testPage.addParagraph("This is some text! booboboboboobbobobobob");
-        testPage.addParagraph("This is some more text! oooogoogooohhhghghhghgpennnniiii");
-        testPage.deleteParagraph("This is some text!");
+        testPage.addParagraph("ABC");
+        testPage.addParagraph("DEF");
+        testPage.deleteParagraph("ABC");
+        testPage.addParagraph("GHI123");
+        testPage.deleteParagraph("GHI123");
+        assertEquals(...);
     }
 }
