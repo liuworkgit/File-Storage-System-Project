@@ -17,7 +17,6 @@ public class ParagraphTest {
     @Test
     void testParagraph() {
         assertEquals("This is a paragraph!", testParagraph.getText());
-        assertEquals(1, testParagraph.getId());
     }
 
     @Test
@@ -30,6 +29,12 @@ public class ParagraphTest {
     void testDeleteText() {
         testParagraph.deleteText("paragraph!");
         assertEquals("This is a ", testParagraph.getText());
+    }
+
+    @Test
+    void testSetText() {
+        testParagraph.setText("I am SICK AND TIRED AND EVERYTHING HURTS");
+        assertEquals("I am SICK AND TIRED AND EVERYTHING HURTS", testParagraph.getText());
     }
 
     @Test
@@ -57,5 +62,25 @@ public class ParagraphTest {
         assertEquals("This is a **paragraph!** [[[[[[[[", testParagraph.getText());
         testParagraph.deleteText("paragraph!");
         assertEquals("This is a  [[[[[[[[", testParagraph.getText());
+    }
+
+    @Test
+    void testDeleteMultipleTimes() {
+        testParagraph.addText("A!B!C!D!Pow!");
+        assertEquals("This is a paragraph!A!B!C!D!Pow!", testParagraph.getText());
+        testParagraph.deleteText("A");
+        testParagraph.deleteText("B");
+        testParagraph.deleteText("C");
+        assertEquals("This is a paragraph!!!!D!Pow!", testParagraph.getText());
+    }
+
+    @Test
+    void testDeleteSameTextMultipleTimes() {
+        testParagraph.addText("paragraph!paragraph!paragraph!");
+        assertEquals("This is a paragraph!paragraph!paragraph!paragraph!", testParagraph.getText());
+        testParagraph.deleteText("paragraph!");
+        testParagraph.deleteText("paragraph!");
+        testParagraph.deleteText("paragraph!");
+        assertEquals("This is a paragraph!", testParagraph.getText());
     }
 }

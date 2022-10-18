@@ -17,8 +17,7 @@ public class PageFolder {
     // EFFECTS: creates a page folder
     public PageFolder(String name) {}
 
-    // REQUIRES:
-    // MODIFIES:
+    // MODIFIES: this
     // EFFECTS: adds a page to the list of note pages
     // potentially rename to more general if Directory shares interface?
     public void addPage(String name) {} // addPage calls Page()

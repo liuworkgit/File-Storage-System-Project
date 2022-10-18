@@ -5,6 +5,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -27,26 +28,26 @@ class PageTest {
     @Test
     void testAddParagraph() {
         testPage.addParagraph("This is some text, blah blah blah.");
-        assertEquals(["This is some text, blah blah blah"], testPage.getListParagraphs()); //???
+        assertEquals(Arrays.asList("This is some text, blah blah blah."), testPage.getListParagraphs());
     }
 
     @Test
     void testDeleteParagraph() {
         testPage.addParagraph("asdfghjk");
-        testPage.deleteParagraph("asdfghjk");
+        testPage.deleteParagraph(0);
         assertEquals(new ArrayList<>(), testPage.getListParagraphs());
     }
 
     @Test
     void testAddLink() {
         testPage.addLink("Page Name");
-        assertEquals(..., testPage.getListLinks()); // ?????
+        assertEquals(Arrays.asList("Page Name"), testPage.getListLinks());
     }
 
     @Test
     void testDeleteLink() {
         testPage.addLink("Math 221 Notes - Basis and Dimension");
-        testPage.deleteLink("Math 221 Notes - Basis and Dimension");
+        testPage.deleteLink(0);
         assertEquals(new ArrayList<>(), testPage.getListLinks());
     }
 
@@ -60,17 +61,19 @@ class PageTest {
     // tests if can add paragraphs, then delete it
     void testAddThenDelete() {
         testPage.addParagraph("agony pain suffering");
-        testPage.deleteParagraph("agony pain suffering");
+        testPage.deleteParagraph(0);
         assertEquals(new ArrayList<>(), testPage.getListParagraphs());
     }
 
     @Test
     // tests if can add multiple paragraphs
     void testAddMultiple() {
-        testPage.addParagraph("This is some text! booboboboboobbobobobob");
-        testPage.addParagraph("This is some text! booboboboboobbobobobob");
-        testPage.addParagraph("This is some more text! oooogoogooohhhghghhghgpennnniiii");
-        assertEquals(...);
+        testPage.addParagraph("booboboboboobbobobobob");
+        testPage.addParagraph("booboboboboobbobobobob");
+        testPage.addParagraph("oooogoogooohhhghghhghgpenn");
+        assertEquals(Arrays.asList("booboboboboobbobobobob",
+                "booboboboboobbobobobob",
+                "oooogoogooohhhghghhghgpenn"), testPage.getListParagraphs());
     }
 
     @Test
@@ -78,9 +81,9 @@ class PageTest {
     void testAddMultipleDeleteMultiple() {
         testPage.addParagraph("ABC");
         testPage.addParagraph("DEF");
-        testPage.deleteParagraph("ABC");
+        testPage.deleteParagraph(0);
         testPage.addParagraph("GHI123");
-        testPage.deleteParagraph("GHI123");
-        assertEquals(...);
+        testPage.deleteParagraph(1);
+        assertEquals(Arrays.asList("DEF"), testPage.getListParagraphs());
     }
 }

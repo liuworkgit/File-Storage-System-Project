@@ -20,59 +20,69 @@ import java.util.List;
 
 public class Page {
     private String name;
-    private int pageId;
     private List<Paragraph> listParagraphs;
     private List<String> listLinks; // LINK TO PAGE AND PARAGRAPH+PAGE IT'S IN, save as list strings of name or name|id
 
-    // !!!!!! what about id?
-    // REQUIRES:
-    // MODIFIES:
+    // REQUIRES: name must not be empty
     // EFFECTS: creates a page with no paragraphs and links
     public Page(String name) {
         this.name = name;
-        this.pageId = 1; // PLACEHOLDER
         this.listParagraphs = new ArrayList<>();
         this.listLinks = new ArrayList<>();
     }
 
-    public void addParagraph(String text) {} // calls Paragraph, increments paragraph id by 1
+    // REQUIRES: text cannot be an empty string
+    // MODIFIES: this
+    // EFFECTS: adds a paragraph to the bottom of the page
+    public void addParagraph(String text) {
+        listParagraphs.add(new Paragraph(text));
+    }
 
-    public void deleteParagraph(String text) {} // calls deleteParagraph, can choose paragraph to delete?
+    // MODIFIES: this
+    // EFFECTS: deletes a paragraph from the page
+    public void deleteParagraph(int index) {
+        listParagraphs.remove(index);
+    }
 
-    public void addLink(String name) {}
+    // MODIFIES: this
+    // EFFECTS: edits an existing paragraph by rewriting it
+    public void editParagraph(int index) {
+        
+    }
 
-    public void deleteLink(String name) {}
+    // REQUIRES: a page must exist and have the given name
+    // MODIFIES: this
+    // EFFECTS: adds a link to the page
+    public void addLink(String name) {
+        if (listLinks.contains(name)) {
+            System.out.println("You already have a page named " + name);
+        } else {
+            listLinks.add(name);
+        }
+    }
+
+    // MODIFIES: this
+    // EFFECTS: deletes a link from the page
+    public void deleteLink(int index) {
+        listLinks.remove(index);
+    }
 
 
-    // getters
+    // getters and setters
 
-    // !!!!!!
-    // REQUIRES:
-    // EFFECTS: gets the name of the page
     public String getName() {
-        return "";
+        return name;
     }
 
-    public void changeName(String newName) {}
-
-    // !!!!!!
-    // REQUIRES:
-    // EFFECTS: gets the id of the page
-    public int getPageId() {
-        return 0;
+    public void changeName(String newName) {
+        this.name = newName;
     }
 
-    // !!!!!!
-    // REQUIRES:
-    // EFFECTS: gets the list of paragraphs of the page
     public List<Paragraph> getListParagraphs() {
-        return ArrayList<>();
+        return listParagraphs;
     }
 
-    // !!!!!!
-    // REQUIRES:
-    // EFFECTS: get the list of links of the page
     public List<String> getListLinks() {
-        return ArrayList<>();
+        return listLinks;
     }
 }
