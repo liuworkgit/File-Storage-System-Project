@@ -26,10 +26,11 @@ public class DirectoryTest {
         assertEquals(new ArrayList<>(), testDirectory.getListFolders());
     }
 
-//    @Test
-//    void testAddFolder() {
-//        testDirectory.addFolder("WWW");
-//    }
+    @Test
+    void testAddFolder() {
+        testDirectory.addFolder("WWW");
+        assertEquals("WWW", testDirectory.getListFolders().get(0).getName());
+    }
 
     @Test
     void testDeleteFolder() {
@@ -42,8 +43,8 @@ public class DirectoryTest {
     void testAddMultiple() {
         testDirectory.addFolder("Folder 1");
         testDirectory.addFolder("Folder 2");
-        assertTrue(testDirectory.getListFolders().contains(new PageFolder("Folder 1")));
-        assertTrue(testDirectory.getListFolders().contains(new PageFolder("Folder 2")));
+        assertEquals("Folder 1", testDirectory.getListFolders().get(0).getName());
+        assertEquals("Folder 2", testDirectory.getListFolders().get(1).getName());
     }
 
     @Test
@@ -51,7 +52,6 @@ public class DirectoryTest {
         testDirectory.addFolder("AAA");
         testDirectory.addFolder("BBB");
         testDirectory.deleteFolder(0);
-        assertTrue(testDirectory.getListFolders().contains(new PageFolder("BBB")));
-        assertFalse(testDirectory.getListFolders().contains(new PageFolder("AAA")));
+        assertEquals("BBB", testDirectory.getListFolders().get(0).getName());
     }
 }

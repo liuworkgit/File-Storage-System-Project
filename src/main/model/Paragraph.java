@@ -22,7 +22,17 @@ public class Paragraph {
     // MODIFIES: this
     // EFFECTS: deletes the inputted text from the paragraph
     //          if there are duplicates, deletes last occurrence.
-    public void deleteText(String text) {}
+    public void deleteText(String text) {
+        // get index of first and last character of to-be-deleted
+        int startOfDeleting = this.text.indexOf(text);
+        int endofDeleting = text.length();
+        // get parts of string to left and right of to-be-deleted
+        String leftPart = this.text.substring(0, startOfDeleting);
+        String rightPart = this.text.substring(startOfDeleting + endofDeleting, this.text.length());
+        // deleting
+        String finalText = leftPart + rightPart;
+        this.text = finalText;
+    }
 
     // ASK FOR HELP!!!
     // REQUIRES: this.text cannot be empty string
@@ -30,13 +40,18 @@ public class Paragraph {
     // EFFECTS: bolds the text by putting double asterixes around the chosen text.
     //          if given text appears more than once in paragraph, bolds first occurrence
     public void boldText(String text) {
-//        int leftPartIndex = this.text.indexOf(text);
-//
-//        // part of string before text to be bolded
-//
-//        String leftPart = this.text.substring(0, leftPartIndex);
-//        // part of string after text to be bolded
-//        String rightPart = this.text.substring(..., ...);
+        // get index of first and last character of to-be-deleted
+        int startOfDeleting = this.text.indexOf(text);
+        int endofDeleting = text.length();
+        // get parts of string to left and right of to-be-deleted
+        String leftPart = this.text.substring(0, startOfDeleting);
+        String rightPart = this.text.substring(startOfDeleting + endofDeleting, this.text.length());
+        // deleting
+        String finalText = leftPart + "**" + text + "**" + rightPart;
+        this.text = finalText;
+    }
+
+    public void unboldText(String text) {
     }
 
 

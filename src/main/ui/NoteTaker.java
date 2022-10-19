@@ -3,6 +3,7 @@ package ui;
 // put ui functionality in here for now
 
 import java.util.Scanner;
+
 import model.Directory;
 
 public class NoteTaker {
@@ -22,19 +23,19 @@ public class NoteTaker {
                 + "\n[3] delete folder"
                 + "\n[4] rename folder");
         directoryInput = userInput.nextInt();
-        
-        if (directoryInput = 1) {
-            displayOptions();
-        }
-        else if (directoryInput = 2) {
-            Scanner newFolderInput = new Scanner(System.in);
-            System.out.println("What would you like to name this folder?");
-            String folderName = newFolderInput.nextLine();
-            directory.addFolder(folderName);
 
-        }
-
-        // RESULT OF USER INPUT AT DIRECTORY LEVEL
+//        if (directoryInput = 1) {
+//            displayOptions();
+//        } else if (directoryInput = 2) {
+//            Scanner newFolderInput = new Scanner(System.in);
+//            System.out.println("What would you like to name this folder?");
+//            String folderName = newFolderInput.nextLine();
+//            directory.addFolder(folderName);
+//        } else if (directoryInput = 3) {
+//            System.out.println("THIS IS A PLACEHOLDER");
+//        } else if (directoryInput = 4) {
+//            System.out.println("THIS IS A PLACEHOLDER");
+//        }
     }
 
 }

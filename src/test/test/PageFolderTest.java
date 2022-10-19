@@ -26,7 +26,7 @@ public class PageFolderTest {
     @Test
     void testAddPage() {
         testFolder.addPage("GEOS 102 monday lecture");
-        assertEquals(Arrays.asList("GEOS 102 monday lecture"), testFolder.getListPages());
+        assertTrue("GEOS 102 monday lecture" == testFolder.getListPages().get(0).getName());
     }
 
     @Test
@@ -54,17 +54,21 @@ public class PageFolderTest {
         testFolder.addPage("test123");
         testFolder.addPage("test123");
         testFolder.addPage("test123");
-        assertEquals(Arrays.asList("test123", "test123", "test123"), testFolder.getListPages());
+        assertEquals("test123", testFolder.getListPages().get(0).getName());
+        assertEquals("test123", testFolder.getListPages().get(1).getName());
+        assertEquals("test123", testFolder.getListPages().get(2).getName());
     }
 
     @Test
     void testAddMultipleDeleteMultiple() {
         testFolder.addPage("test123");
         testFolder.addPage("test123");
-        testFolder.addPage("test123");
-        assertEquals(Arrays.asList("test123", "test123", "test123"), testFolder.getListPages());
-        testFolder.deletePage(2);
+        testFolder.addPage("wiggles");
+        assertEquals("test123", testFolder.getListPages().get(0).getName());
+        assertEquals("test123", testFolder.getListPages().get(1).getName());
+        assertEquals("wiggles", testFolder.getListPages().get(2).getName());
         testFolder.deletePage(1);
-        assertEquals(Arrays.asList("test123"), testFolder.getListPages());
+        testFolder.deletePage(0);
+        assertEquals("wiggles", testFolder.getListPages().get(0).getName());
     }
 }

@@ -29,8 +29,8 @@ class PageTest {
     @Test
     void testAddParagraph() {
         testPage.addParagraph("This is some text, blah blah blah.");
-        assertEquals(new Paragraph("This is some text, blah blah blah."),
-                testPage.getListParagraphs().get(0));
+        assertEquals("This is some text, blah blah blah.",
+                testPage.getListParagraphs().get(0).getText());
     }
 
     @Test
@@ -63,7 +63,7 @@ class PageTest {
     void testEditParagraph() {
         testPage.addParagraph("Booyah!");
         testPage.editParagraph(0, "Yahboo!");
-        assertEquals(Arrays.asList("Yahboo!"), testPage.getListParagraphs());
+        assertEquals("Yahboo!", testPage.getListParagraphs().get(0).getText());
     }
 
     @Test
@@ -80,9 +80,9 @@ class PageTest {
         testPage.addParagraph("name 1");
         testPage.addParagraph("name 2");
         testPage.addParagraph("name 3");
-        assertEquals(Arrays.asList(new Paragraph("name 1"),
-                new Paragraph("name 2"),
-                new Paragraph("name 3")), testPage.getListParagraphs());
+        assertEquals("name 1", testPage.getListParagraphs().get(0).getText());
+        assertEquals("name 2", testPage.getListParagraphs().get(1).getText());
+        assertEquals("name 3", testPage.getListParagraphs().get(2).getText());
     }
 
     @Test
@@ -93,7 +93,7 @@ class PageTest {
         testPage.deleteParagraph(0);
         testPage.addParagraph("GHI123");
         testPage.deleteParagraph(1);
-        assertEquals(Arrays.asList(new Paragraph("DEF")), testPage.getListParagraphs());
+        assertTrue("DEF" == testPage.getListParagraphs().get(0).getText());
     }
 
     @Test
