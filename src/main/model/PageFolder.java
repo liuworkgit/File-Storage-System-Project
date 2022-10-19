@@ -12,25 +12,37 @@ public class PageFolder {
     private String name;
     private List<Page> listPages;
 
-    // REQUIRES:
-    // MODIFIES:
-    // EFFECTS: creates a page folder
-    public PageFolder(String name) {}
+    // REQUIRES: name cannot be empty string
+    // EFFECTS: creates a page folder with given name and no pages
+    public PageFolder(String name) {
+        this.name = name;
+        listPages = new ArrayList<>();
+    }
 
     // MODIFIES: this
     // EFFECTS: adds a page to the list of note pages
     // potentially rename to more general if Directory shares interface?
-    public void addPage(String name) {} // addPage calls Page()
+    public void addPage(String name) {
+        listPages.add(new Page(name));
+    }
 
-    public void deletePage(String name) {}
+    // MODIFIES: this
+    // EFFECTS: deletes the page associated with the given index from the folder
+    public void deletePage(int index) {
+        listPages.remove(index);
+    }
 
 
     // getters and setters
-    public String getName() {}
+    public String getName() {
+        return name;
+    }
 
-    public List<Page> getListPages() {}
+    public List<Page> getListPages() {
+        return listPages;
+    }
 
-    // MODIFIES: this
-    // EFFECTS: changes the name of the page folder
-    public void changeName(String newName) {}
+    public void changeName(String newName) {
+        this.name = newName;
+    }
 }

@@ -1,30 +1,16 @@
 package model;
 
-// Represents a page with an id, paragraphs (text) and links to other pages
-
-// (METHOD CREATED) As a user, I want to be able to create a new page and have it be added to my list of existing pages.
-//- Page (represents an empty page)
-//- ListOfPages (represents an empty list of note pages)
-//
-// As a user, I want to be able to highlight text.
-//- highlighter? idk
-//
-//As a user, I want to be able to type and delete text.
-//- functionality in page?
-//
-//As a user, I want to be able to create a hyperlink between a word and another page, or between two pages.
-//- functionality in page? (ask TA)
-
 import java.util.ArrayList;
 import java.util.List;
 
+// Represents a page with an id, paragraphs (text) and links to other pages
 public class Page {
     private String name;
     private List<Paragraph> listParagraphs;
     private List<String> listLinks; // LINK TO PAGE AND PARAGRAPH+PAGE IT'S IN, save as list strings of name or name|id
 
     // REQUIRES: name must not be empty
-    // EFFECTS: creates a page with no paragraphs and links
+    // EFFECTS: creates a page with the given name, no paragraphs and no links
     public Page(String name) {
         this.name = name;
         this.listParagraphs = new ArrayList<>();
@@ -46,8 +32,9 @@ public class Page {
 
     // MODIFIES: this
     // EFFECTS: edits an existing paragraph by rewriting it
-    public void editParagraph(int index) {
-        
+    public void editParagraph(int index, String newText) {
+        Paragraph oldText = listParagraphs.get(index);
+        oldText.setText(newText);
     }
 
     // REQUIRES: a page must exist and have the given name
@@ -55,7 +42,7 @@ public class Page {
     // EFFECTS: adds a link to the page
     public void addLink(String name) {
         if (listLinks.contains(name)) {
-            System.out.println("You already have a page named " + name);
+            System.out.println("You've already linked page named " + name);
         } else {
             listLinks.add(name);
         }

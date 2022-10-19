@@ -1,6 +1,7 @@
 package model;
 
 import java.util.List;
+import java.util.ArrayList;
 
 // a folder of all note page folders
 public class Directory {
@@ -10,13 +11,23 @@ public class Directory {
         listFolders = new ArrayList<>();
     }
 
-    public void addFolder(String name) {}
-    // addFolder calls PageFolder(), if same name as other folder add (2) on end
+    // REQUIRES: name cannot be empty string
+    // MODIFIES: this
+    // EFFECTS: adds a folder with the given name to the directory
+    public void addFolder(String name) {
+        listFolders.add(new PageFolder(name));
+    }
 
-    public void removeFolder(String name) {}
+    // MODIFIES: this
+    // EFFECTS: deletes folder associated with given index from directory
+    public void deleteFolder(int index) {
+        listFolders.remove(index);
+    }
 
 
     // getters
 
-    public List<PageFolder> getListFolders() {}
+    public List<PageFolder> getListFolders() {
+        return listFolders;
+    }
 }
