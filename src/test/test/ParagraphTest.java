@@ -41,7 +41,14 @@ public class ParagraphTest {
     // tests if can bold part of the paragraph
     void testBoldPartOfText() {
         testParagraph.boldText("This is ");
-        assertEquals("**This is ** a paragraph!", testParagraph.getText());
+        assertEquals("**This is **a paragraph!", testParagraph.getText());
+    }
+
+    @Test
+    void testUnboldText() {
+        testParagraph.boldText("This is a paragraph!");
+        testParagraph.unboldText("This is a paragraph!");
+        assertEquals("This is a paragraph!", testParagraph.getText());
     }
 
     @Test

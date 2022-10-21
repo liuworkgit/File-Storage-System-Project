@@ -46,18 +46,19 @@ public class Paragraph {
         // get parts of string to left and right of to-be-deleted
         String leftPart = this.text.substring(0, startOfDeleting);
         String rightPart = this.text.substring(startOfDeleting + endofDeleting, this.text.length());
-        // deleting
+        // bolding
         String finalText = leftPart + "**" + text + "**" + rightPart;
         this.text = finalText;
     }
 
-    public void unboldText(String text) {
-    }
+    // REQUIRES: text must have two occurrences of "**" at the end
+    // MODIFIES: this
+    // EFFECTS: unbolds the given text by removing the outermost two occurrences of "**"
+    public void unboldText(String text) {}
 
 
     // getters and setters
 
-    // REQUIRES: this.text cannot be empty string
     public String getText() {
         return text;
     }
