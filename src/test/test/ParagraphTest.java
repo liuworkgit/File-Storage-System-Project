@@ -83,11 +83,29 @@ public class ParagraphTest {
 
     @Test
     void testDeleteSameTextMultipleTimes() {
-        testParagraph.addText("paragraph!paragraph!paragraph!");
-        assertEquals("This is a paragraph!paragraph!paragraph!paragraph!", testParagraph.getText());
-        testParagraph.deleteText("paragraph!");
-        testParagraph.deleteText("paragraph!");
-        testParagraph.deleteText("paragraph!");
+        testParagraph.addText("wowwowwow");
+        assertEquals("This is a paragraph!wowwowwow", testParagraph.getText());
+        testParagraph.deleteText("wow");
+        testParagraph.deleteText("wow");
+        testParagraph.deleteText("wow");
         assertEquals("This is a paragraph!", testParagraph.getText());
+    }
+
+    @Test
+    void testAddBoldUnbold() {
+        testParagraph.addText("blahblahblah");
+        assertEquals("This is a paragraph!blahblahblah", testParagraph.getText());
+        testParagraph.boldText("blahblahbl");
+        assertEquals("This is a paragraph!**blahblahbl**ah", testParagraph.getText());
+        testParagraph.unboldText("blahblah");
+        assertEquals("This is a paragraph!blahblah**bl**ah", testParagraph.getText());
+    }
+
+    @Test
+    void testDeleteBoldTextWithAsterixes() {
+        testParagraph.boldText("paragraph");
+        testParagraph.addText("boo**");
+        testParagraph.deleteText("paragraph**!boo");
+        assertEquals("This is a ", testParagraph.getText());
     }
 }

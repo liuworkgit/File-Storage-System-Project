@@ -17,11 +17,10 @@ public class Paragraph {
         this.text = this.text + text;
     }
 
-    // ASK FOR HELP!!!
     // REQUIRES: text cannot be empty string and must be in this.text. text cannot equal this.text
     // MODIFIES: this
     // EFFECTS: deletes the inputted text from the paragraph
-    //          if there are duplicates, deletes last occurrence.
+    //          if there are duplicates, deletes first occurrence.
     public void deleteText(String text) {
         // get index of first and last character of to-be-deleted
         int startOfDeleting = this.text.indexOf(text);
@@ -29,12 +28,16 @@ public class Paragraph {
         // get parts of string to left and right of to-be-deleted
         String leftPart = this.text.substring(0, startOfDeleting);
         String rightPart = this.text.substring(startOfDeleting + endofDeleting, this.text.length());
+        // bolding prevention
+        if (leftPart.endsWith("**") && rightPart.startsWith("**")) {
+            leftPart = this.text.substring(0, startOfDeleting - 2);
+            rightPart = this.text.substring(startOfDeleting + endofDeleting + 2, this.text.length());
+        }
         // deleting
         String finalText = leftPart + rightPart;
         this.text = finalText;
     }
 
-    // ASK FOR HELP!!!
     // REQUIRES: this.text cannot be empty string
     // MODIFIES: this
     // EFFECTS: bolds the text by putting double asterixes around the chosen text.
