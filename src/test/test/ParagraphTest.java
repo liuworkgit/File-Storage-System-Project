@@ -45,10 +45,35 @@ public class ParagraphTest {
     }
 
     @Test
-    void testUnboldText() {
+    // **alphabet** -> alphabet
+    void testUnboldEntireBolded() {
         testParagraph.boldText("This is a paragraph!");
         testParagraph.unboldText("This is a paragraph!");
         assertEquals("This is a paragraph!", testParagraph.getText());
+    }
+
+    @Test
+    // **alphabet** -> alpha**bet**
+    void testUnboldStart() {
+        testParagraph.boldText("This is a paragraph!");
+        testParagraph.unboldText("This");
+        assertEquals("This** is a paragraph!**", testParagraph.getText());
+    }
+
+    @Test
+    // **alphabet** -> **alpha**bet
+    void testUnboldEnd() {
+        testParagraph.boldText("This is a paragraph!");
+        testParagraph.unboldText("paragraph!");
+        assertEquals("**This is a **paragraph!", testParagraph.getText());
+    }
+
+    @Test
+    // **alphabet** -> **al**pha**bet**
+    void testUnboldMiddle() {
+        testParagraph.boldText("This is a paragraph!");
+        testParagraph.unboldText("is a");
+        assertEquals("**This **is a** paragraph!**", testParagraph.getText());
     }
 
     @Test
