@@ -1,13 +1,11 @@
 package test;
 
 import model.Page;
-import model.Paragraph;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -62,7 +60,7 @@ class PageTest {
     @Test
     void testEditParagraph() {
         testPage.addParagraph("Booyah!");
-        testPage.editParagraph(0, "Yahboo!");
+        testPage.rewriteParagraph(0, "Yahboo!");
         assertEquals("Yahboo!", testPage.getListParagraphs().get(0).getText());
     }
 

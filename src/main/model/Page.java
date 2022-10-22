@@ -31,8 +31,8 @@ public class Page {
     }
 
     // MODIFIES: this
-    // EFFECTS: edits an existing paragraph by rewriting it
-    public void editParagraph(int index, String newText) {
+    // EFFECTS: rewrite an existing paragraph
+    public void rewriteParagraph(int index, String newText) {
         Paragraph oldText = listParagraphs.get(index);
         oldText.setText(newText);
     }
