@@ -42,7 +42,7 @@ public class PageFolder {
         return listPages;
     }
 
-    public void changeName(String newName) {
+    public void setName(String newName) {
         this.name = newName;
     }
 }

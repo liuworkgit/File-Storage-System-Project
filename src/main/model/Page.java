@@ -3,7 +3,7 @@ package model;
 import java.util.ArrayList;
 import java.util.List;
 
-// Represents a page with an id, paragraphs (text) and links to other pages
+// Represents a page with a name, paragraphs (text) and links to other pages
 public class Page {
     private String name;
     private List<Paragraph> listParagraphs;
@@ -61,7 +61,7 @@ public class Page {
         return name;
     }
 
-    public void changeName(String newName) {
+    public void setName(String newName) {
         this.name = newName;
     }
 

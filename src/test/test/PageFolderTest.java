@@ -5,7 +5,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -38,7 +37,7 @@ public class PageFolderTest {
 
     @Test
     void testChangeName() {
-        testFolder.changeName("BAJA BE THY BLAST");
+        testFolder.setName("BAJA BE THY BLAST");
         assertEquals("BAJA BE THY BLAST", testFolder.getName());
     }
 

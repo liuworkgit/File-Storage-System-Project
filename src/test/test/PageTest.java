@@ -53,7 +53,7 @@ class PageTest {
 
     @Test
     void testChangeName() {
-        testPage.changeName("CPSC 210 hurts my brain");
+        testPage.setName("CPSC 210 hurts my brain");
         assertEquals("CPSC 210 hurts my brain", testPage.getName());
     }
 
