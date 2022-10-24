@@ -26,7 +26,7 @@ public class NoteTakerApp {
         Scanner input = new Scanner(System.in);
         boolean stayHere = true;
 
-        while (stayHere == true) {
+        while (stayHere) {
             showDirectoryMenu();
             int command = input.nextInt();
 
@@ -68,9 +68,11 @@ public class NoteTakerApp {
         if (folders.isEmpty()) { // no folders
             System.out.println("You have no folders currently.");
         } else { // shows all folders
+            Scanner folderInput = new Scanner(System.in);
             System.out.println("Select a folder to view.");
             directory.displayChoices();
-            runFolder();
+            int index = folderInput.nextInt() - 1;
+            runFolder(directory.getListFolders().get(index));
         }
     }
 
@@ -86,14 +88,25 @@ public class NoteTakerApp {
         Scanner toDelete = new Scanner(System.in);
         System.out.println("Select folder to delete:");
         directory.displayChoices();
-        directory.getListFolders().remove(toDelete.nextInt()-1);
+        directory.getListFolders().remove(toDelete.nextInt() - 1);
     }
 
     // EFFECTS: renames chosen folder from directory
-    public void renameFolder() {}
+    public void renameFolder() {
+        // get folder
+        Scanner toRename = new Scanner(System.in);
+        System.out.println("Select folder to rename:");
+        directory.displayChoices();
+        int index = toRename.nextInt();
+        Folder folderToRename = directory.getListFolders().get(index - 1);
+        // new name
+        Scanner newName = new Scanner(System.in);
+        System.out.println("Enter new name:");
+        folderToRename.setName(newName.nextLine());
+    }
 
     // EFFECTS: processes user input at folder level
-    public void runFolder() {
+    public void runFolder(Folder folder) {
         Scanner input = new Scanner(System.in);
         boolean stayHere = true;
 
@@ -112,14 +125,31 @@ public class NoteTakerApp {
     // EFFECTS: shows folder options
     public void showFolderMenu() {
         System.out.println("What would you like to do?"
-                + "\n[1] view page"
+                + "\n[1] view pages"
                 + "\n[2] add page"
                 + "\n[3] delete page"
                 + "\n[0] back");
     }
 
     // EFFECTS: processes input at folder level
-    public void folderProcess(int command) {}
+    public void folderProcess(int command) {
+        if (command == 1) { // view pages
+            viewPages();
+        } else if (command == 2) { // add page
+            addPage();
+        } else if (command == 3) { // delete page
+            deletePage();
+        }
+    }
+
+    // EFFECTS: shows all pages
+    public void viewPages() {}
+
+    // EFFECTS: adds new page
+    public void addPage() {}
+
+    // EFFECTS: deletes npage
+    public void deletePage() {}
 
     // EFFECTS: processes user input at page level
     public void runPage() {}
