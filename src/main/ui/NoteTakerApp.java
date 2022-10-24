@@ -85,8 +85,8 @@ public class NoteTakerApp {
     public void deleteFolder() {
         Scanner toDelete = new Scanner(System.in);
         System.out.println("Select folder to delete:");
-        // deletes chosen folder
-        directory.getListFolders().remove(toDelete.nextInt());
+        directory.displayChoices();
+        directory.getListFolders().remove(toDelete.nextInt()-1);
     }
 
     // EFFECTS: renames chosen folder from directory
