@@ -5,6 +5,8 @@ import java.util.Scanner;
 
 import model.Directory;
 import model.Folder;
+import model.Page;
+import model.Paragraph;
 
 // NOTE: Based on JsonSerializationDemo provided by CPSC210
 // Found on Phase 2 page on CPSC210 edx
@@ -117,7 +119,7 @@ public class NoteTakerApp {
             if (command == 0) {
                 stayHere = false;
             } else {
-                folderProcess(command);
+                folderProcess(command, folder);
             }
         }
     }
@@ -132,39 +134,103 @@ public class NoteTakerApp {
     }
 
     // EFFECTS: processes input at folder level
-    public void folderProcess(int command) {
+    public void folderProcess(int command, Folder folder) {
         if (command == 1) { // view pages
-            viewPages();
+            viewPages(folder);
         } else if (command == 2) { // add page
-            addPage();
+            addPage(folder);
         } else if (command == 3) { // delete page
-            deletePage();
+            deletePage(folder);
         }
     }
 
     // EFFECTS: shows all pages
-    public void viewPages() {}
+    public void viewPages(Folder folder) {
+        List<Page> pages = folder.getListPages();
+        if (pages.isEmpty()) { // no pages
+            System.out.println("You have no pages in this folder.");
+        } else { // shows all pages
+            Scanner pageInput = new Scanner(System.in);
+            System.out.println("Select a page to view.");
+            folder.displayChoices();
+            int index = pageInput.nextInt() - 1;
+            runPage(pages.get(index));
+        }
+    }
 
     // EFFECTS: adds new page
-    public void addPage() {}
+    public void addPage(Folder folder) {
+        Scanner newName = new Scanner(System.in);
+        System.out.println("What would you like to name this page?");
+        folder.addPage(newName.nextLine());
+    }
 
     // EFFECTS: deletes npage
-    public void deletePage() {}
+    public void deletePage(Folder folder) {
+        Scanner toDelete = new Scanner(System.in);
+        System.out.println("Select page to delete:");
+        folder.displayChoices();
+        folder.getListPages().remove(toDelete.nextInt() - 1);
+    }
 
     // EFFECTS: processes user input at page level
-    public void runPage() {}
+    public void runPage(Page page) {
+        List<Paragraph> paragraphs = page.getListParagraphs();
+        Scanner input = new Scanner(System.in);
+        boolean stayHere = true;
+
+        while (stayHere == true) {
+            showPageMenu();
+            int command = input.nextInt();
+
+            if (command == 0) {
+                stayHere = false;
+            } else {
+                pageProcess(command, page);
+            }
+        }
+    }
 
     // EFFECTS: shows page options
-    public void showPageOptions() {
+    public void showPageMenu() {
         System.out.println("What would you like to do?"
                 + "\n[1] add paragraph"
                 + "\n[2] delete paragraph"
-                + "\n[3] bold paragraph"
-                + "\n[4] unbold paragraph"
+                + "\n[3] bold text"
+                + "\n[4] unbold text"
                 + "\n[5] rewrite paragraph"
                 + "\n[6] add link"
                 + "\n[7] delete link"
                 + "\n[8] view links"
-                + "\n[9] back");
+                + "\n[0] back");
     }
+
+    // EFFECTS: processes input at the page level
+    public void pageProcess(int command, Page page) {
+        if (command == 1) {
+            addParagraph(page);
+        } else if (command == 2) {
+            deleteParagraph(page);
+        } else if (command == 3) {
+            boldText(page);
+        } else if (command == 4) {
+            unboldText(page);
+        } else if (command == 5) {
+            System.out.println("THIS IS A PLACEHOLDER");
+        } else if (command == 6) {
+            System.out.println("THIS IS A PLACEHOLDER");
+        } else if (command == 7) {
+            System.out.println("THIS IS A PLACEHOLDER");
+        } else if (command == 8) {
+            System.out.println("THIS IS A PLACEHOLDER");
+        }
+    }
+
+    private void addParagraph(Page page) {}
+
+    private void deleteParagraph(Page page) {}
+
+    private void boldText(Page page) {}
+
+    private void unboldText(Page page) {}
 }

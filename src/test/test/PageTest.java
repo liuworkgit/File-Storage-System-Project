@@ -40,13 +40,15 @@ class PageTest {
 
     @Test
     void testAddLink() {
-        testPage.addLink("Page Name");
-        assertEquals(Arrays.asList("Page Name"), testPage.getListLinks());
+        Page mathNotes = new Page("Math 200 - PDEs");
+        testPage.addLink(mathNotes);
+        assertEquals(Arrays.asList(mathNotes), testPage.getListLinks());
     }
 
     @Test
     void testDeleteLink() {
-        testPage.addLink("Math 221 Notes - Basis and Dimension");
+        Page mathNotes = new Page("Math 221 Notes - Basis and Dimension");
+        testPage.addLink(mathNotes);
         testPage.deleteLink(0);
         assertEquals(new ArrayList<>(), testPage.getListLinks());
     }
@@ -96,10 +98,11 @@ class PageTest {
 
     @Test
     void testLinkSamePageTwice() {
-        testPage.addLink("name of page");
-        assertEquals(Arrays.asList("name of page"), testPage.getListLinks());
-        testPage.addLink("name of page");
-        assertEquals(Arrays.asList("name of page"), testPage.getListLinks());
+        Page page1 = new Page("test page");
+        testPage.addLink(page1);
+        assertEquals(Arrays.asList(page1), testPage.getListLinks());
+        testPage.addLink(page1);
+        assertEquals(Arrays.asList(page1), testPage.getListLinks());
     }
 
     @Test

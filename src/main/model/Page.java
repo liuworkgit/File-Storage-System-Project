@@ -7,7 +7,7 @@ import java.util.List;
 public class Page implements StorageType {
     private String name;
     private List<Paragraph> listParagraphs;
-    private List<String> listLinks; // LINK TO PAGE AND PARAGRAPH+PAGE IT'S IN, save as list strings of name or name|id
+    private List<Page> listLinks;
 
     // REQUIRES: name must not be empty
     // EFFECTS: creates a page with the given name, no paragraphs and no links
@@ -37,14 +37,14 @@ public class Page implements StorageType {
         oldText.setText(newText);
     }
 
-    // REQUIRES: a page must exist and have the given name
+    // REQUIRES: page must exist
     // MODIFIES: this
     // EFFECTS: adds a link to the page
-    public void addLink(String name) {
-        if (listLinks.contains(name)) {
+    public void addLink(Page page) {
+        if (listLinks.contains(page)) {
             System.out.println("You've already linked page named " + name);
         } else {
-            listLinks.add(name);
+            listLinks.add(page);
         }
     }
 
@@ -78,7 +78,7 @@ public class Page implements StorageType {
         return listParagraphs;
     }
 
-    public List<String> getListLinks() {
+    public List<Page> getListLinks() {
         return listLinks;
     }
 }
