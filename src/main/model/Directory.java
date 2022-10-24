@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.ArrayList;
 
 // a folder of all note page folders
-public class Directory {
+public class Directory implements StorageType {
     private List<Folder> listFolders;
 
     public Directory() {
@@ -24,6 +24,15 @@ public class Directory {
         listFolders.remove(index);
     }
 
+    // EFFECTS: shows all folders as a list of options
+    public void displayChoices() {
+        for (Folder folder : listFolders) {
+            int index = listFolders.indexOf(folder);
+            String strIndex = String.valueOf(index + 1);
+            String message = "[" + strIndex + "] " + folder.getName();
+            System.out.println(message);
+        }
+    }
 
     // getters
 

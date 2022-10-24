@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 // Represents a page with a name, paragraphs (text) and links to other pages
-public class Page {
+public class Page implements StorageType {
     private String name;
     private List<Paragraph> listParagraphs;
     private List<String> listLinks; // LINK TO PAGE AND PARAGRAPH+PAGE IT'S IN, save as list strings of name or name|id
@@ -54,6 +54,15 @@ public class Page {
         listLinks.remove(index);
     }
 
+    // EFFECTS: prints out all paragraphs
+    public void displayChoices() {
+        for (Paragraph paragraph : listParagraphs) {
+            int index = listParagraphs.indexOf(paragraph);
+            String strIndex = String.valueOf(index + 1);
+            String message = "[" + strIndex + "] " + paragraph.getText();
+            System.out.println(message);
+        }
+    }
 
     // getters and setters
 

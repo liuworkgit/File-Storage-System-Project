@@ -101,4 +101,12 @@ class PageTest {
         testPage.addLink("name of page");
         assertEquals(Arrays.asList("name of page"), testPage.getListLinks());
     }
+
+    @Test
+    void testDisplayChoices() {
+        testPage.addParagraph("Test");
+        testPage.addParagraph("Testing");
+        assertEquals("Test", testPage.getListParagraphs().get(0).getText());
+        assertEquals("Testing", testPage.getListParagraphs().get(1).getText());
+    }
 }

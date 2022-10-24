@@ -50,4 +50,12 @@ public class DirectoryTest {
         testDirectory.deleteFolder(0);
         assertEquals("BBB", testDirectory.getListFolders().get(0).getName());
     }
+
+    @Test
+    void testDisplayChoices() {
+        testDirectory.addFolder("Test");
+        testDirectory.addFolder("Testing");
+        assertEquals("Test", testDirectory.getListFolders().get(0).getName());
+        assertEquals("Testing", testDirectory.getListFolders().get(1).getName());
+    }
 }

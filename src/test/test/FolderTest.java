@@ -70,4 +70,12 @@ public class FolderTest {
         testFolder.deletePage(0);
         assertEquals("wiggles", testFolder.getListPages().get(0).getName());
     }
+
+    @Test
+    void testDisplayChoices() {
+        testFolder.addPage("Test");
+        testFolder.addPage("Testing");
+        assertEquals("Test", testFolder.getListPages().get(0).getName());
+        assertEquals("Testing", testFolder.getListPages().get(1).getName());
+    }
 }
