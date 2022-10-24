@@ -6,11 +6,11 @@ import java.util.List;
 import java.util.Scanner;
 
 import model.Directory;
-import model.PageFolder;
+import model.Folder;
 
 public class NoteTaker {
     private Directory directory;
-    private List<PageFolder> directoryFolders;
+    private List<Folder> directoryFolders;
 
     // NOTE!
     // AFTER INPUT HAS BEEN ENTERED TO ANY INQUIRY, INPUT VALUES DEFAULT BACK TO 0
@@ -63,7 +63,7 @@ public class NoteTaker {
     // MODIFIES:
     // EFFECTS: displays the folder menu
     public void folderOptions(int input) {
-        PageFolder currentFolder = directoryFolders.get(input);
+        Folder currentFolder = directoryFolders.get(input);
         System.out.println("PLACEHOLDER TEXT");
         if (input == 1) {
             System.out.println("PLACEHOLDER TEXT");
@@ -115,7 +115,7 @@ public class NoteTaker {
         Scanner renameFolderInput = new Scanner(System.in);
         System.out.println("Select folder to rename:");
         displayChoices();
-        PageFolder toBeRenamed = directoryFolders.get(renameFolderInput.nextInt());
+        Folder toBeRenamed = directoryFolders.get(renameFolderInput.nextInt());
         // new name
         Scanner newName = new Scanner(System.in);
         System.out.println("Enter new name:");

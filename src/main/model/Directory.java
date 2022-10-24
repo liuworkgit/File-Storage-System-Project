@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 // a folder of all note page folders
 public class Directory {
-    private List<PageFolder> listFolders;
+    private List<Folder> listFolders;
 
     public Directory() {
         listFolders = new ArrayList<>();
@@ -15,7 +15,7 @@ public class Directory {
     // MODIFIES: this
     // EFFECTS: adds a folder with the given name to the directory
     public void addFolder(String name) {
-        listFolders.add(new PageFolder(name));
+        listFolders.add(new Folder(name));
     }
 
     // MODIFIES: this
@@ -27,7 +27,7 @@ public class Directory {
 
     // getters
 
-    public List<PageFolder> getListFolders() {
+    public List<Folder> getListFolders() {
         return listFolders;
     }
 }

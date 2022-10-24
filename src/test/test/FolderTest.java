@@ -1,6 +1,6 @@
 package test;
 
-import model.PageFolder;
+import model.Folder;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -8,12 +8,12 @@ import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class PageFolderTest {
-    private PageFolder testFolder;
+public class FolderTest {
+    private Folder testFolder;
 
     @BeforeEach
     void runBefore() {
-        testFolder = new PageFolder("GEOS 102 NOTES!!!");
+        testFolder = new Folder("GEOS 102 NOTES!!!");
     }
 
     @Test

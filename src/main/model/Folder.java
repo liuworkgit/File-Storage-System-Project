@@ -8,13 +8,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 // a list of note pages
-public class PageFolder {
+public class Folder {
     private String name;
     private List<Page> listPages;
 
     // REQUIRES: name cannot be empty string
     // EFFECTS: creates a page folder with given name and no pages
-    public PageFolder(String name) {
+    public Folder(String name) {
         this.name = name;
         listPages = new ArrayList<>();
     }
