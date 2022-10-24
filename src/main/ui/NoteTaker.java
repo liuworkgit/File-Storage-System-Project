@@ -23,6 +23,11 @@ public class NoteTaker {
         directory = new Directory();
         directoryFolders = directory.getListFolders();
         // ask + receive user input
+        startingScreen();
+    }
+
+    // EFFECTS:
+    public void startingScreen() {
         System.out.println("What would you like to do?"
                 + "\n[1] view folders"
                 + "\n[2] add folder"
@@ -59,6 +64,11 @@ public class NoteTaker {
     // EFFECTS: displays the folder menu
     public void folderOptions(int input) {
         PageFolder currentFolder = directoryFolders.get(input);
+        System.out.println("PLACEHOLDER TEXT");
+        if (input == 1) {
+            System.out.println("PLACEHOLDER TEXT");
+        }
+
     }
 
     // EFFECTS: displays directory's folders
@@ -68,7 +78,11 @@ public class NoteTaker {
             Scanner goBackInput = new Scanner(System.in);
             System.out.println("You have no folders currently."
                     + "\nGo back to main menu? [y] [n]");
-            goBack(goBackInput.nextLine());
+            if (goBackInput.nextLine() == "y") {
+                startingScreen();
+            } else {
+                viewFolder(); // ???? HELP!
+            }
         } else {
             System.out.println("Select a folder to view.");
             displayChoices();
@@ -124,9 +138,9 @@ public class NoteTaker {
     public void displayChoices() {
     }
 
-    // REQUIRES:
-    // MODIFIES:
-    // EFFECTS:
+    // REQUIRES: input is either "y" or "n"
+    // EFFECTS: goes back to the main menu
     public void goBack(String input) {
+
     }
 }
