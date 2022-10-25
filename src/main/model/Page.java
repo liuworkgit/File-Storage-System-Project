@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 // Represents a page with a name, paragraphs (text) and links to other pages
-public class Page implements StorageType {
+public class Page {
     private String name;
     private List<Paragraph> listParagraphs;
     private List<Page> listLinks;
@@ -37,6 +37,16 @@ public class Page implements StorageType {
         oldText.setText(newText);
     }
 
+    // EFFECTS: prints out all paragraphs
+    public void displayParagraphs() {
+        for (Paragraph paragraph : listParagraphs) {
+            int index = listParagraphs.indexOf(paragraph);
+            String strIndex = String.valueOf(index + 1);
+            String message = "[" + strIndex + "] " + paragraph.getText();
+            System.out.println(message);
+        }
+    }
+
     // REQUIRES: page must exist
     // MODIFIES: this
     // EFFECTS: adds a link to the page
@@ -54,12 +64,12 @@ public class Page implements StorageType {
         listLinks.remove(index);
     }
 
-    // EFFECTS: prints out all paragraphs
-    public void displayChoices() {
-        for (Paragraph paragraph : listParagraphs) {
-            int index = listParagraphs.indexOf(paragraph);
+    // EFFECTS: prints out all links
+    public void displayLinks() {
+        for (Page link : listLinks) {
+            int index = listLinks.indexOf(link);
             String strIndex = String.valueOf(index + 1);
-            String message = "[" + strIndex + "] " + paragraph.getText();
+            String message = "[" + strIndex + "] " + link.getName();
             System.out.println(message);
         }
     }

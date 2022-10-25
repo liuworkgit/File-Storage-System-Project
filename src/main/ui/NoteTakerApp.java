@@ -113,6 +113,7 @@ public class NoteTakerApp {
         boolean stayHere = true;
 
         while (stayHere == true) {
+            System.out.println("Currently viewing folder:" + folder.getName());
             showFolderMenu();
             int command = input.nextInt();
 
@@ -176,10 +177,12 @@ public class NoteTakerApp {
     // EFFECTS: processes user input at page level
     public void runPage(Page page) {
         List<Paragraph> paragraphs = page.getListParagraphs();
+        List<Page> links = page.getListLinks();
         Scanner input = new Scanner(System.in);
         boolean stayHere = true;
 
         while (stayHere == true) {
+            System.out.println("Currently viewing page:" + page.getName());
             showPageMenu();
             int command = input.nextInt();
 
@@ -196,12 +199,8 @@ public class NoteTakerApp {
         System.out.println("What would you like to do?"
                 + "\n[1] add paragraph"
                 + "\n[2] delete paragraph"
-                + "\n[3] bold text"
-                + "\n[4] unbold text"
-                + "\n[5] rewrite paragraph"
-                + "\n[6] add link"
-                + "\n[7] delete link"
-                + "\n[8] view links"
+                + "\n[3] edit paragraph"
+                + "\n[4] view links"
                 + "\n[0] back");
     }
 
@@ -212,25 +211,40 @@ public class NoteTakerApp {
         } else if (command == 2) {
             deleteParagraph(page);
         } else if (command == 3) {
-            boldText(page);
+            editText(page);
         } else if (command == 4) {
-            unboldText(page);
-        } else if (command == 5) {
-            System.out.println("THIS IS A PLACEHOLDER");
-        } else if (command == 6) {
-            System.out.println("THIS IS A PLACEHOLDER");
-        } else if (command == 7) {
-            System.out.println("THIS IS A PLACEHOLDER");
-        } else if (command == 8) {
-            System.out.println("THIS IS A PLACEHOLDER");
+            viewLinks(page.getListLinks());
         }
     }
 
-    private void addParagraph(Page page) {}
+    public void addParagraph(Page page) {
+        Scanner newText = new Scanner(System.in);
+        System.out.println("Enter text below:");
+        page.addParagraph(newText.nextLine());
+    }
 
-    private void deleteParagraph(Page page) {}
+    public void deleteParagraph(Page page) {
+        Scanner toDelete = new Scanner(System.in);
+        System.out.println("Select paragraph to delete:");
+        page.displayParagraphs();
+        page.getListParagraphs().remove(toDelete.nextInt() - 1);
+    }
 
-    private void boldText(Page page) {}
+    public void editText(Page page) {
+        Scanner choseParagraph = new Scanner(System.in);
+        System.out.println("Select a paragraph to edit:");
+        page.displayParagraphs();
+        int index = choseParagraph.nextInt() - 1;
+        // ask user what they'd like to do to chosen paragraph
+        Scanner input = new Scanner(System.in);
+        System.out.println("What would you like to do to this paragraph?"
+                + "\n" + page.getListParagraphs().get(index)
+                + "\n [1] bold text"
+                + "\n [2] unbold text"
+                + "\n [3] rewrite text");
+        int command = input.nextInt() - 1;
+        if (command)
+    }
 
-    private void unboldText(Page page) {}
+    public void viewLinks(List<Page> links) {}
 }
