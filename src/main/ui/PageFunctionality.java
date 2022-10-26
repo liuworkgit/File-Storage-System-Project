@@ -87,5 +87,20 @@ public abstract class PageFunctionality extends EditFunctionality {
     }
 
     // EFFECTS: runs things in regard to links
-    public void runLink(Page page) {}
+    public void runLink(Page page) {
+        Scanner input = new Scanner(System.in);
+        boolean stayHere = true;
+
+        while (stayHere == true) {
+            System.out.println("Currently viewing page:" + page.getName());
+            showPageMenu();
+            int command = input.nextInt();
+
+            if (command == 0) {
+                stayHere = false;
+            } else {
+                pageProcess(command, page);
+            }
+        }
+    }
 }
