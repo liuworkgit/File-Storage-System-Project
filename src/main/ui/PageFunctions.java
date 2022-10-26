@@ -6,8 +6,13 @@ import model.Paragraph;
 import java.util.List;
 import java.util.Scanner;
 
+// NOTE: Based on JsonSerializationDemo provided by CPSC210
+// Found on Phase 2 page on CPSC210 edx
+// Link to repository:
+// https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo
+
 // functionality for the page level of the app
-public abstract class PageFunctionality extends EditFunctionality {
+public abstract class PageFunctions extends EditFunctions {
     // EFFECTS: processes user input at page level
     public void runPage(Page page) {
         List<Paragraph> paragraphs = page.getListParagraphs();

@@ -5,8 +5,13 @@ import model.Paragraph;
 
 import java.util.Scanner;
 
+// NOTE: Based on JsonSerializationDemo provided by CPSC210
+// Found on Phase 2 page on CPSC210 edx
+// Link to repository:
+// https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo
+
 // functionality for the paragraph level of the app (editing specific)
-public abstract class EditFunctionality {
+public abstract class EditFunctions {
     // EFFECTS: run app at paragraph level (related to editing only)
     public void runEdit(Page page) {
         Scanner choice = new Scanner(System.in);

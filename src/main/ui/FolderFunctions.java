@@ -6,8 +6,13 @@ import model.Page;
 import java.util.List;
 import java.util.Scanner;
 
+// NOTE: Based on JsonSerializationDemo provided by CPSC210
+// Found on Phase 2 page on CPSC210 edx
+// Link to repository:
+// https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo
+
 // functionality for the folder level of the app
-public abstract class FolderFunctionality extends PageFunctionality {
+public abstract class FolderFunctions extends PageFunctions {
     // EFFECTS: runs app at folder level
     public void runFolder(Folder folder) {
         Scanner input = new Scanner(System.in);

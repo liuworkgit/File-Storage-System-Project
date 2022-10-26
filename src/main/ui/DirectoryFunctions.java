@@ -5,20 +5,18 @@ import java.util.Scanner;
 
 import model.Directory;
 import model.Folder;
-import model.Page;
-import model.Paragraph;
 
 // NOTE: Based on JsonSerializationDemo provided by CPSC210
 // Found on Phase 2 page on CPSC210 edx
 // Link to repository:
 // https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo
 
-// creates a note-taking app
-public class NoteTakerApp extends FolderFunctionality {
+// functionality for the note taker app at the directory level
+public class DirectoryFunctions extends FolderFunctions {
     private Directory directory;
 
     // EFFECTS: makes a note taker with an empty directory and runs it
-    public NoteTakerApp() {
+    public DirectoryFunctions() {
         directory = new Directory();
         runDirectory();
     }
