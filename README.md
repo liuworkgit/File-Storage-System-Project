@@ -17,3 +17,5 @@ take notes on paper, but lament the limitations, hence why I wanted to make a no
 - As a user, I want to be able to delete pages and have their associated links disappear too.
 - As a user, I want to be able to group my note pages into folders.
 - As a user, I want to be able to view the note page I'm writing on, the font editing options, and the folders of pages.
+- **As a user, I want to be able to save all of my folders, pages, and the text/links I added to said pages.**
+- **As a user, when I start my application, I want to be able to load my pre-existing data.**
