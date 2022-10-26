@@ -13,8 +13,8 @@ take notes on paper, but lament the limitations, hence why I wanted to make a no
 - As a user, I want to be able to bold text.
 - As a user, I want to be able to add and delete text.
 - As a user, I want to be able to edit existing text.
-- As a user, I want to be able to create a hyperlink between two pages.
-- As a user, I want to be able to delete pages and have their associated links disappear too.
+- As a user, I want to be able to see which pages are associated with the page I'm currently viewing.
+- As a user, I want to be able to delete pages.
 - As a user, I want to be able to group my note pages into folders.
 - As a user, I want to be able to view the note page I'm writing on, the font editing options, and the folders of pages.
 - **As a user, I want to be able to save all of my folders, pages, and the text/links I added to said pages.**
