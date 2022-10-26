@@ -22,10 +22,8 @@ public class Paragraph {
     // EFFECTS: deletes the inputted text from the paragraph
     //          if there are duplicates, deletes first occurrence.
     public void deleteText(String text) {
-        // get index of first and last character of to-be-deleted
         int startOfDeleting = this.text.indexOf(text);
         int endofDeleting = text.length();
-        // get parts of string to left and right of to-be-deleted
         String leftPart = this.text.substring(0, startOfDeleting);
         String rightPart = this.text.substring(startOfDeleting + endofDeleting);
         // bolding prevention
@@ -34,8 +32,7 @@ public class Paragraph {
             rightPart = this.text.substring(startOfDeleting + endofDeleting + 2);
         }
         // deleting
-        String finalText = leftPart + rightPart;
-        this.text = finalText;
+        this.text = leftPart + rightPart;
     }
 
     // REQUIRES: this.text cannot be empty string
@@ -43,30 +40,24 @@ public class Paragraph {
     // EFFECTS: bolds the text by putting double asterixes around the chosen text.
     //          if given text appears more than once in paragraph, bolds first occurrence
     public void boldText(String text) {
-        // get index of first and last character of to-be-deleted
         int startOfDeleting = this.text.indexOf(text);
         int endofDeleting = text.length();
-        // get parts of string to left and right of to-be-deleted
         String leftPart = this.text.substring(0, startOfDeleting);
         String rightPart = this.text.substring(startOfDeleting + endofDeleting);
-        // bolding
-        String finalText = leftPart + "**" + text + "**" + rightPart;
-        this.text = finalText;
+        this.text = leftPart + "**" + text + "**" + rightPart;
     }
 
     // REQUIRES: text must have two occurrences of "**" in it
     // MODIFIES: this
     // EFFECTS: unbolds the given text by removing the outermost two occurrences of "**"
     public void unboldText(String text) {
-        // get index of first and last character of to-be-deleted
         int startOfDeleting = this.text.indexOf(text);
-        int endofDeleting = text.length();
-        // get parts of string to left and right of to-be-deleted
+        int endOfDeleting = text.length();
         String leftPart = this.text.substring(0, startOfDeleting);
-        String rightPart = this.text.substring(startOfDeleting + endofDeleting, this.text.length());
-        // unbolding
+        String rightPart = this.text.substring(startOfDeleting + endOfDeleting);
+        String leftSubstring = leftPart.substring(0, leftPart.length() - 2);
         if (leftPart.endsWith("**") && rightPart.startsWith("**")) {
-            this.text = leftPart.substring(0, leftPart.length()-2)
+            this.text = leftSubstring
                     + text
                     + rightPart.substring(2);
         } else if (rightPart.startsWith("**")) {
@@ -75,7 +66,7 @@ public class Paragraph {
                     + text
                     + rightPart.substring(2);
         } else if (leftPart.endsWith("**")) {
-            this.text = leftPart.substring(0, leftPart.length()-2)
+            this.text = leftSubstring
                     + text
                     + "**"
                     + rightPart;

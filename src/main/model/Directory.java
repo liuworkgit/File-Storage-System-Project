@@ -24,7 +24,6 @@ public class Directory implements CanDisplay {
         listFolders.remove(index);
     }
 
-    // EFFECTS: shows all folders as a list of options
     public String displayChoices() {
         String message = "";
         for (Folder folder : listFolders) {

@@ -1,0 +1,23 @@
+{
+  "listFolders": [
+    {
+      "name": "Math 200 Week 8",
+      "listPages": [
+        {
+          "name": "Approximation",
+          "listParagraphs": [],
+          "listLinks": []
+        }
+        {
+          "name": "Gradient vectors and directional derivatives",
+          "listParagraphs": [],
+          "listLinks": []
+        }
+      ]
+    }
+    {
+      "name": "CO-OP INFORMATION",
+      "listPages": []
+    }
+  ]
+}

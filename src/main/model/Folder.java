@@ -32,7 +32,6 @@ public class Folder implements CanDisplay {
         listPages.remove(index);
     }
 
-    // EFFECTS: shows all pages as a list of options
     public String displayChoices() {
         String message = "";
         for (Page page : listPages) {
