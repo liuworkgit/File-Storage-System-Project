@@ -7,7 +7,7 @@ import java.util.List;
 public class Page {
     private String name;
     private List<Paragraph> listParagraphs;
-    private List<Page> listLinks;
+    private List<String> listLinks;
 
     // REQUIRES: name must not be empty
     // EFFECTS: creates a page with the given name, no paragraphs and no links
@@ -44,12 +44,13 @@ public class Page {
 
     // REQUIRES: page must exist
     // MODIFIES: this
-    // EFFECTS: adds a link to the page
-    public void addLink(Page page) {
-        if (listLinks.contains(page)) {
+    // EFFECTS: adds a link to the page.
+    //          Doesn't add the link if it's already been added,
+    public void addLink(String name) {
+        if (listLinks.contains(name)) {
             System.out.println("You've already linked page named " + name);
         } else {
-            listLinks.add(page);
+            listLinks.add(name);
         }
     }
 
@@ -62,10 +63,10 @@ public class Page {
     // EFFECTS: shows all link options
     public String displayLinks() {
         String message = "";
-        for (Page link : listLinks) {
+        for (String link : listLinks) {
             int index = listLinks.indexOf(link);
             String strIndex = String.valueOf(index + 1);
-            String option = "[" + strIndex + "] " + link.getName();
+            String option = "[" + strIndex + "] " + link;
             message = message + option + "\n";
         }
         return message;
@@ -85,7 +86,7 @@ public class Page {
         return listParagraphs;
     }
 
-    public List<Page> getListLinks() {
+    public List<String> getListLinks() {
         return listLinks;
     }
 }

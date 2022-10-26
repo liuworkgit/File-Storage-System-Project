@@ -16,7 +16,7 @@ public abstract class PageFunctions extends EditFunctions {
     // EFFECTS: processes user input at page level
     public void runPage(Page page) {
         List<Paragraph> paragraphs = page.getListParagraphs();
-        List<Page> links = page.getListLinks();
+        List<String> links = page.getListLinks();
         Scanner input = new Scanner(System.in);
         boolean stayHere = true;
 
@@ -72,23 +72,18 @@ public abstract class PageFunctions extends EditFunctions {
         } else {
             Scanner toDelete = new Scanner(System.in);
             System.out.println("Select paragraph to delete:");
-            page.displayParagraphs();
+            System.out.println(page.displayParagraphs());
             page.getListParagraphs().remove(toDelete.nextInt() - 1);
         }
     }
 
     // EFFECTS: shows links
     public void viewLinks(Page page) {
-        List<Page> pages = page.getListLinks();
+        List<String> pages = page.getListLinks();
         if (pages.isEmpty()) { // no links
             System.out.println("You have no linked pages.");
-        } else { // shows all links
-            Scanner pageInput = new Scanner(System.in);
-            System.out.println("Select a page to view.");
-            System.out.println(page.displayLinks());
-            int index = pageInput.nextInt() - 1;
-            runLink(pages.get(index));
         }
+        runLink(page);
     }
 
     // EFFECTS: runs things in regard to links
@@ -97,15 +92,52 @@ public abstract class PageFunctions extends EditFunctions {
         boolean stayHere = true;
 
         while (stayHere == true) {
-            System.out.println("Currently viewing page:" + page.getName());
-            showPageMenu();
-            int command = input.nextInt();
+            System.out.println("The following pages are associated with " + page.getName() + ":");
+            System.out.println(page.displayLinks());
+            linkMenu();
 
+            int command = input.nextInt();
             if (command == 0) {
                 stayHere = false;
             } else {
-                pageProcess(command, page);
+                linkProcess(command, page);
             }
+        }
+    }
+
+    // EFFECTS: shows link options
+    public void linkMenu() {
+        System.out.println("What would you like to do?"
+                + "\n[1] add link"
+                + "\n[2] delete link"
+                + "\n[0] back");
+    }
+
+    // EFFECTS: processes user input at page level (link-specific)
+    public void linkProcess(int command, Page page) {
+        if (command == 1) {
+            addLink(page);
+        } else if (command == 2) {
+            deleteLink(page);
+        }
+    }
+
+    // EFFECTS: adds a link
+    public void addLink(Page page) {
+        Scanner newLink = new Scanner(System.in);
+        System.out.println("Enter name of link below:");
+        page.addLink(newLink.nextLine());
+    }
+
+    // EFFECTS: deletes a link
+    public void deleteLink(Page page) {
+        if (page.getListLinks().isEmpty()) {
+            System.out.println("You have no links to delete.");
+        } else {
+            Scanner toDelete = new Scanner(System.in);
+            System.out.println("Select link to delete:");
+            System.out.println(page.displayLinks());
+            page.getListLinks().remove(toDelete.nextInt() - 1);
         }
     }
 }

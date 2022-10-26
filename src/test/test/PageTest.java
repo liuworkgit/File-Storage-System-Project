@@ -41,14 +41,14 @@ class PageTest {
     @Test
     void testAddLink() {
         Page mathNotes = new Page("Math 200 - PDEs");
-        testPage.addLink(mathNotes);
-        assertEquals(Arrays.asList(mathNotes), testPage.getListLinks());
+        testPage.addLink(mathNotes.getName());
+        assertEquals(Arrays.asList("Math 200 - PDEs"), testPage.getListLinks());
     }
 
     @Test
     void testDeleteLink() {
         Page mathNotes = new Page("Math 221 Notes - Basis and Dimension");
-        testPage.addLink(mathNotes);
+        testPage.addLink(mathNotes.getName());
         testPage.deleteLink(0);
         assertEquals(new ArrayList<>(), testPage.getListLinks());
     }
@@ -90,12 +90,13 @@ class PageTest {
     }
 
     @Test
+    // tests if adding the same link twice will only add the link once
     void testLinkSamePageTwice() {
         Page page1 = new Page("test page");
-        testPage.addLink(page1);
-        assertEquals(Arrays.asList(page1), testPage.getListLinks());
-        testPage.addLink(page1);
-        assertEquals(Arrays.asList(page1), testPage.getListLinks());
+        testPage.addLink(page1.getName());
+        assertEquals(Arrays.asList("test page"), testPage.getListLinks());
+        testPage.addLink(page1.getName());
+        assertEquals(Arrays.asList("test page"), testPage.getListLinks());
     }
 
     @Test
@@ -109,8 +110,8 @@ class PageTest {
     void testDisplayLinks() {
         Page link1 = new Page("link1");
         Page link2 = new Page("link2");
-        testPage.addLink(link1);
-        testPage.addLink(link2);
+        testPage.addLink(link1.getName());
+        testPage.addLink(link2.getName());
         assertEquals("[1] link1" + "\n[2] link2" + "\n", testPage.displayLinks());
     }
 }
