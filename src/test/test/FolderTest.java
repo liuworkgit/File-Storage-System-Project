@@ -73,9 +73,8 @@ public class FolderTest {
 
     @Test
     void testDisplayChoices() {
-        testFolder.addPage("Test");
-        testFolder.addPage("Testing");
-        assertEquals("Test", testFolder.getListPages().get(0).getName());
-        assertEquals("Testing", testFolder.getListPages().get(1).getName());
+        testFolder.addPage("bazinga");
+        testFolder.addPage("banger");
+        assertEquals("[1] bazinga" + "\n[2] banger" + "\n", testFolder.displayChoices());
     }
 }

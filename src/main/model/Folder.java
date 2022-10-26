@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 // a list of note pages
-public class Folder implements StorageType {
+public class Folder implements CanDisplay {
     private String name;
     private List<Page> listPages;
 
@@ -33,13 +33,15 @@ public class Folder implements StorageType {
     }
 
     // EFFECTS: shows all pages as a list of options
-    public void displayChoices() {
+    public String displayChoices() {
+        String message = "";
         for (Page page : listPages) {
             int index = listPages.indexOf(page);
             String strIndex = String.valueOf(index + 1);
-            String message = "[" + strIndex + "] " + page.getName();
-            System.out.println(message);
+            String option = "[" + strIndex + "] " + page.getName();
+            message = message + option + "\n";
         }
+        return message;
     }
 
     // getters and setters

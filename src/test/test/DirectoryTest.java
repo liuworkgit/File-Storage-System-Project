@@ -55,7 +55,6 @@ public class DirectoryTest {
     void testDisplayChoices() {
         testDirectory.addFolder("Test");
         testDirectory.addFolder("Testing");
-        assertEquals("Test", testDirectory.getListFolders().get(0).getName());
-        assertEquals("Testing", testDirectory.getListFolders().get(1).getName());
+        assertEquals("[1] Test" + "\n[2] Testing" + "\n", testDirectory.displayChoices());
     }
 }

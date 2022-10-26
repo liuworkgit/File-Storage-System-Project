@@ -23,7 +23,7 @@ public class NoteTakerApp {
         runDirectory();
     }
 
-    // EFFECTS: processes user input at the directory level
+    // EFFECTS: run app at directory level
     public void runDirectory() {
         Scanner input = new Scanner(System.in);
         boolean stayHere = true;
@@ -72,7 +72,7 @@ public class NoteTakerApp {
         } else { // shows all folders
             Scanner folderInput = new Scanner(System.in);
             System.out.println("Select a folder to view.");
-            directory.displayChoices();
+            System.out.println(directory.displayChoices());
             int index = folderInput.nextInt() - 1;
             runFolder(directory.getListFolders().get(index));
         }
@@ -89,7 +89,7 @@ public class NoteTakerApp {
     public void deleteFolder() {
         Scanner toDelete = new Scanner(System.in);
         System.out.println("Select folder to delete:");
-        directory.displayChoices();
+        System.out.println(directory.displayChoices());
         directory.getListFolders().remove(toDelete.nextInt() - 1);
     }
 
@@ -98,7 +98,7 @@ public class NoteTakerApp {
         // get folder
         Scanner toRename = new Scanner(System.in);
         System.out.println("Select folder to rename:");
-        directory.displayChoices();
+        System.out.println(directory.displayChoices());
         int index = toRename.nextInt();
         Folder folderToRename = directory.getListFolders().get(index - 1);
         // new name
@@ -107,7 +107,7 @@ public class NoteTakerApp {
         folderToRename.setName(newName.nextLine());
     }
 
-    // EFFECTS: processes user input at folder level
+    // EFFECTS: runs app at folder level
     public void runFolder(Folder folder) {
         Scanner input = new Scanner(System.in);
         boolean stayHere = true;
@@ -153,7 +153,7 @@ public class NoteTakerApp {
         } else { // shows all pages
             Scanner pageInput = new Scanner(System.in);
             System.out.println("Select a page to view.");
-            folder.displayChoices();
+            System.out.println(folder.displayChoices());
             int index = pageInput.nextInt() - 1;
             runPage(pages.get(index));
         }
@@ -170,7 +170,7 @@ public class NoteTakerApp {
     public void deletePage(Folder folder) {
         Scanner toDelete = new Scanner(System.in);
         System.out.println("Select page to delete:");
-        folder.displayChoices();
+        System.out.println(folder.displayChoices());
         folder.getListPages().remove(toDelete.nextInt() - 1);
     }
 
@@ -211,39 +211,106 @@ public class NoteTakerApp {
         } else if (command == 2) {
             deleteParagraph(page);
         } else if (command == 3) {
-            editText(page);
+            runEdit(page);
         } else if (command == 4) {
             viewLinks(page.getListLinks());
         }
     }
 
+    // MODIFIES: page
+    // EFFECTS: adds paragraph to page
     public void addParagraph(Page page) {
         Scanner newText = new Scanner(System.in);
         System.out.println("Enter text below:");
         page.addParagraph(newText.nextLine());
     }
 
+    // MODIFIES: page
+    // EFFECTS: deletes paragraph from page
     public void deleteParagraph(Page page) {
-        Scanner toDelete = new Scanner(System.in);
-        System.out.println("Select paragraph to delete:");
-        page.displayParagraphs();
-        page.getListParagraphs().remove(toDelete.nextInt() - 1);
+        if (page.getListParagraphs().isEmpty()) {
+            System.out.println("You have no paragraphs to delete.");
+        } else {
+            Scanner toDelete = new Scanner(System.in);
+            System.out.println("Select paragraph to delete:");
+            page.displayParagraphs();
+            page.getListParagraphs().remove(toDelete.nextInt() - 1);
+        }
     }
 
-    public void editText(Page page) {
-        Scanner choseParagraph = new Scanner(System.in);
-        System.out.println("Select a paragraph to edit:");
+    // EFFECTS: run app at paragraph level (related to editing only)
+    public void runEdit(Page page) {
+        Scanner choice = new Scanner(System.in);
+        System.out.println("Select paragraph to edit:");
         page.displayParagraphs();
-        int index = choseParagraph.nextInt() - 1;
-        // ask user what they'd like to do to chosen paragraph
+        Paragraph chosenParagraph = page.getListParagraphs().get(choice.nextInt());
+
+        boolean stayHere = true;
         Scanner input = new Scanner(System.in);
+        while (stayHere == true) {
+            showEditMenu(chosenParagraph);
+            int command = input.nextInt();
+
+            if (command == 0) {
+                stayHere = false;
+            } else {
+                editProcess(command, chosenParagraph);
+            }
+        }
+
+
+
+    } // !!! FIX
+
+    // EFFECTS: shows edit options
+    public void showEditMenu(Paragraph paragraph) {
         System.out.println("What would you like to do to this paragraph?"
-                + "\n" + page.getListParagraphs().get(index)
-                + "\n [1] bold text"
-                + "\n [2] unbold text"
-                + "\n [3] rewrite text");
-        int command = input.nextInt() - 1;
-        if (command)
+                + "\n" + "\"" + paragraph.getText() + "\""
+                + "\n[1] bold text"
+                + "\n[2] unbold text"
+                + "\n[3] rewrite text"
+                + "\n[0] back");
+    }
+
+    // EFFECTS: processes user input at paragraph level (for editing only)
+    public void editProcess(int command, Paragraph paragraph) {
+        if (command == 1) {
+            boldText(paragraph);
+        } else if (command == 2) {
+            unboldText(paragraph);
+        } else if (command == 3) {
+            rewriteText(paragraph);
+        }
+    }
+
+    // REPETITIVE - REFACTOR! (w/ UNBOLDTEXT)
+    // MODIFIES: text
+    // EFFECTS: bolds given text
+    public void boldText(Paragraph text) {
+        Scanner toBold = new Scanner(System.in);
+        System.out.println("Enter part of text you want to bold.");
+        System.out.println(text.getText());
+        text.boldText(toBold.nextLine());
+    }
+
+    // REPETITIVE - REFACTOR! (W/ BOLDTEXT)
+    // REQUIRES: given text must already be bolded
+    // MODIFIES: text
+    // EFFECTS: unbolds given text
+    public void unboldText(Paragraph text) {
+        Scanner toUnbold = new Scanner(System.in);
+        System.out.println("Enter part of text you want to unbold.");
+        System.out.println(text.getText());
+        text.unboldText(toUnbold.nextLine());
+    }
+
+    // MODIFIES: text
+    // EFFECTS: rewrites given text
+    public void rewriteText(Paragraph text) {
+        Scanner toRewrite = new Scanner(System.in);
+        System.out.println("Enter rewritten text:");
+        System.out.println(text.getText());
+        text.(toUnbold.nextLine());
     }
 
     public void viewLinks(List<Page> links) {}

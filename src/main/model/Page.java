@@ -30,21 +30,16 @@ public class Page {
         listParagraphs.remove(index);
     }
 
-    // MODIFIES: this
-    // EFFECTS: rewrite an existing paragraph
-    public void rewriteParagraph(int index, String newText) {
-        Paragraph oldText = listParagraphs.get(index);
-        oldText.setText(newText);
-    }
-
-    // EFFECTS: prints out all paragraphs
-    public void displayParagraphs() {
+    // EFFECTS: shows all paragraph options
+    public String displayParagraphs() {
+        String message = "";
         for (Paragraph paragraph : listParagraphs) {
             int index = listParagraphs.indexOf(paragraph);
             String strIndex = String.valueOf(index + 1);
-            String message = "[" + strIndex + "] " + paragraph.getText();
-            System.out.println(message);
+            String option = "[" + strIndex + "] " + paragraph.getText();
+            message = message + option + "\n";
         }
+        return message;
     }
 
     // REQUIRES: page must exist
@@ -64,14 +59,16 @@ public class Page {
         listLinks.remove(index);
     }
 
-    // EFFECTS: prints out all links
-    public void displayLinks() {
+    // EFFECTS: shows all link options
+    public String displayLinks() {
+        String message = "";
         for (Page link : listLinks) {
             int index = listLinks.indexOf(link);
             String strIndex = String.valueOf(index + 1);
-            String message = "[" + strIndex + "] " + link.getName();
-            System.out.println(message);
+            String option = "[" + strIndex + "] " + link.getName();
+            message = message + option + "\n";
         }
+        return message;
     }
 
     // getters and setters

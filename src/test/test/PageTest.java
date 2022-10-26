@@ -60,13 +60,6 @@ class PageTest {
     }
 
     @Test
-    void testEditParagraph() {
-        testPage.addParagraph("Booyah!");
-        testPage.rewriteParagraph(0, "Yahboo!");
-        assertEquals("Yahboo!", testPage.getListParagraphs().get(0).getText());
-    }
-
-    @Test
     // tests if can add paragraphs, then delete it
     void testAddThenDelete() {
         testPage.addParagraph("agony pain suffering");
@@ -109,7 +102,15 @@ class PageTest {
     void testDisplayChoices() {
         testPage.addParagraph("Test");
         testPage.addParagraph("Testing");
-        assertEquals("Test", testPage.getListParagraphs().get(0).getText());
-        assertEquals("Testing", testPage.getListParagraphs().get(1).getText());
+        assertEquals("[1] Test" + "\n[2] Testing" + "\n", testPage.displayParagraphs());
+    }
+
+    @Test
+    void testDisplayLinks() {
+        Page link1 = new Page("link1");
+        Page link2 = new Page("link2");
+        testPage.addLink(link1);
+        testPage.addLink(link2);
+        assertEquals("[1] link1" + "\n[2] link2" + "\n", testPage.displayLinks());
     }
 }
