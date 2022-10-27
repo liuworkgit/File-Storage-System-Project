@@ -42,7 +42,7 @@ public class JsonReaderTest extends JsonTest {
 
     @Test
     void testReadOnlyFolders() {
-        JsonReader reader = new JsonReader("./data/testOnlyFoldersReader.json");
+        JsonReader reader = new JsonReader("./data/testToFolderLvlReader.json");
         try {
             Directory directory = reader.read();
             assertEquals("Math 200 Week 8", directory.getListFolders().get(0).getName());

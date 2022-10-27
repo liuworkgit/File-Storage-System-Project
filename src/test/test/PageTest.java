@@ -114,4 +114,7 @@ class PageTest {
         testPage.addLink(link2.getName());
         assertEquals("[1] link1" + "\n[2] link2" + "\n", testPage.displayLinks());
     }
+
+    @Test
+    void testToJson() {}
 }

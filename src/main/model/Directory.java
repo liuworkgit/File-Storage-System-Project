@@ -1,10 +1,12 @@
 package model;
 
+import org.json.JSONObject;
+
 import java.util.List;
 import java.util.ArrayList;
 
 // a folder of all note page folders
-public class Directory implements CanDisplay {
+public class Directory implements CanDisplay, Writable {
     private List<Folder> listFolders;
 
     public Directory() {
@@ -33,6 +35,10 @@ public class Directory implements CanDisplay {
             message = message + option + "\n";
         }
         return message;
+    }
+
+    public JSONObject toJson() {
+        return new JSONObject(); // STUB
     }
 
     // getters

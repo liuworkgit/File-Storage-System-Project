@@ -133,4 +133,7 @@ public class ParagraphTest {
         testParagraph.deleteText("paragraph**!boo");
         assertEquals("This is a ", testParagraph.getText());
     }
+
+    @Test
+    void testToJson() {}
 }

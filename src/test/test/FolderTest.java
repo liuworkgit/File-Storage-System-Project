@@ -77,4 +77,7 @@ public class FolderTest {
         testFolder.addPage("banger");
         assertEquals("[1] bazinga" + "\n[2] banger" + "\n", testFolder.displayChoices());
     }
+
+    @Test
+    void testToJson() {}
 }

@@ -57,4 +57,7 @@ public class DirectoryTest {
         testDirectory.addFolder("Testing");
         assertEquals("[1] Test" + "\n[2] Testing" + "\n", testDirectory.displayChoices());
     }
+
+    @Test
+    void testToJson() {}
 }
