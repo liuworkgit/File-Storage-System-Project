@@ -2,6 +2,8 @@ package test;
 
 import model.Directory;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -59,5 +61,13 @@ public class DirectoryTest {
     }
 
     @Test
-    void testToJson() {}
+    void testToJson() {
+        JSONObject jsonDr = testDirectory.toJson();
+        assertEquals(new JSONArray(), jsonDr.getJSONArray("listFolders"));
+    }
+
+    @Test
+    void testFoldersToJson() {
+        // ???
+    }
 }

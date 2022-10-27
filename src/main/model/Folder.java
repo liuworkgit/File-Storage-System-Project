@@ -4,11 +4,14 @@ package model;
 //- functionality in page?
 //As a user, I want to be able to group my note pages into folders.
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.List;
 
 // a list of note pages
-public class Folder implements CanDisplay {
+public class Folder implements CanDisplay, Writable {
     private String name;
     private List<Page> listPages;
 
@@ -41,6 +44,18 @@ public class Folder implements CanDisplay {
             message = message + option + "\n";
         }
         return message;
+    }
+
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("name", name);
+        json.put("listPages", pagesToJson());
+        return json;
+    }
+
+    // EFFECTS:
+    private JSONArray pagesToJson() {
+        return new JSONArray();
     }
 
     // getters and setters

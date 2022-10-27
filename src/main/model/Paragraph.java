@@ -1,7 +1,9 @@
 package model;
 
+import org.json.JSONObject;
+
 // A paragraph on a page.
-public class Paragraph {
+public class Paragraph implements Writable {
     private String text;
 
     // REQUIRES: text cannot be empty string
@@ -73,6 +75,10 @@ public class Paragraph {
         } else {
             this.text = leftPart + "**" + text + "**" + rightPart;
         }
+    }
+
+    public JSONObject toJson() {
+        return new JSONObject(); // STUB
     }
 
 

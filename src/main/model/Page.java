@@ -1,10 +1,12 @@
 package model;
 
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.List;
 
 // Represents a page with a name, paragraphs (text) and links to other pages
-public class Page {
+public class Page implements Writable {
     private String name;
     private List<Paragraph> listParagraphs;
     private List<String> listLinks;
@@ -70,6 +72,10 @@ public class Page {
             message = message + option + "\n";
         }
         return message;
+    }
+
+    public JSONObject toJson() {
+        return new JSONObject(); // STUB
     }
 
     // getters and setters

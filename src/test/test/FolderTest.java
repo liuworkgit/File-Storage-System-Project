@@ -1,6 +1,8 @@
 package test;
 
 import model.Folder;
+import org.json.JSONArray;
+import org.json.JSONObject;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -79,5 +81,9 @@ public class FolderTest {
     }
 
     @Test
-    void testToJson() {}
+    void testToJson() {
+        JSONObject jsonFolder = testFolder.toJson();
+        assertEquals("GEOS 102 NOTES!!!", jsonFolder.getString("name"));
+        assertEquals(new JSONArray(), jsonFolder.getJSONArray("listPages"));
+    }
 }

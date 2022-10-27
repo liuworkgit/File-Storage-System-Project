@@ -1,6 +1,8 @@
 package test;
 
 import model.Page;
+import org.json.JSONArray;
+import org.json.JSONObject;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -116,5 +118,10 @@ class PageTest {
     }
 
     @Test
-    void testToJson() {}
+    void testToJson() {
+        JSONObject jsonPage = testPage.toJson();
+        assertEquals("Math 200 notes", jsonPage.getString("name"));
+        assertEquals(new JSONArray(), jsonPage.getJSONArray("listParagraphs"));
+        assertEquals(new JSONArray(), jsonPage.getJSONArray("listLinks"));
+    }
 }

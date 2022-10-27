@@ -1,6 +1,7 @@
 package model;
 
 import org.json.JSONObject;
+import org.json.JSONArray;
 
 import java.util.List;
 import java.util.ArrayList;
@@ -38,7 +39,14 @@ public class Directory implements CanDisplay, Writable {
     }
 
     public JSONObject toJson() {
-        return new JSONObject(); // STUB
+        JSONObject json = new JSONObject();
+        json.put("listFolders", foldersToJson());
+        return json;
+    }
+
+    // EFFECTS: returns directory's folders as a json array
+    private JSONArray foldersToJson() {
+        return new JSONArray(); // stub
     }
 
     // getters
