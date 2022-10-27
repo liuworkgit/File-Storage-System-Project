@@ -1,0 +1,41 @@
+{
+  "listFolders": [
+    {
+      "name": "CO-OP INFORMATION",
+      "listPages": []
+    },
+    {
+      "name": "Math 200 Week 8",
+      "listPages": [
+        {
+          "name": "Gradient vectors and directional derivatives",
+          "listParagraphs": [
+            {
+              "text": "gradient vectors are vectors whose components are the partial derivatives"
+            }
+          ],
+          "listLinks": []
+        },
+        {
+          "name": "Approximation",
+          "listParagraphs": [
+            {
+              "text": "tan plane of 3varfxn: fx(P)(x-a) + fy(P)(y-b) + fz(P)(z-c) = 0"
+            },
+            {
+              "text": "Tan plane, differential and linear approx. all related."
+            }
+          ],
+          "listLinks": [
+            {
+              "link": "Math 200 Midterm 2 review"
+            },
+            {
+              "link": "Math 200 Week 7"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

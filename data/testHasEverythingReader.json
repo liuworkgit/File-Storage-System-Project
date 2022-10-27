@@ -8,20 +8,20 @@
           "listParagraphs": [
             {
               "text": "Tan plane, differential and linear approx. all related."
-            }
+            },
             {
               "text": "tan plane of 3varfxn: fx(P)(x-a) + fy(P)(y-b) + fz(P)(z-c) = 0"
             }
           ],
           "listLinks": [
             {
-              "Math 200 week 7"
-            }
+              "link": "Math 200 Week 7"
+            },
             {
-              "Math 200 Midterm 2 review"
+              "link": "Math 200 Midterm 2 review"
             }
           ]
-        }
+        },
         {
           "name": "Gradient vectors and directional derivatives",
           "listParagraphs": [
@@ -32,7 +32,7 @@
           "listLinks": []
         }
       ]
-    }
+    },
     {
       "name": "CO-OP INFORMATION",
       "listPages": []

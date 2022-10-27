@@ -6,6 +6,8 @@ package persistence;
 // https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo
 
 import model.Directory;
+import model.Folder;
+import model.Page;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -45,40 +47,72 @@ public class JsonReader {
 
     // EFFECTS: parses directory from data and returns it
     public Directory parseDirectory(JSONObject jsonObject) {
-        return new Directory(); // stub
+        Directory dr = new Directory();
+        addListFolders(dr, jsonObject);
+        return dr;
     }
 
     // modifies: directory
     // EFFECTS: parses list of folders from json object and adds them to directory
-    public void addListFolders(Directory directory, JSONObject jsonObject) {}
+    public void addListFolders(Directory dr, JSONObject jsonObject) {
+        JSONArray jsonArray = jsonObject.getJSONArray("listFolders");
+        for (Object json : jsonArray) {
+            JSONObject nextFolder = (JSONObject) json;
+            addFolder(dr, nextFolder);
+        }
+    }
 
     // MODIFIES: directory
     // EFFECTS: parses a page folder from json object and adds it to directory
-    public void addFolder(Directory directory, JSONObject jsonObject) {}
+    public void addFolder(Directory dr, JSONObject jsonObject) {
+        String name = jsonObject.getString("name"); // make new folder
+        Folder folder = new Folder(name);
+        dr.getListFolders().add(folder);
 
-//    // EFFECTS: parses workroom from JSON object and returns it
-//    private WorkRoom parseWorkRoom(JSONObject jsonObject) {
-//        String name = jsonObject.getString("name");
-//        WorkRoom wr = new WorkRoom(name);
-//        addThingies(wr, jsonObject);
-//        return wr;
+        JSONArray jsonPages = jsonObject.getJSONArray("listPages"); // get pages, add to folder
+        for (Object json : jsonPages) {
+            JSONObject nextPage = (JSONObject) json;
+            addPage(folder, nextPage);
+        }
+    }
+
+    // MODIFIES: folder, directory
+    // EFFECTS: parses a page from json object and adds it to folder
+    public void addPage(Folder folder, JSONObject jsonObject) {
+        String name = jsonObject.getString("name"); // make new page
+        Page page = new Page(name);
+        folder.getListPages().add(page);
+
+        JSONArray jsonParagraphs = jsonObject.getJSONArray("listParagraphs"); // get paragraphs, add to page
+        for (Object json : jsonParagraphs) {
+            JSONObject nextParagraph = (JSONObject) json;
+            addParagraph(page, nextParagraph);
+        }
+        JSONArray jsonLinks = jsonObject.getJSONArray("listLinks"); // get links, add to page
+        for (Object json : jsonLinks) {
+            JSONObject nextLink = (JSONObject) json;
+            addLink(page, nextLink);
+        }
+    }
+
+//    // MODIFIES: page, folder, directory
+//    // EFFECTS: parses an object at the paragraph level from json object, adds it to page
+//    public void addElement(Page page, JSONObject jsonObject, Method method) {
+//        String text = jsonObject.getString("text"); // make new page
+//        method(text);
 //    }
-//    // MODIFIES: wr
-//    // EFFECTS: parses thingies from JSON object and adds them to workroom
-//    private void addThingies(WorkRoom wr, JSONObject jsonObject) {
-//        JSONArray jsonArray = jsonObject.getJSONArray("thingies");
-//        for (Object json : jsonArray) {
-//            JSONObject nextThingy = (JSONObject) json;
-//            addThingy(wr, nextThingy);
-//        }
-//    }
-//
-//    // MODIFIES: wr
-//    // EFFECTS: parses thingy from JSON object and adds it to workroom
-//    private void addThingy(WorkRoom wr, JSONObject jsonObject) {
-//        String name = jsonObject.getString("name");
-//        Category category = Category.valueOf(jsonObject.getString("category"));
-//        Thingy thingy = new Thingy(name, category);
-//        wr.addThingy(thingy);
-//    }
+
+    // MODIFIES: page, folder, directory
+    // EFFECTS: parses a paragraph from json object and adds it to page
+    public void addParagraph(Page page, JSONObject jsonObject) {
+        String text = jsonObject.getString("text"); // make new page
+        page.addParagraph(text);
+    }
+
+    // MODIFIES: page, folder, directory
+    // EFFECTS: parses a link from json object and adds it to page
+    public void addLink(Page page, JSONObject jsonObject) {
+        String text = jsonObject.getString("link"); // make new page
+        page.addLink(text);
+    }
 }
