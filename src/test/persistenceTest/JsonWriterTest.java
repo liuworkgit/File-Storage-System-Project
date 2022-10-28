@@ -5,7 +5,6 @@ import model.Folder;
 import model.Page;
 import model.Paragraph;
 
-import org.json.JSONObject;
 import org.junit.jupiter.api.Test;
 import persistence.JsonReader;
 import persistence.JsonWriter;
@@ -21,14 +20,14 @@ import static org.junit.jupiter.api.Assertions.*;
 // Link to repository:
 // https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo
 
-public class JsonWriterTest {
+public class JsonWriterTest extends JsonTest {
     @Test
-    void testWriteNonExistentFile() {
+    void testWriteInvalidFile() {
         try {
             Directory testDr = new Directory();
-            JsonWriter writer = new JsonWriter("./data/BajaBeThyBlast.json");
+            JsonWriter writer = new JsonWriter("./data/\0lol.json");
             writer.open();
-            fail("Inability to open non-existent file expected.");
+            fail("IOException was expected.");
         } catch (IOException e) {
             // pass
         }
@@ -129,8 +128,8 @@ public class JsonWriterTest {
             Paragraph para2 = testPage.getListParagraphs().get(1);
             String link1 = testPage.getListLinks().get(0);
 
-            assertEquals("lorem ipsum idk", para1.getText());
-            assertEquals("dummy text 1234;;;;;**", para2.getText());
+            checkParagraph("lorem ipsum idk", para1);
+            checkParagraph("dummy text 1234;;;;;**", para2);
             assertEquals("page name", link1);
         } catch (IOException e) {
             fail("Exception shouldn't have been thrown.");

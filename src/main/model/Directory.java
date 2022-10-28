@@ -40,13 +40,18 @@ public class Directory implements CanDisplay, Writable {
 
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
-        json.put("listFolders", foldersToJson());
+        json.put("listFolders", arrayToJson());
         return json;
     }
 
     // EFFECTS: returns directory's folders as a json array
-    private JSONArray foldersToJson() {
-        return new JSONArray(); // stub
+    public JSONArray arrayToJson() {
+        JSONArray jsonFolder = new JSONArray();
+        for (Folder folder : listFolders) {
+            jsonFolder.put(folder.toJson());
+        }
+
+        return jsonFolder;
     }
 
     // getters

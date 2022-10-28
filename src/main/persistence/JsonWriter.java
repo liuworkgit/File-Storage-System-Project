@@ -26,17 +26,26 @@ public class JsonWriter {
     // MODIFIES: this
     // EFFECTS: opens writer for writing
     //          throws FileNotFoundException if destination file can't be opened
-    public void open() throws FileNotFoundException {}
+    public void open() throws FileNotFoundException {
+        writer = new PrintWriter(new File(destination));
+    }
 
     // MODIFIES: this
     // EFFECTS: writes JSON representation of directory to file
-    public void write(Directory dr) {}
+    public void write(Directory dr) {
+        JSONObject json = dr.toJson();
+        saveToFile(json.toString(TAB));
+    }
 
     // MODIFIES: this
     // EFFECTS: closes writer
-    public void close() {}
+    public void close() {
+        writer.close();
+    }
 
     // MODIFIES: this
     // EFFECTS: writes a string to file
-    private void saveToFile(String json) {}
+    private void saveToFile(String json) {
+        writer.print(json);
+    }
 }

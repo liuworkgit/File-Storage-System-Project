@@ -13,10 +13,13 @@ import java.util.Scanner;
 
 // functionality for the page level of the app
 public abstract class PageFunctions extends EditFunctions {
+    private List<Paragraph> paragraphs;
+    private List<String> links;
+
     // EFFECTS: processes user input at page level
     public void runPage(Page page) {
-        List<Paragraph> paragraphs = page.getListParagraphs();
-        List<String> links = page.getListLinks();
+        paragraphs = page.getListParagraphs();
+        links = page.getListLinks();
         Scanner input = new Scanner(System.in);
         boolean stayHere = true;
 

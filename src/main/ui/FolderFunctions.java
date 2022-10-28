@@ -13,8 +13,11 @@ import java.util.Scanner;
 
 // functionality for the folder level of the app
 public abstract class FolderFunctions extends PageFunctions {
+    private List<Page> pages;
+
     // EFFECTS: runs app at folder level
     public void runFolder(Folder folder) {
+        pages = folder.getListPages();
         Scanner input = new Scanner(System.in);
         boolean stayHere = true;
 
@@ -53,7 +56,6 @@ public abstract class FolderFunctions extends PageFunctions {
 
     // EFFECTS: shows all pages
     public void viewPages(Folder folder) {
-        List<Page> pages = folder.getListPages();
         if (pages.isEmpty()) { // no pages
             System.out.println("You have no pages in this folder.");
         } else { // shows all pages
@@ -74,9 +76,13 @@ public abstract class FolderFunctions extends PageFunctions {
 
     // EFFECTS: deletes npage
     public void deletePage(Folder folder) {
-        Scanner toDelete = new Scanner(System.in);
-        System.out.println("Select page to delete:");
-        System.out.println(folder.displayChoices());
-        folder.getListPages().remove(toDelete.nextInt() - 1);
+        if (pages.isEmpty()) { // no pages
+            System.out.println("You have no pages in this folder.");
+        } else { // delete page
+            Scanner toDelete = new Scanner(System.in);
+            System.out.println("Select page to delete:");
+            System.out.println(folder.displayChoices());
+            folder.getListPages().remove(toDelete.nextInt() - 1);
+        }
     }
 }

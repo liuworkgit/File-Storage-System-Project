@@ -84,6 +84,15 @@ public class FolderTest {
     void testToJson() {
         JSONObject jsonFolder = testFolder.toJson();
         assertEquals("GEOS 102 NOTES!!!", jsonFolder.getString("name"));
-        assertEquals(new JSONArray(), jsonFolder.getJSONArray("listPages"));
+        assertTrue(jsonFolder.getJSONArray("listPages").isEmpty());
+    }
+
+    @Test
+    void testPagesToJson() {
+        testFolder.addPage("test");
+        JSONObject jsonFolder = testFolder.toJson();
+        JSONArray jsonPages = jsonFolder.getJSONArray("listPages");
+        JSONObject jsonObj = jsonPages.getJSONObject(0);
+        assertEquals("test", jsonObj.getString("name"));
     }
 }

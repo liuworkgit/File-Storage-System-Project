@@ -1,7 +1,11 @@
 package model;
 
+import model.Paragraph;
+
+import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -75,7 +79,31 @@ public class Page implements Writable {
     }
 
     public JSONObject toJson() {
-        return new JSONObject(); // STUB
+        JSONObject json = new JSONObject();
+        json.put("name", name);
+        json.put("listParagraphs", arrayToJson());
+        json.put("listLinks", linksToJson());
+        return json;
+    }
+
+    public JSONArray arrayToJson() {
+        JSONArray jsonParas = new JSONArray();
+        for (Paragraph para : listParagraphs) {
+            jsonParas.put(para.toJson());
+        }
+
+        return jsonParas;
+    }
+
+    // EFFECTS: returns links as a json array
+    public JSONArray linksToJson() {
+        JSONArray jsonLinks = new JSONArray();
+        for (String link : listLinks) {
+            JSONObject jsonObj = new JSONObject();
+            jsonLinks.put(jsonObj.put("link", link));
+        }
+
+        return jsonLinks;
     }
 
     // getters and setters

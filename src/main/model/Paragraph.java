@@ -3,7 +3,7 @@ package model;
 import org.json.JSONObject;
 
 // A paragraph on a page.
-public class Paragraph implements Writable {
+public class Paragraph {
     private String text;
 
     // REQUIRES: text cannot be empty string
@@ -78,7 +78,9 @@ public class Paragraph implements Writable {
     }
 
     public JSONObject toJson() {
-        return new JSONObject(); // STUB
+        JSONObject json = new JSONObject();
+        json.put("text", text);
+        return json;
     }
 
 

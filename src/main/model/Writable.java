@@ -1,5 +1,6 @@
 package model;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 // NOTE: Based on JsonSerializationDemo provided by CPSC210
@@ -10,4 +11,7 @@ import org.json.JSONObject;
 public interface Writable {
     // EFFECTS: returns this as json object
     JSONObject toJson();
+
+    // EFFECTS: returns an array of objects as a json array
+    JSONArray arrayToJson();
 }

@@ -49,13 +49,18 @@ public class Folder implements CanDisplay, Writable {
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
         json.put("name", name);
-        json.put("listPages", pagesToJson());
+        json.put("listPages", arrayToJson());
         return json;
     }
 
-    // EFFECTS:
-    private JSONArray pagesToJson() {
-        return new JSONArray();
+    // EFFECTS: returns pages in this folder as a JSON array
+    public JSONArray arrayToJson() {
+        JSONArray jsonPages = new JSONArray();
+        for (Page page : listPages) {
+            jsonPages.put(page.toJson());
+        }
+
+        return jsonPages;
     }
 
     // getters and setters

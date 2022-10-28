@@ -63,11 +63,15 @@ public class DirectoryTest {
     @Test
     void testToJson() {
         JSONObject jsonDr = testDirectory.toJson();
-        assertEquals(new JSONArray(), jsonDr.getJSONArray("listFolders"));
+        assertTrue(jsonDr.getJSONArray("listFolders").isEmpty());
     }
 
     @Test
     void testFoldersToJson() {
-        // ???
+        testDirectory.addFolder("test"); // add folder to directory
+        JSONObject jsonDr = testDirectory.toJson(); // convert directory to json
+        JSONArray jsonFolders = jsonDr.getJSONArray("listFolders"); // get jsonarray from json directory
+        JSONObject jsonObj = jsonFolders.getJSONObject(0); // get first object in jsonarray
+        assertEquals("test", jsonObj.getString("name"));
     }
 }

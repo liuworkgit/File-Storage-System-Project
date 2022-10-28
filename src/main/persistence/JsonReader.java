@@ -27,11 +27,11 @@ public class JsonReader {
     }
 
     // EFFECTS: reads directory from file and returns it;
-    // throws IOException if an error occurs reading data from file
+    //          throws IOException if an error occurs reading data from file
     public Directory read() throws IOException {
         String jsonData = readFile(source);
-        JSONObject jsonObject = new JSONObject(jsonData);
-        return parseDirectory(jsonObject);
+        JSONObject jsonObj = new JSONObject(jsonData);
+        return parseDirectory(jsonObj);
     }
 
     // EFFECTS: reads source file as string and returns it

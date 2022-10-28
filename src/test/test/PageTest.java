@@ -121,7 +121,31 @@ class PageTest {
     void testToJson() {
         JSONObject jsonPage = testPage.toJson();
         assertEquals("Math 200 notes", jsonPage.getString("name"));
-        assertEquals(new JSONArray(), jsonPage.getJSONArray("listParagraphs"));
-        assertEquals(new JSONArray(), jsonPage.getJSONArray("listLinks"));
+        assertTrue(jsonPage.getJSONArray("listParagraphs").isEmpty());
+        assertTrue(jsonPage.getJSONArray("listLinks").isEmpty());
+    }
+
+    @Test
+    void testParasToJson() {
+        testPage.addParagraph("test1");
+        testPage.addParagraph("test2");
+        JSONObject jsonPage = testPage.toJson();
+        JSONArray jsonParas = jsonPage.getJSONArray("listParagraphs");
+        JSONObject jsonObj1 = jsonParas.getJSONObject(0);
+        JSONObject jsonObj2 = jsonParas.getJSONObject(1);
+        assertEquals("test1", jsonObj1.getString("text"));
+        assertEquals("test2", jsonObj2.getString("text"));
+    }
+
+    @Test
+    void testLinksToJson() {
+        testPage.addLink("test1");
+        testPage.addLink("test2");
+        JSONObject jsonPage = testPage.toJson();
+        JSONArray jsonLinks = jsonPage.getJSONArray("listLinks");
+        JSONObject jsonObj1 = jsonLinks.getJSONObject(0);
+        JSONObject jsonObj2 = jsonLinks.getJSONObject(1);
+        assertEquals("test1", jsonObj1.getString("link"));
+        assertEquals("test2", jsonObj2.getString("link"));
     }
 }

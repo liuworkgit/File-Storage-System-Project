@@ -4,6 +4,7 @@ import model.Page;
 import model.Paragraph;
 
 import java.util.Scanner;
+import java.util.List;
 
 // NOTE: Based on JsonSerializationDemo provided by CPSC210
 // Found on Phase 2 page on CPSC210 edx
@@ -12,6 +13,7 @@ import java.util.Scanner;
 
 // functionality for the paragraph level of the app (editing specific)
 public abstract class EditFunctions {
+
     // EFFECTS: run app at paragraph level (related to editing only)
     public void runEdit(Page page) {
         Scanner choice = new Scanner(System.in);
@@ -54,7 +56,6 @@ public abstract class EditFunctions {
         }
     }
 
-    // REPETITIVE - REFACTOR! (w/ UNBOLDTEXT)
     // MODIFIES: text
     // EFFECTS: bolds given text
     public void boldText(Paragraph text) {
