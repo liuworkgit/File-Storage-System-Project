@@ -3,9 +3,9 @@
         "name": "test3",
         "listPages": [
             {
-                "listLinks": [],
+                "listLinks": [{"link": "math"}],
                 "name": "test123",
-                "listParagraphs": []
+                "listParagraphs": [{"text": "the quick brown fox jumped over the lazy dog."}]
             },
             {
                 "listLinks": [],
@@ -15,7 +15,7 @@
         ]
     },
     {
-        "name": "test4",
+        "name": "test",
         "listPages": []
     }
 ]}

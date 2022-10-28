@@ -26,37 +26,37 @@ public class DirectoryTest {
 
     @Test
     void testAddFolder() {
-        testDirectory.addFolder("WWW");
+        testDirectory.addItem("WWW");
         assertEquals("WWW", testDirectory.getListFolders().get(0).getName());
     }
 
     @Test
     void testDeleteFolder() {
-        testDirectory.addFolder("Work it!!! woo!!");
-        testDirectory.deleteFolder(0);
+        testDirectory.addItem("Work it!!! woo!!");
+        testDirectory.deleteItem(0);
         assertEquals(new ArrayList<>(), testDirectory.getListFolders());
     }
 
     @Test
     void testAddMultiple() {
-        testDirectory.addFolder("Folder 1");
-        testDirectory.addFolder("Folder 2");
+        testDirectory.addItem("Folder 1");
+        testDirectory.addItem("Folder 2");
         assertEquals("Folder 1", testDirectory.getListFolders().get(0).getName());
         assertEquals("Folder 2", testDirectory.getListFolders().get(1).getName());
     }
 
     @Test
     void testAddThenDelete() {
-        testDirectory.addFolder("AAA");
-        testDirectory.addFolder("BBB");
-        testDirectory.deleteFolder(0);
+        testDirectory.addItem("AAA");
+        testDirectory.addItem("BBB");
+        testDirectory.deleteItem(0);
         assertEquals("BBB", testDirectory.getListFolders().get(0).getName());
     }
 
     @Test
     void testDisplayChoices() {
-        testDirectory.addFolder("Test");
-        testDirectory.addFolder("Testing");
+        testDirectory.addItem("Test");
+        testDirectory.addItem("Testing");
         assertEquals("[1] Test" + "\n[2] Testing" + "\n", testDirectory.displayChoices());
     }
 
@@ -68,7 +68,7 @@ public class DirectoryTest {
 
     @Test
     void testFoldersToJson() {
-        testDirectory.addFolder("test"); // add folder to directory
+        testDirectory.addItem("test"); // add folder to directory
         JSONObject jsonDr = testDirectory.toJson(); // convert directory to json
         JSONArray jsonFolders = jsonDr.getJSONArray("listFolders"); // get jsonarray from json directory
         JSONObject jsonObj = jsonFolders.getJSONObject(0); // get first object in jsonarray

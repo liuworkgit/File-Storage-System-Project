@@ -1,16 +1,13 @@
 package model;
 
-import model.Paragraph;
-
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
 // Represents a page with a name, paragraphs (text) and links to other pages
-public class Page implements Writable {
+public class Page implements CanDisplay, Writable {
     private String name;
     private List<Paragraph> listParagraphs;
     private List<String> listLinks;
@@ -26,18 +23,18 @@ public class Page implements Writable {
     // REQUIRES: text cannot be an empty string
     // MODIFIES: this
     // EFFECTS: adds a paragraph to the bottom of the page
-    public void addParagraph(String text) {
+    public void addItem(String text) {
         listParagraphs.add(new Paragraph(text));
     }
 
     // MODIFIES: this
     // EFFECTS: deletes a paragraph from the page
-    public void deleteParagraph(int index) {
+    public void deleteItem(int index) {
         listParagraphs.remove(index);
     }
 
     // EFFECTS: shows all paragraph options
-    public String displayParagraphs() {
+    public String displayChoices() {
         String message = "";
         for (Paragraph paragraph : listParagraphs) {
             int index = listParagraphs.indexOf(paragraph);

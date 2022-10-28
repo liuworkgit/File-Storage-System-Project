@@ -106,7 +106,7 @@ public class JsonReader {
     // EFFECTS: parses a paragraph from json object and adds it to page
     public void addParagraph(Page page, JSONObject jsonObject) {
         String text = jsonObject.getString("text"); // make new page
-        page.addParagraph(text);
+        page.addItem(text);
     }
 
     // MODIFIES: page, folder, directory

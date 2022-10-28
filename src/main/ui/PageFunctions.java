@@ -74,7 +74,7 @@ public abstract class PageFunctions extends EditFunctions {
     public void addParagraph(Page page) {
         Scanner newText = new Scanner(System.in);
         System.out.println("Enter text below:");
-        page.addParagraph(newText.nextLine());
+        page.addItem(newText.nextLine());
     }
 
     // MODIFIES: page
@@ -85,7 +85,7 @@ public abstract class PageFunctions extends EditFunctions {
         } else {
             Scanner toDelete = new Scanner(System.in);
             System.out.println("Select paragraph to delete:");
-            System.out.println(page.displayParagraphs());
+            System.out.println(page.displayChoices());
             page.getListParagraphs().remove(toDelete.nextInt() - 1);
         }
     }

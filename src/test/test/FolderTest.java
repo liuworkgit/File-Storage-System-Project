@@ -26,14 +26,14 @@ public class FolderTest {
 
     @Test
     void testAddPage() {
-        testFolder.addPage("GEOS 102 monday lecture");
+        testFolder.addItem("GEOS 102 monday lecture");
         assertTrue("GEOS 102 monday lecture" == testFolder.getListPages().get(0).getName());
     }
 
     @Test
     void testDeletePage() {
-        testFolder.addPage("MATH 310 notes");
-        testFolder.deletePage(0);
+        testFolder.addItem("MATH 310 notes");
+        testFolder.deleteItem(0);
         assertEquals(new ArrayList<>(), testFolder.getListPages());
     }
 
@@ -45,16 +45,16 @@ public class FolderTest {
 
     @Test
     void testAddThenDelete() {
-        testFolder.addPage("BOOYAH");
-        testFolder.deletePage(0);
+        testFolder.addItem("BOOYAH");
+        testFolder.deleteItem(0);
         assertEquals(new ArrayList<>(), testFolder.getListPages());
     }
 
     @Test
     void testAddMultipleTimes() {
-        testFolder.addPage("test123");
-        testFolder.addPage("test123");
-        testFolder.addPage("test123");
+        testFolder.addItem("test123");
+        testFolder.addItem("test123");
+        testFolder.addItem("test123");
         assertEquals("test123", testFolder.getListPages().get(0).getName());
         assertEquals("test123", testFolder.getListPages().get(1).getName());
         assertEquals("test123", testFolder.getListPages().get(2).getName());
@@ -62,21 +62,21 @@ public class FolderTest {
 
     @Test
     void testAddMultipleDeleteMultiple() {
-        testFolder.addPage("test123");
-        testFolder.addPage("test123");
-        testFolder.addPage("wiggles");
+        testFolder.addItem("test123");
+        testFolder.addItem("test123");
+        testFolder.addItem("wiggles");
         assertEquals("test123", testFolder.getListPages().get(0).getName());
         assertEquals("test123", testFolder.getListPages().get(1).getName());
         assertEquals("wiggles", testFolder.getListPages().get(2).getName());
-        testFolder.deletePage(1);
-        testFolder.deletePage(0);
+        testFolder.deleteItem(1);
+        testFolder.deleteItem(0);
         assertEquals("wiggles", testFolder.getListPages().get(0).getName());
     }
 
     @Test
     void testDisplayChoices() {
-        testFolder.addPage("bazinga");
-        testFolder.addPage("banger");
+        testFolder.addItem("bazinga");
+        testFolder.addItem("banger");
         assertEquals("[1] bazinga" + "\n[2] banger" + "\n", testFolder.displayChoices());
     }
 
@@ -89,7 +89,7 @@ public class FolderTest {
 
     @Test
     void testPagesToJson() {
-        testFolder.addPage("test");
+        testFolder.addItem("test");
         JSONObject jsonFolder = testFolder.toJson();
         JSONArray jsonPages = jsonFolder.getJSONArray("listPages");
         JSONObject jsonObj = jsonPages.getJSONObject(0);

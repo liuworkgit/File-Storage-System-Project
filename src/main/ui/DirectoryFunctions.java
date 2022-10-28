@@ -27,29 +27,27 @@ public class DirectoryFunctions extends FolderFunctions {
         directory = new Directory();
         jsonWriter = new JsonWriter(JSON_STORE);
         jsonReader = new JsonReader(JSON_STORE);
-        runDirectory();
+        run();
     }
 
-    // EFFECTS: run app at directory level
-    public void runDirectory() {
+    public void run() {
         Scanner input = new Scanner(System.in);
         boolean stayHere = true;
 
         while (stayHere) {
-            showDirectoryMenu();
+            showMenu();
             int command = input.nextInt();
 
             if (command == 0) {
                 stayHere = false;
             } else {
-                directoryProcess(command);
+                process(command);
             }
         }
         System.out.println("You have exited the app.");
     }
 
-    // EFFECTS: shows directory options
-    public void showDirectoryMenu() {
+    public void showMenu() {
         System.out.println("What would you like to do?"
                 + "\n[1] view folders"
                 + "\n[2] add folder"
@@ -60,8 +58,7 @@ public class DirectoryFunctions extends FolderFunctions {
                 + "\n[0] quit");
     }
 
-    // EFFECTS: processes input at directory level
-    public void directoryProcess(int command) {
+    public void process(int command) {
         if (command == 1) { // view folders
             viewFolders();
         } else if (command == 2) { // add folder
@@ -95,7 +92,7 @@ public class DirectoryFunctions extends FolderFunctions {
     public void addFolder() {
         Scanner newName = new Scanner(System.in);
         System.out.println("What would you like to name this folder?");
-        directory.addFolder(newName.nextLine());
+        directory.addItem(newName.nextLine());
     }
 
     // EFFECTS: deletes a folder from the directory

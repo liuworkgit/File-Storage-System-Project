@@ -25,13 +25,13 @@ public class Folder implements CanDisplay, Writable {
     // MODIFIES: this
     // EFFECTS: adds a page to the list of note pages
     // potentially rename to more general if Directory shares interface?
-    public void addPage(String name) {
+    public void addItem(String name) {
         listPages.add(new Page(name));
     }
 
     // MODIFIES: this
     // EFFECTS: deletes the page associated with the given index from the folder
-    public void deletePage(int index) {
+    public void deleteItem(int index) {
         listPages.remove(index);
     }
 

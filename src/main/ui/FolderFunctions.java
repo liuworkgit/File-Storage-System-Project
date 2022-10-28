@@ -71,7 +71,7 @@ public abstract class FolderFunctions extends PageFunctions {
     public void addPage(Folder folder) {
         Scanner newName = new Scanner(System.in);
         System.out.println("What would you like to name this page?");
-        folder.addPage(newName.nextLine());
+        folder.addItem(newName.nextLine());
     }
 
     // EFFECTS: deletes npage

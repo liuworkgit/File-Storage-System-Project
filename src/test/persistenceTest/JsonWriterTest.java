@@ -55,8 +55,8 @@ public class JsonWriterTest extends JsonTest {
     void testWriteToFolderLvl() {
         try {
             Directory dr = new Directory();
-            dr.addFolder("folder 1");
-            dr.addFolder("1234567");
+            dr.addItem("folder 1");
+            dr.addItem("1234567");
 
             JsonWriter writer = new JsonWriter("./data/testToFolderLvlWriter.json");
             writer.open();
@@ -77,10 +77,10 @@ public class JsonWriterTest extends JsonTest {
     void testWriteToPageLvl() {
         try {
             Directory dr = new Directory();
-            dr.addFolder("test folder");
+            dr.addItem("test folder");
             Folder folder = dr.getListFolders().get(0);
-            folder.addPage("page 1");
-            folder.addPage("page 2");
+            folder.addItem("page 1");
+            folder.addItem("page 2");
 
             JsonWriter writer = new JsonWriter("./data/testToPageLvlWriter.json");
             writer.open();
@@ -106,12 +106,12 @@ public class JsonWriterTest extends JsonTest {
     void testWriteToParaLinkLvl() {
         try {
             Directory dr = new Directory();
-            dr.addFolder("1");
+            dr.addItem("1");
             Folder folder = dr.getListFolders().get(0);
-            folder.addPage("2");
+            folder.addItem("2");
             Page page = folder.getListPages().get(0);
-            page.addParagraph("lorem ipsum idk");
-            page.addParagraph("dummy text 1234;;;;;**");
+            page.addItem("lorem ipsum idk");
+            page.addItem("dummy text 1234;;;;;**");
             page.addLink("page name");
 
             JsonWriter writer = new JsonWriter("./data/testToFolderLvlWriter.json");

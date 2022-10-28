@@ -4,7 +4,6 @@ import model.Page;
 import model.Paragraph;
 
 import java.util.Scanner;
-import java.util.List;
 
 // NOTE: Based on JsonSerializationDemo provided by CPSC210
 // Found on Phase 2 page on CPSC210 edx
@@ -18,7 +17,7 @@ public abstract class EditFunctions extends UiFunctions {
     public void runEdit(Page page) {
         Scanner choice = new Scanner(System.in);
         System.out.println("Select paragraph to edit:");
-        System.out.println(page.displayParagraphs());
+        System.out.println(page.displayChoices());
         Paragraph chosenParagraph = page.getListParagraphs().get(choice.nextInt() - 1);
 
         boolean stayHere = true;

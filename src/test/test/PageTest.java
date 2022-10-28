@@ -28,15 +28,15 @@ class PageTest {
 
     @Test
     void testAddParagraph() {
-        testPage.addParagraph("This is some text, blah blah blah.");
+        testPage.addItem("This is some text, blah blah blah.");
         assertEquals("This is some text, blah blah blah.",
                 testPage.getListParagraphs().get(0).getText());
     }
 
     @Test
     void testDeleteParagraph() {
-        testPage.addParagraph("asdfghjk");
-        testPage.deleteParagraph(0);
+        testPage.addItem("asdfghjk");
+        testPage.deleteItem(0);
         assertEquals(new ArrayList<>(), testPage.getListParagraphs());
     }
 
@@ -64,17 +64,17 @@ class PageTest {
     @Test
     // tests if can add paragraphs, then delete it
     void testAddThenDelete() {
-        testPage.addParagraph("agony pain suffering");
-        testPage.deleteParagraph(0);
+        testPage.addItem("agony pain suffering");
+        testPage.deleteItem(0);
         assertEquals(new ArrayList<>(), testPage.getListParagraphs());
     }
 
     @Test
     // tests if can add multiple paragraphs
     void testAddMultiple() {
-        testPage.addParagraph("name 1");
-        testPage.addParagraph("name 2");
-        testPage.addParagraph("name 3");
+        testPage.addItem("name 1");
+        testPage.addItem("name 2");
+        testPage.addItem("name 3");
         assertEquals("name 1", testPage.getListParagraphs().get(0).getText());
         assertEquals("name 2", testPage.getListParagraphs().get(1).getText());
         assertEquals("name 3", testPage.getListParagraphs().get(2).getText());
@@ -83,11 +83,11 @@ class PageTest {
     @Test
     // tests if can add and delete multiple times
     void testAddMultipleDeleteMultiple() {
-        testPage.addParagraph("ABC");
-        testPage.addParagraph("DEF");
-        testPage.deleteParagraph(0);
-        testPage.addParagraph("GHI123");
-        testPage.deleteParagraph(1);
+        testPage.addItem("ABC");
+        testPage.addItem("DEF");
+        testPage.deleteItem(0);
+        testPage.addItem("GHI123");
+        testPage.deleteItem(1);
         assertTrue("DEF" == testPage.getListParagraphs().get(0).getText());
     }
 
@@ -103,9 +103,9 @@ class PageTest {
 
     @Test
     void testDisplayChoices() {
-        testPage.addParagraph("Test");
-        testPage.addParagraph("Testing");
-        assertEquals("[1] Test" + "\n[2] Testing" + "\n", testPage.displayParagraphs());
+        testPage.addItem("Test");
+        testPage.addItem("Testing");
+        assertEquals("[1] Test" + "\n[2] Testing" + "\n", testPage.displayChoices());
     }
 
     @Test
@@ -127,8 +127,8 @@ class PageTest {
 
     @Test
     void testParasToJson() {
-        testPage.addParagraph("test1");
-        testPage.addParagraph("test2");
+        testPage.addItem("test1");
+        testPage.addItem("test2");
         JSONObject jsonPage = testPage.toJson();
         JSONArray jsonParas = jsonPage.getJSONArray("listParagraphs");
         JSONObject jsonObj1 = jsonParas.getJSONObject(0);
