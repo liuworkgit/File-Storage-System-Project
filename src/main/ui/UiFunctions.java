@@ -7,8 +7,10 @@ public abstract class UiFunctions {
         System.out.println("You have no " + item + " currently.");
     }
 
-    // EFFECTS: runs a certain level of the app
-    public abstract void run();
+    // EFFECTS: prints a message asking user to select something
+    public void selectMessage(String item) {
+        System.out.println("Select a " + item + " to view.");
+    }
 
     // EFFECTS: shows the options menu
     public abstract void showMenu();

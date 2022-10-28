@@ -25,6 +25,7 @@ public abstract class PageFunctions extends EditFunctions {
 
         while (stayHere == true) {
             System.out.println("Currently viewing page:" + page.getName());
+            printParagraphs(page);
             showPageMenu();
             int command = input.nextInt();
 
@@ -56,6 +57,18 @@ public abstract class PageFunctions extends EditFunctions {
             editAccess(page);
         } else if (command == 4) {
             viewLinks(page);
+        }
+    }
+
+    // EFFECTS: prints all paragraphs in page
+    public void printParagraphs(Page page) {
+        paragraphs = page.getListParagraphs();
+        if (paragraphs.isEmpty()) {
+            noItemsMessage("paragraphs");
+        } else {
+            for (Paragraph para : paragraphs) {
+                System.out.println(para.getText());
+            }
         }
     }
 

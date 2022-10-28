@@ -5,7 +5,7 @@
             {
                 "listLinks": [{"link": "math"}],
                 "name": "test123",
-                "listParagraphs": [{"text": "the quick brown fox jumped over the lazy dog."}]
+                "listParagraphs": []
             },
             {
                 "listLinks": [],

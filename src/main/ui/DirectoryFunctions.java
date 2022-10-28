@@ -81,7 +81,7 @@ public class DirectoryFunctions extends FolderFunctions {
             noItemsMessage("folders");
         } else { // shows all folders
             Scanner folderInput = new Scanner(System.in);
-            System.out.println("Select a folder to view.");
+            selectMessage("folder");
             System.out.println(directory.displayChoices());
             int index = folderInput.nextInt() - 1;
             runFolder(directory.getListFolders().get(index));

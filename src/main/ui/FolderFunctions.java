@@ -60,7 +60,7 @@ public abstract class FolderFunctions extends PageFunctions {
             noItemsMessage("pages");
         } else { // shows all pages
             Scanner pageInput = new Scanner(System.in);
-            System.out.println("Select a page to view.");
+            selectMessage("page");
             System.out.println(folder.displayChoices());
             int index = pageInput.nextInt() - 1;
             runPage(pages.get(index));
