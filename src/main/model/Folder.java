@@ -53,7 +53,6 @@ public class Folder implements CanDisplay, Writable {
         return json;
     }
 
-    // EFFECTS: returns pages in this folder as a JSON array
     public JSONArray arrayToJson() {
         JSONArray jsonPages = new JSONArray();
         for (Page page : listPages) {

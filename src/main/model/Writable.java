@@ -8,6 +8,7 @@ import org.json.JSONObject;
 // Link to repository:
 // https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo
 
+// an object with collections that can be converted to json
 public interface Writable {
     // EFFECTS: returns this as json object
     JSONObject toJson();

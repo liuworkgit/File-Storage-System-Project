@@ -77,6 +77,7 @@ public class Paragraph {
         }
     }
 
+    // EFFECTS: writes paragraph as a json object
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
         json.put("text", text);

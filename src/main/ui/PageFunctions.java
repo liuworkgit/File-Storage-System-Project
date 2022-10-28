@@ -95,9 +95,8 @@ public abstract class PageFunctions extends EditFunctions {
         List<String> pages = page.getListLinks();
         if (pages.isEmpty()) { // no links
             System.out.println("You have no linked pages.");
-        } else {
-            runLink(page);
         }
+        runLink(page);
     }
 
     // EFFECTS: runs things in regard to links
