@@ -57,7 +57,7 @@ public abstract class FolderFunctions extends PageFunctions {
     // EFFECTS: shows all pages
     public void viewPages(Folder folder) {
         if (pages.isEmpty()) { // no pages
-            System.out.println("You have no pages in this folder.");
+            noItemsMessage("pages");
         } else { // shows all pages
             Scanner pageInput = new Scanner(System.in);
             System.out.println("Select a page to view.");
@@ -77,7 +77,7 @@ public abstract class FolderFunctions extends PageFunctions {
     // EFFECTS: deletes npage
     public void deletePage(Folder folder) {
         if (pages.isEmpty()) { // no pages
-            System.out.println("You have no pages in this folder.");
+            noItemsMessage("pages");
         } else { // delete page
             Scanner toDelete = new Scanner(System.in);
             System.out.println("Select page to delete:");

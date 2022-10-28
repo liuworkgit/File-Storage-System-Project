@@ -81,7 +81,7 @@ public class DirectoryFunctions extends FolderFunctions {
     public void viewFolders() {
         List<Folder> folders = directory.getListFolders();
         if (folders.isEmpty()) { // no folders
-            System.out.println("You have no folders currently.");
+            noItemsMessage("folders");
         } else { // shows all folders
             Scanner folderInput = new Scanner(System.in);
             System.out.println("Select a folder to view.");
@@ -102,7 +102,7 @@ public class DirectoryFunctions extends FolderFunctions {
     public void deleteFolder() {
         List<Folder> folders = directory.getListFolders();
         if (folders.isEmpty()) {
-            System.out.println("You have no folders currently.");
+            noItemsMessage("folders");
         } else {
             Scanner toDelete = new Scanner(System.in);
             System.out.println("Select folder to delete:");
@@ -115,7 +115,7 @@ public class DirectoryFunctions extends FolderFunctions {
     public void renameFolder() {
         List<Folder> folders = directory.getListFolders();
         if (folders.isEmpty()) {
-            System.out.println("You have no folders currently.");
+            noItemsMessage("folders");
         } else {
             // get folder
             Scanner toRename = new Scanner(System.in);

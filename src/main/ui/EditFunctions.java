@@ -12,7 +12,7 @@ import java.util.List;
 // https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo
 
 // functionality for the paragraph level of the app (editing specific)
-public abstract class EditFunctions {
+public abstract class EditFunctions extends UiFunctions {
 
     // EFFECTS: run app at paragraph level (related to editing only)
     public void runEdit(Page page) {

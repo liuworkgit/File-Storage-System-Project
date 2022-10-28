@@ -94,7 +94,7 @@ public abstract class PageFunctions extends EditFunctions {
     public void viewLinks(Page page) {
         List<String> pages = page.getListLinks();
         if (pages.isEmpty()) { // no links
-            System.out.println("You have no linked pages.");
+            noItemsMessage("links");
         }
         runLink(page);
     }
@@ -145,7 +145,7 @@ public abstract class PageFunctions extends EditFunctions {
     // EFFECTS: deletes a link
     public void deleteLink(Page page) {
         if (page.getListLinks().isEmpty()) {
-            System.out.println("You have no links to delete.");
+            noItemsMessage("links");
         } else {
             Scanner toDelete = new Scanner(System.in);
             System.out.println("Select link to delete:");
