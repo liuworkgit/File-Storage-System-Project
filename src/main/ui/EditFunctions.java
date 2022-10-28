@@ -56,6 +56,8 @@ public abstract class EditFunctions {
         }
     }
 
+    // EFFECTS: returns the paragraph to be edited
+
     // MODIFIES: text
     // EFFECTS: bolds given text
     public void boldText(Paragraph text) {

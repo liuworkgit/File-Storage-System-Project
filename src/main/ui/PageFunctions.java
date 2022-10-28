@@ -53,9 +53,19 @@ public abstract class PageFunctions extends EditFunctions {
         } else if (command == 2) {
             deleteParagraph(page);
         } else if (command == 3) {
-            runEdit(page);
+            editAccess(page);
         } else if (command == 4) {
             viewLinks(page);
+        }
+    }
+
+    // EFFECTS: prevents access to paragraph editing if there are no paragraphs to edit
+    public void editAccess(Page page) {
+        List<Paragraph> paras = page.getListParagraphs();
+        if (paras.isEmpty()) {
+            System.out.println("You have no paragraphs to edit.");
+        } else {
+            runEdit(page);
         }
     }
 
@@ -85,8 +95,9 @@ public abstract class PageFunctions extends EditFunctions {
         List<String> pages = page.getListLinks();
         if (pages.isEmpty()) { // no links
             System.out.println("You have no linked pages.");
+        } else {
+            runLink(page);
         }
-        runLink(page);
     }
 
     // EFFECTS: runs things in regard to links
