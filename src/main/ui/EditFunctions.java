@@ -11,7 +11,7 @@ import java.util.Scanner;
 // https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo
 
 // functionality for the paragraph level of the app (editing specific)
-public abstract class EditFunctions extends UiFunctions {
+public abstract class EditFunctions extends MessageToUser {
 
     // EFFECTS: run app at paragraph level (related to editing only)
     public void runEdit(Page page) {
@@ -22,7 +22,7 @@ public abstract class EditFunctions extends UiFunctions {
 
         boolean stayHere = true;
         Scanner input = new Scanner(System.in);
-        while (stayHere == true) {
+        while (stayHere) {
             showEditMenu(chosenParagraph);
             int command = input.nextInt();
 
