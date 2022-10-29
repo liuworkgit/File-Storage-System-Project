@@ -24,14 +24,15 @@ public class Paragraph {
     // EFFECTS: deletes the inputted text from the paragraph
     //          if there are duplicates, deletes first occurrence.
     public void deleteText(String text) {
-        int startOfDeleting = this.text.indexOf(text);
-        int endofDeleting = text.length();
-        String leftPart = this.text.substring(0, startOfDeleting);
-        String rightPart = this.text.substring(startOfDeleting + endofDeleting);
+        int startDelete = this.text.indexOf(text);
+        int endDelete = text.length();
+        String[] parts = getForEdit(text);
+        String leftPart = parts[0];
+        String rightPart = parts[1];
         // bolding prevention
         if (leftPart.endsWith("**") && rightPart.startsWith("**")) {
-            leftPart = this.text.substring(0, startOfDeleting - 2);
-            rightPart = this.text.substring(startOfDeleting + endofDeleting + 2);
+            leftPart = this.text.substring(0, startDelete - 2);
+            rightPart = this.text.substring(startDelete + endDelete + 2);
         }
         // deleting
         this.text = leftPart + rightPart;
@@ -42,10 +43,9 @@ public class Paragraph {
     // EFFECTS: bolds the text by putting double asterixes around the chosen text.
     //          if given text appears more than once in paragraph, bolds first occurrence
     public void boldText(String text) {
-        int startOfDeleting = this.text.indexOf(text);
-        int endofDeleting = text.length();
-        String leftPart = this.text.substring(0, startOfDeleting);
-        String rightPart = this.text.substring(startOfDeleting + endofDeleting);
+        String[] parts = getForEdit(text);
+        String leftPart = parts[0];
+        String rightPart = parts[1];
         this.text = leftPart + "**" + text + "**" + rightPart;
     }
 
@@ -53,10 +53,10 @@ public class Paragraph {
     // MODIFIES: this
     // EFFECTS: unbolds the given text by removing the outermost two occurrences of "**"
     public void unboldText(String text) {
-        int startOfDeleting = this.text.indexOf(text);
-        int endOfDeleting = text.length();
-        String leftPart = this.text.substring(0, startOfDeleting);
-        String rightPart = this.text.substring(startOfDeleting + endOfDeleting);
+        String[] parts = getForEdit(text);
+        String leftPart = parts[0];
+        String rightPart = parts[1];
+
         String leftSubstring = leftPart.substring(0, leftPart.length() - 2);
         if (leftPart.endsWith("**") && rightPart.startsWith("**")) {
             this.text = leftSubstring
