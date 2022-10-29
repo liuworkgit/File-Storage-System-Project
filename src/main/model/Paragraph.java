@@ -77,6 +77,19 @@ public class Paragraph {
         }
     }
 
+    // EFFECTS: returns a chunk of this.text for editing
+    public String[] getForEdit(String text) {
+        String[] parts = new String[2];
+
+        int startOfDeleting = this.text.indexOf(text);
+        int endOfDeleting = text.length();
+        String leftPart = this.text.substring(0, startOfDeleting);
+        String rightPart = this.text.substring(startOfDeleting + endOfDeleting);
+        parts[0] = leftPart;
+        parts[1] = rightPart;
+        return parts;
+    }
+
     // EFFECTS: writes paragraph as a json object
     public JSONObject toJson() {
         JSONObject json = new JSONObject();

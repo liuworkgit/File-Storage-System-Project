@@ -136,6 +136,13 @@ public class ParagraphTest {
     }
 
     @Test
+    void testGetForEdit() {
+        String[] parts = testParagraph.getForEdit("is a");
+        assertEquals("This ", parts[0]);
+        assertEquals(" paragraph!", parts[1]);
+    }
+
+    @Test
     void testToJson() {
         JSONObject jsonPara = testParagraph.toJson();
         assertEquals("This is a paragraph!", jsonPara.getString("text"));
