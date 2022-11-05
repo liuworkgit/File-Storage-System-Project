@@ -1,22 +1,8 @@
-{"listFolders": [
-    {
-        "name": "test",
-        "listPages": []
-    },
-    {
-        "name": "math 200",
-        "listPages": [{
-            "listLinks": [],
-            "name": "approximation ",
-            "listParagraphs": []
-        }]
-    },
-    {
-        "name": "math 221",
-        "listPages": [{
-            "listLinks": [],
-            "name": "inverse matrices",
-            "listParagraphs": [{"text": "this is a paragraph!````~~~~"}]
-        }]
-    }
-]}
+{"listFolders": [{
+    "name": "test",
+    "listPages": [{
+        "listLinks": [],
+        "name": "tststs",
+        "listParagraphs": [{"text": "lorem ipsum"}]
+    }]
+}]}
