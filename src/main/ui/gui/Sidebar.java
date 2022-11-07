@@ -1,4 +1,5 @@
 package ui.gui;
 
-public class Sidebar {
+// sidebar where all folders appear
+public abstract class Sidebar {
 }
