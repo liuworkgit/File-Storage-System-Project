@@ -1,6 +1,7 @@
 package ui;
 
 import ui.gui.AppWindow;
+import ui.gui.ApplicationWindow;
 
 import java.io.FileNotFoundException;
 
