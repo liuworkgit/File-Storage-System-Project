@@ -1,12 +1,15 @@
 package ui.gui;
 
+import model.Folder;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-// event handling related to folders
+// represents the menu bar of the application
 public class TopMenuBar implements ActionListener {
 
+    // creates a menu bar
     public JMenuBar createMenuBar() {
         JMenuBar menuBar = new JMenuBar(); // create menu bar
         JMenu fileMenu = new JMenu("File"); // create menu
@@ -27,44 +30,74 @@ public class TopMenuBar implements ActionListener {
         return menuBar;
     }
 
+    // dictates the action performed when a menu item is selected
     @Override
     public void actionPerformed(ActionEvent e) {
-        // TODO ACTION PERFORMED MENUBAR
+        JMenuItem source = (JMenuItem) e.getSource();
+        if (source.getText() == "Load File") {
+            // TODO MENUBAR
+        } else if (source.getText() == "Save File") {
+            // TODO MENUBAR
+        } else if (source.getText() == "Add Folder") {
+            // TODO MENUBAR
+        } else if (source.getText() == "Delete Folder") {
+            // TODO MENUBAR
+        } else if (source.getText() == "Rename Folder") {
+            // TODO MENUBAR
+        } else if (source.getText() == "Add Page") {
+            // TODO MENUBAR
+        } else if (source.getText() == "Delete Page") {
+            // TODO MENUBAR
+        }
     }
 
     // EFFECTS: creates a menu item that lets the user load data
     public JMenuItem loadOp() {
-        return new JMenuItem("Load File"); // stub
+        JMenuItem option = new JMenuItem("Load File");
+        option.addActionListener(this);
+        return option;
     }
 
-    // EFFECTS: creates a menu item that lets the user load data
+    // EFFECTS: creates a menu item that lets the user save data
     public JMenuItem saveOp() {
-        return new JMenuItem("Save File"); // stub
+        JMenuItem option = new JMenuItem("Save File");
+        option.addActionListener(this);
+        return option;
     }
 
-    // EFFECTS: creates a menu item that lets the user load data
+    // EFFECTS: creates a menu item that lets the user add a new folder
     public JMenuItem addFolderOp() {
-        return new JMenuItem("Add Folder"); // stub
+        JMenuItem option = new JMenuItem("Add Folder");
+        option.addActionListener(this);
+        return option;
     }
 
-    // EFFECTS: creates a menu item that lets the user load data
+    // EFFECTS: creates a menu item that lets the user delete a folder
     public JMenuItem deleteFolderOp() {
-        return new JMenuItem("Delete Folder"); // stub
+        JMenuItem option = new JMenuItem("Delete Folder");
+        option.addActionListener(this);
+        return option;
     }
 
-    // EFFECTS: creates a menu item that lets the user load data
+    // EFFECTS: creates a menu item that lets the user rename a folder
     public JMenuItem renameFolderOp() {
-        return new JMenuItem("Rename Folder"); // stub
+        JMenuItem option = new JMenuItem("Rename Folder");
+        option.addActionListener(this);
+        return option;
     }
 
-    // EFFECTS: creates a menu item that lets the user load data
+    // EFFECTS: creates a menu item that lets the user add a page to the currently selected folder
     public JMenuItem addPageOp() {
-        return new JMenuItem("Add Page"); // stub
+        JMenuItem option = new JMenuItem("Add Page");
+        option.addActionListener(this);
+        return option;
     }
 
-    // EFFECTS: creates a menu item that lets the user load data
+    // EFFECTS: creates a menu item that lets the user delete a page from the currently selected folder
     public JMenuItem deletePageOp() {
-        return new JMenuItem("Delete Page"); // stub
+        JMenuItem option = new JMenuItem("Delete Page");
+        option.addActionListener(this);
+        return option;
     }
 
 }

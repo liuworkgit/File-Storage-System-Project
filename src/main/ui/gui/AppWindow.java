@@ -1,49 +1,44 @@
 package ui.gui;
 
 import javax.swing.*;
-import javax.swing.text.JTextComponent;
 import java.awt.*;
+
+// Based on the Menu Demo Project from the Oracle Java Documentation
+// Link to original code: https://docs.oracle.com/javase/tutorial/uiswing/examples/components/index.html
 
 // the window in which the app appears
 public class AppWindow extends JFrame {
     private JFrame window;
-    private JPanel sidebar;
-    private JPanel textWindow;
-    private static final int WIDTH = 600;
-    private static final int HEIGHT = 550;
+    private JPanel sidePanel;
+    protected static final int WIDTH = 600;
+    protected static final int HEIGHT = 550;
 
     // EFFECTS: creates a new application window with all the app's components
     public AppWindow() {
         window = new JFrame("NoteTaker");
-        sidebar = new JPanel(); // TODO REPURPOSE SIDEBAR WITH TREE
-        textWindow = new JPanel(); // TODO REPURPOSE TEXTWINDOW WITH SCROLL
+        sidePanel = new JPanel(); // TODO REPURPOSE SIDE PANEL WITH TREE
         TopMenuBar topMenuBar = new TopMenuBar();
-
-        // settings
-        adjustSidebar(sidebar);
-        adjustTextWindow(textWindow);
+        TextArea textArea = new TextArea();
 
         // add to jframe + align
         window.setLayout(new BorderLayout());
         window.setJMenuBar(topMenuBar.createMenuBar());
-        window.add(sidebar, BorderLayout.LINE_START);
-        window.add(textWindow, BorderLayout.CENTER);
+        window.add(sidePanel, BorderLayout.LINE_START);
+        window.add(textArea.createTextArea(), BorderLayout.CENTER);
 
         // visibility + behaviour on close
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         window.setSize(WIDTH, HEIGHT);
         window.setVisible(true);
+
+        // settings
+        adjustSidePanel(sidePanel);
+
     }
 
-    // EFFECTS: sets sidebar settings
-    public void adjustSidebar(JPanel sidebar) {
-        sidebar.setBackground(Color.GRAY);
-        sidebar.setPreferredSize(new Dimension(150, HEIGHT - 60));
-    }
-
-    // EFFECTS: sets text window settings
-    public void adjustTextWindow(JPanel textWindow) {
-        textWindow.setBackground(Color.white);
-        textWindow.setPreferredSize(new Dimension(450, HEIGHT - 60));
+    // EFFECTS: sets side panel settings
+    public void adjustSidePanel(JPanel sidePanel) {
+        sidePanel.setBackground(Color.GRAY);
+        sidePanel.setPreferredSize(new Dimension(150, HEIGHT - 60));
     }
 }
