@@ -3,6 +3,8 @@ package ui.gui;
 import javax.swing.*;
 import java.awt.*;
 
+import model.Page;
+
 // Based on the Menu Demo Project from the Oracle Java Documentation
 // Link to original code: https://docs.oracle.com/javase/tutorial/uiswing/examples/components/index.html
 
@@ -15,6 +17,13 @@ public class TextArea implements Dimensions {
         textArea.setEditable(true);
         JScrollPane scrollPane = new JScrollPane(textArea);
         return scrollPane;
+    }
+
+    // EFFECTS: displays a page in the text area
+    public void displayPage() {
+        // 1. get page from folder
+        // 2. get name of page, set Jlabel as page name
+        // 3. get paragraphs, for each paragraph textArea.setText(text) + hit enter
     }
 
     // TODO - KEEP THIS ONE OR THE ONE IN APPWINDOW?
