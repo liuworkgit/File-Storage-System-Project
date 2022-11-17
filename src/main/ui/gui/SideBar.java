@@ -5,24 +5,29 @@ import javax.swing.event.TreeSelectionEvent;
 import javax.swing.event.TreeSelectionListener;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeCellRenderer;
-import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.TreeSelectionModel;
 import java.awt.*;
 
+import model.Directory;
 import model.Folder;
 import model.Page;
 
 // Based on the Tree Demo Project from the Oracle Java Documentation
 // Link to original code: https://docs.oracle.com/javase/tutorial/uiswing/examples/components/index.html
 
+// TODO - NEED SIDEBAR AND TEXTAREA TO ACCESS DIRECTORY IN ORDER TO VISUALIZE PAGES BUT UNSURE HOW
+// TODO - IF MENUBAR CONTAINS DIRECTORY, MENU FUNCTIONALITY AND DIRECTORY CHANGES LINKED
+// TODO - HAVE A GETTER THAT PASSES DIRECTORY TO SIDEBAR AND TEXTAREA
+
 // represents the sidebar that displays folders in the application
-public class SideBar implements Dimensions, TreeSelectionListener {
+public class SideBar extends GuiTraits implements TreeSelectionListener {
+    protected JTree tree;
 
     // EFFECTS: creates the sidebar that displays all the folders
     public Container createSideBar() {
-        JTree tree = createTree();
-        // create scroll pane and add tree to it
-        JScrollPane sidebar = new JScrollPane(tree);
+//        JTree tree = createTree();
+        tree = createTree();
+        JScrollPane sidebar = new JScrollPane(tree); // create scroll pane and add tree to it
         adjustSideBar(sidebar);
 
         return sidebar;
@@ -39,7 +44,7 @@ public class SideBar implements Dimensions, TreeSelectionListener {
         // create nodes
         DefaultMutableTreeNode root =
                 new DefaultMutableTreeNode("Directory"); // TODO - TOGGLE NAME VISIBLE OFF?
-        createTestNodes(root);
+        createNodes(root);
 
         // create single selection tree
         JTree tree = new JTree(root);
@@ -63,8 +68,9 @@ public class SideBar implements Dimensions, TreeSelectionListener {
         return tree;
     }
 
-    // TODO - IMPLEMENT THIS
-    public void valueChanged(TreeSelectionEvent event) {}
+    public void valueChanged(TreeSelectionEvent event) {
+        // TODO - IF NODE SELECTED IS LEAF NODE, DISPLAY LEAF NODE IN TEXTAREA (CALL DISPLAYPAEG)
+    }
 
     // EFFECTS: creates an image icon to represent leaf nodes
     protected static ImageIcon createImageIcon(String path) {
@@ -77,17 +83,18 @@ public class SideBar implements Dimensions, TreeSelectionListener {
         }
     }
 
-    // EFFECTS: creates test nodes to see if my shit works // TODO - TESTING METHOD - DOESNT WORK LOL
-    private void createTestNodes(DefaultMutableTreeNode root) {
+    // EFFECTS: creates test nodes to see if my shit works // TODO - PRINTS ITEMS IN DIRECTORY TO TREE
+    private void createNodes(DefaultMutableTreeNode root) {
         DefaultMutableTreeNode category = null;
-        DefaultMutableTreeNode book = null;
+        DefaultMutableTreeNode leafNode = null;
 
-        Folder test = new Folder("test folder");
-        category = new DefaultMutableTreeNode(test.getName());
-        root.add(category);
-
-        Page testPage = new Page("test name");
-        book = new DefaultMutableTreeNode(testPage.getName());
-        category.add(book);
+        for (Folder folder: directory.getListFolders()) {
+            category = new DefaultMutableTreeNode(folder.getName());
+            for (Page page: folder.getListPages()) {
+                leafNode = new DefaultMutableTreeNode(page);
+                category.add(leafNode);
+            }
+            root.add(category);
+        }
     }
 }

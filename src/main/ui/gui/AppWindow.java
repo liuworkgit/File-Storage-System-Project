@@ -6,7 +6,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 
-import model.Directory;
+import model.Folder;
 import persistence.JsonReader;
 import persistence.JsonWriter;
 
@@ -14,13 +14,13 @@ import persistence.JsonWriter;
 // Link to original code: https://docs.oracle.com/javase/tutorial/uiswing/examples/components/index.html
 
 // the window in which the app appears
-public class AppWindow extends JFrame implements Dimensions, ActionListener {
+public class AppWindow extends GuiTraits implements ActionListener {
     private JFrame window;
     private TopMenuBar topMenuBar;
     private TextArea textArea;
     private SideBar sideBar;
 
-    private Directory directory;
+//    private Directory directory;
     private JsonWriter jsonWriter;
     private JsonReader jsonReader;
     private static final String JSON_STORE = "./data/notes.json";
@@ -31,7 +31,7 @@ public class AppWindow extends JFrame implements Dimensions, ActionListener {
 //        topMenuBar = new TopMenuBar();
         textArea = new TextArea();
         sideBar = new SideBar();
-        directory = new Directory();
+//        directory = new Directory();
         jsonWriter = new JsonWriter(JSON_STORE);
         jsonReader = new JsonReader(JSON_STORE);
 
@@ -103,17 +103,40 @@ public class AppWindow extends JFrame implements Dimensions, ActionListener {
 
     // MODIFIES: this
     // EFFECTS: saves data
-    public void saveFiles() {} // TODO
+    public void saveFiles() {
+        try {
+            jsonWriter.open();
+            jsonWriter.write(directory);
+            jsonWriter.close();
+            JOptionPane.showMessageDialog(window, "Files saved.");
+        } catch (IOException e) {
+            JOptionPane.showMessageDialog(window, "Unable to save files.");
+        }
+    } // TODO
 
-    public void addFolder() {} // TODO
+    public void addFolder() {
+        String inputValue = JOptionPane.showInputDialog(window,
+                "What would you like to name this folder?");
+        directory.addItem(inputValue);
+    }
 
-    public void deleteFolder() {} // TODO
+    public void deleteFolder() {
+        Object[] options = directory.getListFolders().toArray();
+        // TODO - INSERT OPTIONPANE HERE
+        // AND THEN DELETE SELECTED FOLDER
+    }
 
-    public void renameFolder() {} // TODO
+    public void renameFolder() {} // TODO - SIMILAR IMP TO OTHER METHS
 
-    public void addPage() {} // TODO
+    public void addPage() {
+        Object[] options = directory.getListFolders().toArray();
+//        int folder = JOptionPane.showOptionDialog(null,
+//                "test",
+//                "test",
+//                JOptionPane.OK_CANCEL_OPTION);
+    } // TODO - FIX ADDPAGE OPTIONPANE
 
-    public void deletePage() {} // TODO
+    public void deletePage() {} // TODO - SIMILAR IMP TO OTHER METHS
 
     // EFFECTS: creates a menu item
     public JMenuItem createMenuItem(String purpose) {
@@ -121,5 +144,4 @@ public class AppWindow extends JFrame implements Dimensions, ActionListener {
         option.addActionListener(this);
         return option;
     }
-
 }

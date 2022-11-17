@@ -95,13 +95,6 @@ public class JsonReader {
         }
     }
 
-//    // MODIFIES: page, folder, directory
-//    // EFFECTS: parses an object at the paragraph level from json object, adds it to page
-//    public void addElement(Page page, JSONObject jsonObject, Method method) {
-//        String text = jsonObject.getString("text"); // make new page
-//        method(text);
-//    }
-
     // MODIFIES: page, folder, directory
     // EFFECTS: parses a paragraph from json object and adds it to page
     public void addParagraph(Page page, JSONObject jsonObject) {

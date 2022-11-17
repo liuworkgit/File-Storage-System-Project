@@ -7,7 +7,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 // represents the menu bar of the application
-public class TopMenuBar implements ActionListener {
+public class TopMenuBar extends GuiTraits implements ActionListener {
 
     // creates a menu bar
     public JMenuBar createMenuBar() {

@@ -3,13 +3,11 @@ package ui.gui;
 import javax.swing.*;
 import java.awt.*;
 
-import model.Page;
-
 // Based on the Menu Demo Project from the Oracle Java Documentation
 // Link to original code: https://docs.oracle.com/javase/tutorial/uiswing/examples/components/index.html
 
 // represents the text area of the application
-public class TextArea implements Dimensions {
+public class TextArea extends GuiTraits {
 
     // EFFECTS: creates the text area
     public JScrollPane createTextArea() {
