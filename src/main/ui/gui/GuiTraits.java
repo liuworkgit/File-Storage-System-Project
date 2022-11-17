@@ -1,6 +1,7 @@
 package ui.gui;
 
 import model.Directory;
+import model.Folder;
 
 // Dimensions of the GUI window
 public abstract class GuiTraits {

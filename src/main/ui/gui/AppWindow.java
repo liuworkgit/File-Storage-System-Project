@@ -16,11 +16,10 @@ import persistence.JsonWriter;
 // the window in which the app appears
 public class AppWindow extends GuiTraits implements ActionListener {
     private JFrame window;
-    private TopMenuBar topMenuBar;
+//    private TopMenuBar topMenuBar;
     private TextArea textArea;
     private SideBar sideBar;
 
-//    private Directory directory;
     private JsonWriter jsonWriter;
     private JsonReader jsonReader;
     private static final String JSON_STORE = "./data/notes.json";
@@ -31,9 +30,14 @@ public class AppWindow extends GuiTraits implements ActionListener {
 //        topMenuBar = new TopMenuBar();
         textArea = new TextArea();
         sideBar = new SideBar();
-//        directory = new Directory();
         jsonWriter = new JsonWriter(JSON_STORE);
         jsonReader = new JsonReader(JSON_STORE);
+
+        // TODO - TEST
+        directory.addItem("test folder");
+        directory.addItem("folder name");
+        Folder testFolder = directory.getListFolders().get(0);
+        testFolder.addItem("page name");
 
         // add to jframe + align
         window.setLayout(new BorderLayout());

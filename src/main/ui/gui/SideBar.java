@@ -25,7 +25,6 @@ public class SideBar extends GuiTraits implements TreeSelectionListener {
 
     // EFFECTS: creates the sidebar that displays all the folders
     public Container createSideBar() {
-//        JTree tree = createTree();
         tree = createTree();
         JScrollPane sidebar = new JScrollPane(tree); // create scroll pane and add tree to it
         adjustSideBar(sidebar);
@@ -35,7 +34,6 @@ public class SideBar extends GuiTraits implements TreeSelectionListener {
 
     // EFFECTS: sets sidebar settings
     public void adjustSideBar(JScrollPane sidebar) {
-//        sidebar.setBackground(Color.GRAY); // TODO - CHANGE AFTER ALL IS DONE
         sidebar.setPreferredSize(new Dimension(150, height - 60));
     }
 
@@ -69,7 +67,11 @@ public class SideBar extends GuiTraits implements TreeSelectionListener {
     }
 
     public void valueChanged(TreeSelectionEvent event) {
-        // TODO - IF NODE SELECTED IS LEAF NODE, DISPLAY LEAF NODE IN TEXTAREA (CALL DISPLAYPAEG)
+        DefaultMutableTreeNode node = (DefaultMutableTreeNode) tree.getLastSelectedPathComponent();
+        if (node.isLeaf()) {
+            // TODO - IF NODE SELECTED IS LEAF NODE, DISPLAY LEAF NODE IN TEXTAREA (CALL DISPLAYPAEG)
+            JOptionPane.showMessageDialog(null, "lol!");
+        }
     }
 
     // EFFECTS: creates an image icon to represent leaf nodes
@@ -84,7 +86,8 @@ public class SideBar extends GuiTraits implements TreeSelectionListener {
     }
 
     // EFFECTS: creates test nodes to see if my shit works // TODO - PRINTS ITEMS IN DIRECTORY TO TREE
-    private void createNodes(DefaultMutableTreeNode root) {
+    public void createNodes(DefaultMutableTreeNode root) {
+        directory = new Directory();
         DefaultMutableTreeNode category = null;
         DefaultMutableTreeNode leafNode = null;
 
