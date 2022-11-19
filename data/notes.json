@@ -1,8 +1,14 @@
-{"listFolders": [{
-    "name": "test",
-    "listPages": [{
-        "listLinks": [],
-        "name": "tststs",
-        "listParagraphs": [{"text": "lorem ipsum"}]
-    }]
-}]}
+{"listFolders": [
+    {
+        "name": "test folder",
+        "listPages": [{
+            "listLinks": [],
+            "name": "page name",
+            "listParagraphs": []
+        }]
+    },
+    {
+        "name": "folder name",
+        "listPages": []
+    }
+]}

@@ -5,7 +5,9 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.util.Objects;
 
+import model.Directory;
 import model.Folder;
 import persistence.JsonReader;
 import persistence.JsonWriter;
@@ -77,19 +79,19 @@ public class AppWindow extends GuiTraits implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         JMenuItem source = (JMenuItem) e.getSource();
-        if (source.getText() == "Load File") {
+        if (Objects.equals(source.getText(), "Load Files")) {
             loadFiles();
-        } else if (source.getText() == "Save File") {
+        } else if (Objects.equals(source.getText(), "Save Files")) {
             saveFiles();
-        } else if (source.getText() == "Add Folder") {
+        } else if (Objects.equals(source.getText(), "Add Folder")) {
             addFolder();
-        } else if (source.getText() == "Delete Folder") {
+        } else if (Objects.equals(source.getText(), "Delete Folder")) {
             deleteFolder();
-        } else if (source.getText() == "Rename Folder") {
+        } else if (Objects.equals(source.getText(), "Rename Folder")) {
             renameFolder();
-        } else if (source.getText() == "Add Page") {
+        } else if (Objects.equals(source.getText(), "Add Page")) {
             addPage();
-        } else if (source.getText() == "Delete Page") {
+        } else if (Objects.equals(source.getText(), "Delete Page")) {
             deletePage();
         }
     }
@@ -99,9 +101,10 @@ public class AppWindow extends GuiTraits implements ActionListener {
     public void loadFiles() {
         try {
             directory = jsonReader.read();
+            sideBar.createNodes();
             JOptionPane.showMessageDialog(window, "Files loaded.");
         } catch (IOException e) {
-            JOptionPane.showMessageDialog(window, "Unable to load files."); // TODO - POPUP NOT SHOWING
+            JOptionPane.showMessageDialog(window, "Unable to load files.");
         }
     }
 
@@ -124,21 +127,11 @@ public class AppWindow extends GuiTraits implements ActionListener {
         directory.addItem(inputValue);
     }
 
-    public void deleteFolder() {
-        Object[] options = directory.getListFolders().toArray();
-        // TODO - INSERT OPTIONPANE HERE
-        // AND THEN DELETE SELECTED FOLDER
-    }
+    public void deleteFolder() {}
 
     public void renameFolder() {} // TODO - SIMILAR IMP TO OTHER METHS
 
-    public void addPage() {
-        Object[] options = directory.getListFolders().toArray();
-//        int folder = JOptionPane.showOptionDialog(null,
-//                "test",
-//                "test",
-//                JOptionPane.OK_CANCEL_OPTION);
-    } // TODO - FIX ADDPAGE OPTIONPANE
+    public void addPage() {} // TODO - FIX ADDPAGE OPTIONPANE
 
     public void deletePage() {} // TODO - SIMILAR IMP TO OTHER METHS
 

@@ -103,6 +103,10 @@ public class Page implements CanDisplay, Writable {
         return jsonLinks;
     }
 
+    public String toString() {
+        return name;
+    }
+
     // getters and setters
 
     public String getName() {
