@@ -1,47 +1,76 @@
 package ui.gui;
 
 import javax.swing.*;
-import javax.swing.event.PopupMenuListener;
 import javax.swing.event.TreeSelectionEvent;
 import javax.swing.event.TreeSelectionListener;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeCellRenderer;
-import javax.swing.tree.TreeSelectionModel;
 import java.awt.*;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseListener;
 
-import model.Directory;
-import model.Folder;
 import model.Page;
-import ui.gui.DisplayTree;
 
-// Based on the Tree Demo Project from the Oracle Java Documentation
+// Based on the Dynamic Tree Demo Project from the Oracle Java Documentation
 // Link to original code: https://docs.oracle.com/javase/tutorial/uiswing/examples/components/index.html
 
-// TODO - NEED SIDEBAR AND TEXTAREA TO ACCESS DIRECTORY IN ORDER TO VISUALIZE PAGES BUT UNSURE HOW
-// TODO - IF MENUBAR CONTAINS DIRECTORY, MENU FUNCTIONALITY AND DIRECTORY CHANGES LINKED
-// TODO - HAVE A GETTER THAT PASSES DIRECTORY TO SIDEBAR AND TEXTAREA
-
 // represents the sidebar that displays folders in the application
-public class SideBar extends GuiTraits implements TreeSelectionListener {
-    protected JTree tree;
-    private JScrollPane sidebar;
+public class SideBar extends GuiRepresent implements TreeSelectionListener, ActionListener {
+    private JPanel sidebar;
+    private JScrollPane scrollPane;
+
+    private JPanel buttonPanel;
+    private static String ADD_PAGE = "add page";
+    private static String DELETE_PAGE = "delete page";
+    private static String ADD_FOLDER = "add folder";
+    private static String DELETE_FOLDER = "delete folder";
+
+    private JTree tree;
     private DefaultMutableTreeNode root;
 
     // EFFECTS: creates the sidebar that displays all the folders
-    public Container createSideBar() {
-        tree = createTree();
-        sidebar = new JScrollPane(tree); // create scroll pane and add tree to it
-        adjustSideBar(sidebar);
+    public JPanel createSideBar() {
+        tree = createTree(); // create tree and put in scroll pane
+        scrollPane = new JScrollPane(tree);
+
+        buttonPanel = new JPanel(); // create button panel and add buttons
+        buttonPanel.setLayout(new GridLayout(2, 2));
+        addButtons(buttonPanel);
+
+        sidebar = new JPanel(); // create sidebar and add scroll pane and button pane
+        sidebar.setLayout(new BoxLayout(sidebar, BoxLayout.PAGE_AXIS));
+        sidebar.add(scrollPane);
+        sidebar.add(buttonPanel);
 
         return sidebar;
     }
 
-    // EFFECTS: sets sidebar settings
-    public void adjustSideBar(JScrollPane sidebar) {
-        Dimension dimension = new Dimension(150, height - 60);
-        sidebar.setPreferredSize(dimension);
+    // EFFECTS: adds buttons to the sidebar
+    public void addButtons(JPanel panel) {
+        JButton addPage = new JButton("Add Page");
+        addPage.setActionCommand(ADD_PAGE);
+        addPage.addActionListener(this);
+        panel.add(addPage);
+
+        JButton deletePage = new JButton("Delete Page");
+        deletePage.setActionCommand(DELETE_PAGE);
+        deletePage.addActionListener(this);
+        panel.add(deletePage);
+
+        JButton addFolder = new JButton("Add Folder");
+        addFolder.setActionCommand(ADD_FOLDER);
+        addFolder.addActionListener(this);
+        panel.add(addFolder);
+
+        JButton deleteFolder = new JButton("Delete Folder");
+        deleteFolder.setActionCommand(ADD_PAGE);
+        deleteFolder.addActionListener(this);
+        panel.add(deleteFolder);
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+
     }
 
     // EFFECTS: creates a tree
@@ -62,32 +91,9 @@ public class SideBar extends GuiTraits implements TreeSelectionListener {
         }
 
         return tree;
-//        // create nodes
-//        root = new DefaultMutableTreeNode("Directory"); // TODO - TOGGLE NAME VISIBLE OFF?
-//        createNodes();
-//
-//        // create single selection tree
-//        JTree tree = new JTree(root);
-//        tree.getSelectionModel().setSelectionMode(TreeSelectionModel.SINGLE_TREE_SELECTION);
-//
-//        // set icon for leaf nodes
-//        // Icon is Bookmark Page icon from icons8.com
-//        // link here: https://icons8.com/icon/111779/bookmark-page
-//        ImageIcon leafIcon = createImageIcon("icons/pageicon.png");
-//        if (leafIcon != null) {
-//            DefaultTreeCellRenderer renderer = new DefaultTreeCellRenderer();
-//            renderer.setLeafIcon(leafIcon);
-//            tree.setCellRenderer(renderer);
-//        } else {
-//            System.err.println("Leaf icon missing; using default.");
-//        }
-//
-//        // listen for when selection changes
-//        tree.addTreeSelectionListener(this); // TODO - ADD LISTENER TO TREE NOT SIDEBAR?
-//
-//        return tree;
     }
 
+    // TODO - IF NODE SELECTED IS LEAF NODE, DISPLAY LEAF NODE IN TEXTAREA (CALL DISPLAYPAEG)
     public void valueChanged(TreeSelectionEvent event) {
         DefaultMutableTreeNode node = (DefaultMutableTreeNode) tree.getLastSelectedPathComponent();
         if (node == null) {
@@ -96,7 +102,6 @@ public class SideBar extends GuiTraits implements TreeSelectionListener {
 
         Object nodeInfo = node.getUserObject();
         if (node.isLeaf()) {
-            // TODO - IF NODE SELECTED IS LEAF NODE, DISPLAY LEAF NODE IN TEXTAREA (CALL DISPLAYPAEG)
             Page page = (Page) nodeInfo;
             JOptionPane.showMessageDialog(null,
                     "find way to get page to show up in text area");
@@ -111,21 +116,6 @@ public class SideBar extends GuiTraits implements TreeSelectionListener {
         } else {
             System.err.println("Couldn't find file: " + path);
             return null;
-        }
-    }
-
-    // EFFECTS: creates the nodes based on elements in the directory // TODO - PRINTS ITEMS IN DIRECTORY TO TREE
-    public void createNodes() {
-        DefaultMutableTreeNode category = null;
-        DefaultMutableTreeNode leaf = null;
-
-        for (Folder folder: directory.getListFolders()) {
-            category = new DefaultMutableTreeNode(folder);
-            for (Page page: folder.getListPages()) {
-                leaf = new DefaultMutableTreeNode(page);
-                category.add(leaf);
-            }
-            root.add(category);
         }
     }
 }

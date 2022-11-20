@@ -9,7 +9,7 @@ import model.Page;
 // Link to original code: https://docs.oracle.com/javase/tutorial/uiswing/examples/components/index.html
 
 // represents the text area of the application
-public class TextArea extends GuiTraits {
+public class TextArea extends GuiRepresent {
     private JLabel title;
     protected JTextArea textArea;
 

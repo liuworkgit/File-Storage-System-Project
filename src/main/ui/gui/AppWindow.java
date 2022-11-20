@@ -16,11 +16,11 @@ import persistence.JsonWriter;
 // Link to original code: https://docs.oracle.com/javase/tutorial/uiswing/examples/components/index.html
 
 // the window in which the app appears
-public class AppWindow extends GuiTraits implements ActionListener {
+public class AppWindow extends GuiRepresent implements ActionListener {
     private JFrame window;
-//    private TopMenuBar topMenuBar;
     private TextArea textArea;
     private SideBar sideBar;
+//    private TopMenuBar topMenuBar;
 
     private JsonWriter jsonWriter;
     private JsonReader jsonReader;
@@ -34,6 +34,7 @@ public class AppWindow extends GuiTraits implements ActionListener {
         sideBar = new SideBar();
         jsonWriter = new JsonWriter(JSON_STORE);
         jsonReader = new JsonReader(JSON_STORE);
+        directory = new Directory();
 
         // TODO - TEST
         directory.addItem("test folder");
@@ -61,13 +62,6 @@ public class AppWindow extends GuiTraits implements ActionListener {
         // add options to menu
         fileMenu.add(createMenuItem("Load Files"));
         fileMenu.add(createMenuItem("Save Files"));
-        fileMenu.addSeparator(); // separator
-        fileMenu.add(createMenuItem("Add Folder"));
-        fileMenu.add(createMenuItem("Delete Folder"));
-        fileMenu.add(createMenuItem("Rename Folder"));
-        fileMenu.addSeparator(); // separator
-        fileMenu.add(createMenuItem("Add Page"));
-        fileMenu.add(createMenuItem("Delete Page"));
         // add menu to menu bar
         menuBar.add(Box.createHorizontalGlue());
         menuBar.add(fileMenu);
@@ -81,18 +75,9 @@ public class AppWindow extends GuiTraits implements ActionListener {
         JMenuItem source = (JMenuItem) e.getSource();
         if (Objects.equals(source.getText(), "Load Files")) {
             loadFiles();
-        } else if (Objects.equals(source.getText(), "Save Files")) {
+        }
+        if (Objects.equals(source.getText(), "Save Files")) {
             saveFiles();
-        } else if (Objects.equals(source.getText(), "Add Folder")) {
-            addFolder();
-        } else if (Objects.equals(source.getText(), "Delete Folder")) {
-            deleteFolder();
-        } else if (Objects.equals(source.getText(), "Rename Folder")) {
-            renameFolder();
-        } else if (Objects.equals(source.getText(), "Add Page")) {
-            addPage();
-        } else if (Objects.equals(source.getText(), "Delete Page")) {
-            deletePage();
         }
     }
 
@@ -101,7 +86,7 @@ public class AppWindow extends GuiTraits implements ActionListener {
     public void loadFiles() {
         try {
             directory = jsonReader.read();
-            sideBar.createNodes();
+            System.out.println("The user has loaded all files.");
             JOptionPane.showMessageDialog(window, "Files loaded.");
         } catch (IOException e) {
             JOptionPane.showMessageDialog(window, "Unable to load files.");
@@ -115,25 +100,12 @@ public class AppWindow extends GuiTraits implements ActionListener {
             jsonWriter.open();
             jsonWriter.write(directory);
             jsonWriter.close();
+            System.out.println("The user has saved all files.");
             JOptionPane.showMessageDialog(window, "Files saved.");
         } catch (IOException e) {
             JOptionPane.showMessageDialog(window, "Unable to save files.");
         }
-    } // TODO
-
-    public void addFolder() {
-        String inputValue = JOptionPane.showInputDialog(window,
-                "What would you like to name this folder?");
-        directory.addItem(inputValue);
     }
-
-    public void deleteFolder() {}
-
-    public void renameFolder() {} // TODO - SIMILAR IMP TO OTHER METHS
-
-    public void addPage() {} // TODO - FIX ADDPAGE OPTIONPANE
-
-    public void deletePage() {} // TODO - SIMILAR IMP TO OTHER METHS
 
     // EFFECTS: creates a menu item
     public JMenuItem createMenuItem(String purpose) {

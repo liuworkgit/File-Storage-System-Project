@@ -1,25 +1,24 @@
 package ui.gui;
 
+import model.Directory;
+
 import javax.swing.*;
-import javax.swing.event.TreeModelEvent;
-import javax.swing.event.TreeModelListener;
-import javax.swing.tree.DefaultMutableTreeNode;
-import javax.swing.tree.DefaultTreeModel;
-import javax.swing.tree.TreeSelectionModel;
+import javax.swing.tree.*;
 
 // Based on Dynamic Tree Demo from docs.oracle.com
 // Link to original code: https://docs.oracle.com/javase/tutorial/uiswing/examples/components/index.html
 
 // visual representation of the directory
-public class DisplayTree {
-    protected DefaultMutableTreeNode rootNode;
-    protected DefaultTreeModel treeModel;
+public class DisplayTree extends GuiRepresent {
+    protected DefaultMutableTreeNode root;
+    protected TreeModel treeModel;
     protected JTree tree;
 
+    // EFFECT: creates a tree
     public JTree createTree() {
-        rootNode = new DefaultMutableTreeNode("Root Node");
-        treeModel = new DefaultTreeModel(rootNode);
-        treeModel.addTreeModelListener(new MyTreeModelListener());
+        root = new DefaultMutableTreeNode("Root Node");
+        treeModel = new DefaultTreeModel(root);
+        treeModel.addTreeModelListener(new MyTreeListener());
 
         tree = new JTree(treeModel);
         tree.setEditable(true);
@@ -27,5 +26,10 @@ public class DisplayTree {
         tree.setShowsRootHandles(true);
 
         return tree;
+    }
+
+    // EFFECT: displays the directory's contents as a tree.
+    public void displayNodes() {
+
     }
 }
