@@ -16,7 +16,7 @@ import persistence.JsonWriter;
 // Link to original code: https://docs.oracle.com/javase/tutorial/uiswing/examples/components/index.html
 
 // the window in which the app appears
-public class AppWindow extends GuiRepresent implements ActionListener {
+public class AppWindow implements GuiSize, ActionListener {
     private JFrame window;
     private TextArea textArea;
     private SideBar sideBar;
@@ -26,15 +26,18 @@ public class AppWindow extends GuiRepresent implements ActionListener {
     private JsonReader jsonReader;
     private static final String JSON_STORE = "./data/notes.json";
 
+    private Directory directory;
+
     // EFFECTS: creates a new application window with all the app's components
     public AppWindow() {
         window = new JFrame("NoteTaker");
+        directory = new Directory();
+
 //        topMenuBar = new TopMenuBar();
-        textArea = new TextArea();
+        textArea = new TextArea(); // TODO - FIGURE OUT HOW TO HAVE CLASSES ACCESS SAME DIRECTORY
         sideBar = new SideBar();
         jsonWriter = new JsonWriter(JSON_STORE);
         jsonReader = new JsonReader(JSON_STORE);
-        directory = new Directory();
 
         // TODO - TEST
         directory.addItem("test folder");

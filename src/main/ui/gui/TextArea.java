@@ -3,13 +3,14 @@ package ui.gui;
 import javax.swing.*;
 import java.awt.*;
 
+import model.Directory;
 import model.Page;
 
 // Based on the Menu Demo Project from the Oracle Java Documentation
 // Link to original code: https://docs.oracle.com/javase/tutorial/uiswing/examples/components/index.html
 
 // represents the text area of the application
-public class TextArea extends GuiRepresent {
+public class TextArea implements GuiSize {
     private JLabel title;
     protected JTextArea textArea;
 

@@ -8,14 +8,16 @@ import javax.swing.tree.DefaultTreeCellRenderer;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Objects;
 
+import model.Directory;
 import model.Page;
 
 // Based on the Dynamic Tree Demo Project from the Oracle Java Documentation
 // Link to original code: https://docs.oracle.com/javase/tutorial/uiswing/examples/components/index.html
 
 // represents the sidebar that displays folders in the application
-public class SideBar extends GuiRepresent implements TreeSelectionListener, ActionListener {
+public class SideBar implements TreeSelectionListener, ActionListener {
     private JPanel sidebar;
     private JScrollPane scrollPane;
 
@@ -63,19 +65,30 @@ public class SideBar extends GuiRepresent implements TreeSelectionListener, Acti
         panel.add(addFolder);
 
         JButton deleteFolder = new JButton("Delete Folder");
-        deleteFolder.setActionCommand(ADD_PAGE);
+        deleteFolder.setActionCommand(DELETE_FOLDER);
         deleteFolder.addActionListener(this);
         panel.add(deleteFolder);
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        String command = e.getActionCommand();
 
+        if (Objects.equals(command, ADD_PAGE)) {
+            // TODO - ADD PAGE NODE TO DISPLAY TREE
+        } else if (Objects.equals(command, DELETE_PAGE)) {
+            // TODO
+        } else if (Objects.equals(command, ADD_FOLDER)) {
+            // TODO
+        } else if (Objects.equals(command, DELETE_FOLDER)) {
+            // TODO
+        }
     }
 
     // EFFECTS: creates a tree
     public JTree createTree() {
-        DisplayTree dt = new DisplayTree();
+        DisplayTree dt;
+        dt = new DisplayTree();
         JTree tree = dt.createTree();
 
         // set icon for leaf nodes
