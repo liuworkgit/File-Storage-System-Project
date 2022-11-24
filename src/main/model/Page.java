@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 // Represents a page with a name, paragraphs (text) and links to other pages
-public class Page implements CanDisplay, Writable {
+public class Page extends DataNode implements CanDisplay, Writable {
     private String name;
     private List<Paragraph> listParagraphs;
     private List<String> listLinks;
@@ -15,6 +15,7 @@ public class Page implements CanDisplay, Writable {
     // REQUIRES: name must not be empty
     // EFFECTS: creates a page with the given name, no paragraphs and no links
     public Page(String name) {
+        super(name);
         this.name = name;
         this.listParagraphs = new ArrayList<>();
         this.listLinks = new ArrayList<>();

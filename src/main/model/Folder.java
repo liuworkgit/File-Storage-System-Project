@@ -11,15 +11,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 // a list of note pages
-public class Folder implements CanDisplay, Writable, Printable {
+public class Folder extends DataNode implements CanDisplay, Writable, Printable {
     private String name;
     private List<Page> listPages;
+    private List<DataNode> children;
 
     // REQUIRES: name cannot be empty string
     // EFFECTS: creates a page folder with given name and no pages
     public Folder(String name) {
+        super(name);
         this.name = name;
         listPages = new ArrayList<>();
+        children = new ArrayList<>();
     }
 
     // MODIFIES: this
@@ -27,12 +30,14 @@ public class Folder implements CanDisplay, Writable, Printable {
     // potentially rename to more general if Directory shares interface?
     public void addItem(String name) {
         listPages.add(new Page(name));
+        children.add(new DataNode(name));
     }
 
     // MODIFIES: this
     // EFFECTS: deletes the page associated with the given index from the folder
     public void deleteItem(int index) {
         listPages.remove(index);
+        children.remove(index);
     }
 
     public String displayChoices() {
@@ -73,6 +78,10 @@ public class Folder implements CanDisplay, Writable, Printable {
 
     public List<Page> getListPages() {
         return listPages;
+    }
+
+    public List<DataNode> getChildren() {
+        return children;
     }
 
     public void setName(String newName) {

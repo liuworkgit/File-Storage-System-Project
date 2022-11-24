@@ -22,12 +22,14 @@ public class FolderTest {
     void testPageFolder() {
         assertEquals("GEOS 102 NOTES!!!", testFolder.getName());
         assertEquals(new ArrayList<>(), testFolder.getListPages());
+        assertEquals(new ArrayList<>(), testFolder.getChildren());
     }
 
     @Test
     void testAddPage() {
         testFolder.addItem("GEOS 102 monday lecture");
         assertTrue("GEOS 102 monday lecture" == testFolder.getListPages().get(0).getName());
+        assertTrue("GEOS 102 monday lecture" == testFolder.getChildren().get(0).getName());
     }
 
     @Test
@@ -35,6 +37,7 @@ public class FolderTest {
         testFolder.addItem("MATH 310 notes");
         testFolder.deleteItem(0);
         assertEquals(new ArrayList<>(), testFolder.getListPages());
+        assertEquals(new ArrayList<>(), testFolder.getChildren());
     }
 
     @Test

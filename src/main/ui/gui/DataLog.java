@@ -4,8 +4,8 @@ import model.Directory;
 
 // stores the singular directory that all classes in the gui access
 public class DataLog {
-    private static DataLog dataLog;
-    private Directory dt;
+    private static DataLog dataLog = new DataLog();
+    private static Directory dt;
 
     // EFFECT: creates a new data log. prevents external construction
     private DataLog() {

@@ -21,13 +21,16 @@ public class DirectoryTest {
 
     @Test
     void testDirectory() {
+        assertEquals("Directory", testDirectory.getName());
         assertEquals(new ArrayList<>(), testDirectory.getListFolders());
+        assertEquals(new ArrayList<>(), testDirectory.getChildren());
     }
 
     @Test
     void testAddFolder() {
         testDirectory.addItem("WWW");
         assertEquals("WWW", testDirectory.getListFolders().get(0).getName());
+        assertEquals("WWW", testDirectory.getChildren().get(0).getName());
     }
 
     @Test
@@ -35,6 +38,7 @@ public class DirectoryTest {
         testDirectory.addItem("Work it!!! woo!!");
         testDirectory.deleteItem(0);
         assertEquals(new ArrayList<>(), testDirectory.getListFolders());
+        assertEquals(new ArrayList<>(), testDirectory.getChildren());
     }
 
     @Test

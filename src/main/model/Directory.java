@@ -7,19 +7,24 @@ import java.util.List;
 import java.util.ArrayList;
 
 // a folder of all note page folders
-public class Directory implements CanDisplay, Writable {
+public class Directory extends DataNode implements CanDisplay, Writable {
     private List<Folder> listFolders;
+    private List<DataNode> children;
 
     public Directory() {
+        super("Directory");
         listFolders = new ArrayList<>();
+        children = new ArrayList<>();
     }
 
     public void addItem(String name) {
         listFolders.add(new Folder(name));
+        children.add(new DataNode(name));
     }
 
     public void deleteItem(int index) {
         listFolders.remove(index);
+        children.remove(index);
     }
 
     public String displayChoices() {
@@ -50,8 +55,11 @@ public class Directory implements CanDisplay, Writable {
     }
 
     // getters
-
     public List<Folder> getListFolders() {
         return listFolders;
+    }
+
+    public List<DataNode> getChildren() {
+        return children;
     }
 }

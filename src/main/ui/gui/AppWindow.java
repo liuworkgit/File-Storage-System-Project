@@ -26,15 +26,14 @@ public class AppWindow implements GuiSize, ActionListener {
     private JsonReader jsonReader;
     private static final String JSON_STORE = "./data/notes.json";
 
-    private Directory directory;
+    private Directory directory = DataLog.getInstance().getDirectory();
 
     // EFFECTS: creates a new application window with all the app's components
     public AppWindow() {
         window = new JFrame("NoteTaker");
-        directory = new Directory();
-
+        
 //        topMenuBar = new TopMenuBar();
-        textArea = new TextArea(); // TODO - FIGURE OUT HOW TO HAVE CLASSES ACCESS SAME DIRECTORY
+        textArea = new TextArea();
         sideBar = new SideBar();
         jsonWriter = new JsonWriter(JSON_STORE);
         jsonReader = new JsonReader(JSON_STORE);
@@ -89,6 +88,7 @@ public class AppWindow implements GuiSize, ActionListener {
     public void loadFiles() {
         try {
             directory = jsonReader.read();
+            sideBar.updateTree();
             System.out.println("The user has loaded all files.");
             JOptionPane.showMessageDialog(window, "Files loaded.");
         } catch (IOException e) {

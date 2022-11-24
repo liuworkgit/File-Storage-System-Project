@@ -1,5 +1,6 @@
 package ui.gui;
 
+import model.DataNode;
 import model.Directory;
 import model.Folder;
 
@@ -14,6 +15,7 @@ public class DisplayTree {
     protected DefaultMutableTreeNode root;
     protected TreeModel treeModel;
     protected JTree tree;
+    private Directory dt = DataLog.getInstance().getDirectory();
 
     // EFFECT: creates a new empty display tree
     public JTree createTree() {
@@ -21,7 +23,7 @@ public class DisplayTree {
         treeModel = new DefaultTreeModel(root);
         treeModel.addTreeModelListener(new MyTreeListener());
 
-        tree = new JTree(treeModel);
+        tree = new JTree(root);
         tree.setEditable(true);
         tree.getSelectionModel().setSelectionMode(TreeSelectionModel.SINGLE_TREE_SELECTION);
         tree.setShowsRootHandles(true);
@@ -42,20 +44,15 @@ public class DisplayTree {
         }
 
         // TODO - STARTED NOV 21 - FINISH
-    } // stub
+        return new DefaultMutableTreeNode(); // stub
+    }
 
     // EFFECT: displays the directory's contents as a tree.
-    public void displayNodes(Object dataNode, DefaultMutableTreeNode treeNode) {
-        Directory dt = DataLog.getInstance().getDirectory();
-        for (Object obj: dt.getListFolders()) {
-            /**
-             * DefaultMutableTreeNode childContainer = new DefaultMutableTreeNode(childData.getName());
-             *             parentContainer.add(childContainer);
-             *             addChildren(childContainer, childData); // close your eyes; trust the natural recursion!
-             * */
-//            DefaultMutableTreeNode childNode = new DefaultMutableTreeNode(...));
-//            treeNode.add(childNode);
-//            displayNodes(/);
+    public void displayNodes(DataNode parentData, DefaultMutableTreeNode parentContainer) {
+        for (DataNode childData : parentData.getChildren()) {
+            DefaultMutableTreeNode childContainer = new DefaultMutableTreeNode(childData.getName());
+            parentContainer.add(childContainer);
+            displayNodes(childData, childContainer);
         }
     }
 }
