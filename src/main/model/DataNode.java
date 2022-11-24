@@ -16,4 +16,8 @@ public class DataNode {
     public String getName() {
         return name;
     }
+
+    public List<DataNode> getChildren() {
+        return null;
+    }
 }

@@ -108,7 +108,7 @@ public class SideBar implements TreeSelectionListener, ActionListener {
 
     // EFFECTS: changes the current tree in the sidebar
     public void updateTree() {
-        tree = createTree();
+        // TODO
     }
 
     // TODO - IF NODE SELECTED IS LEAF NODE, DISPLAY LEAF NODE IN TEXTAREA (CALL DISPLAYPAEG)

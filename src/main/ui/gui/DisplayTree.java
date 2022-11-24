@@ -2,7 +2,6 @@ package ui.gui;
 
 import model.DataNode;
 import model.Directory;
-import model.Folder;
 
 import javax.swing.*;
 import javax.swing.tree.*;
@@ -23,7 +22,8 @@ public class DisplayTree {
         treeModel = new DefaultTreeModel(root);
         treeModel.addTreeModelListener(new MyTreeListener());
 
-        tree = new JTree(root);
+        tree = new JTree(treeModel);
+//        tree = new JTree(root);
         tree.setEditable(true);
         tree.getSelectionModel().setSelectionMode(TreeSelectionModel.SINGLE_TREE_SELECTION);
         tree.setShowsRootHandles(true);
@@ -45,14 +45,19 @@ public class DisplayTree {
 
         // TODO - STARTED NOV 21 - FINISH
         return new DefaultMutableTreeNode(); // stub
-    }
+    } // TODO - WIP
+
+    // EFFECT: updates the tree's appearance based on the directory's contents
+    public JTree updateDisplay() {
+        return new JTree(); // stub
+    } // TODO - WIP
 
     // EFFECT: displays the directory's contents as a tree.
-    public void displayNodes(DataNode parentData, DefaultMutableTreeNode parentContainer) {
+    public void updateTree(DataNode parentData, DefaultMutableTreeNode parentContainer) {
         for (DataNode childData : parentData.getChildren()) {
             DefaultMutableTreeNode childContainer = new DefaultMutableTreeNode(childData.getName());
             parentContainer.add(childContainer);
-            displayNodes(childData, childContainer);
-        }
+            updateTree(childData, childContainer);
+        } // TODO - WIP
     }
 }

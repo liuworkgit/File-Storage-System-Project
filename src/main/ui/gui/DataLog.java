@@ -14,6 +14,9 @@ public class DataLog {
 
     // getter
     public static DataLog getInstance() {
+        if (dataLog == null) {
+            dataLog = new DataLog();
+        }
         return dataLog;
     }
 
