@@ -20,9 +20,17 @@ public class Directory extends DataNode implements CanDisplay, Writable {
     public void addItem(String name) {
         listFolders.add(new Folder(name));
         children.add(new DataNode(name));
+        EventLog.getInstance().logEvent(new Event("Added folder "
+                + "\""
+                + name
+                + "\""));
     }
 
     public void deleteItem(int index) {
+        EventLog.getInstance().logEvent(new Event("Removed folder "
+                + "\""
+                + listFolders.get(index).getName()
+                + "\""));
         listFolders.remove(index);
         children.remove(index);
     }

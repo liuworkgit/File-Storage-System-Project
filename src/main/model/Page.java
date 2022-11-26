@@ -26,11 +26,19 @@ public class Page extends DataNode implements CanDisplay, Writable {
     // EFFECTS: adds a paragraph to the bottom of the page
     public void addItem(String text) {
         listParagraphs.add(new Paragraph(text));
+        EventLog.getInstance().logEvent(new Event("Added paragraph "
+                + "\""
+                + text
+                + "\""));
     }
 
     // MODIFIES: this
     // EFFECTS: deletes a paragraph from the page
     public void deleteItem(int index) {
+        EventLog.getInstance().logEvent(new Event("Removed paragraph "
+                + "\""
+                + listParagraphs.get(index).getText()
+                + "\""));
         listParagraphs.remove(index);
     }
 
@@ -55,12 +63,20 @@ public class Page extends DataNode implements CanDisplay, Writable {
             System.out.println("You've already linked page named " + name);
         } else {
             listLinks.add(name);
+            EventLog.getInstance().logEvent(new Event("Added link "
+                    + "\""
+                    + name
+                    + "\""));
         }
     }
 
     // MODIFIES: this
     // EFFECTS: deletes a link from the page
     public void deleteLink(int index) {
+        EventLog.getInstance().logEvent(new Event("Removed link "
+                + "\""
+                + listLinks.get(index)
+                + "\""));
         listLinks.remove(index);
     }
 

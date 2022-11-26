@@ -31,11 +31,19 @@ public class Folder extends DataNode implements CanDisplay, Writable, Printable 
     public void addItem(String name) {
         listPages.add(new Page(name));
         children.add(new DataNode(name));
+        EventLog.getInstance().logEvent(new Event("Added page "
+                + "\""
+                + name
+                + "\""));
     }
 
     // MODIFIES: this
     // EFFECTS: deletes the page associated with the given index from the folder
     public void deleteItem(int index) {
+        EventLog.getInstance().logEvent(new Event("Removed page "
+                + "\""
+                + listPages.get(index).getName()
+                + "\""));
         listPages.remove(index);
         children.remove(index);
     }
