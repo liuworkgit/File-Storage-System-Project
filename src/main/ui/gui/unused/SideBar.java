@@ -1,4 +1,4 @@
-package ui.gui;
+package ui.gui.unused;
 
 import javax.swing.*;
 import javax.swing.event.TreeSelectionEvent;
@@ -10,7 +10,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Objects;
 
-import model.Directory;
 import model.Page;
 
 // Based on the Dynamic Tree Demo Project from the Oracle Java Documentation

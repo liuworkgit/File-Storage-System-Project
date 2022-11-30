@@ -1,4 +1,4 @@
-package ui.gui;
+package ui.gui.unused;
 
 import javax.swing.event.TreeModelEvent;
 import javax.swing.event.TreeModelListener;

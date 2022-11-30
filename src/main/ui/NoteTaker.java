@@ -1,6 +1,6 @@
 package ui;
 
-import ui.gui.AppWindow;
+import java.io.FileNotFoundException;
 
 // NOTE: Based on JsonSerializationDemo provided by CPSC210
 // Found on Phase 2 page on CPSC210 edx
@@ -10,11 +10,10 @@ import ui.gui.AppWindow;
 // initializes the note taker app
 public class NoteTaker {
     public static void main(String[] args) {
-        new AppWindow();
-//        try {
-//            new DirectoryFunctions();
-//        } catch (FileNotFoundException e) {
-//            System.out.println("Unable to run application: file not found.");
-//        }
+        try {
+            new DirectoryFunctions();
+        } catch (FileNotFoundException e) {
+            System.out.println("Unable to run application: file not found.");
+        }
     }
 }

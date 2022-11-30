@@ -1,4 +1,4 @@
-package ui.gui;
+package ui.gui.unused;
 
 // Dimensions of the GUI window
 public interface GuiSize {

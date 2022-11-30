@@ -1,9 +1,8 @@
-package ui.gui;
+package ui.gui.unused;
 
 import javax.swing.*;
 import java.awt.*;
 
-import model.Directory;
 import model.Page;
 
 // Based on the Menu Demo Project from the Oracle Java Documentation
