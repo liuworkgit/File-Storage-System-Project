@@ -16,6 +16,11 @@ public class Paragraph {
     // MODIFIES: this
     // EFFECTS: adds text to the end of the paragraph
     public void addText(String text) {
+        EventLog.getInstance().logEvent(new Event("Updated text: "
+                + this.text
+                + " -> "
+                + this.text
+                + text));
         this.text = this.text + text;
     }
 

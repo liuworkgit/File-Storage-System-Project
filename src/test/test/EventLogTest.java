@@ -46,4 +46,14 @@ public class EventLogTest {
         assertTrue(list.contains(e2));
         assertTrue(list.contains(e3));
     }
+
+    @Test
+    public void testClear() {
+        EventLog el = EventLog.getInstance();
+        el.clear();
+        Iterator<Event> itr = el.iterator();
+        assertTrue(itr.hasNext());
+        assertEquals("Event log cleared.", itr.next().getDescription());
+        assertFalse(itr.hasNext());
+    }
 }

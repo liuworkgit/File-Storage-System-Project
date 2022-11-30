@@ -29,6 +29,12 @@ public class EventLog implements Iterable<Event> {
         events.add(e);
     }
 
+    // EFFECTS: clears the event log and logs the clear itself
+    public void clear() {
+        events.clear();
+        logEvent(new Event("Event log cleared."));
+    }
+
     @Override
     public Iterator<Event> iterator() {
         return events.iterator();

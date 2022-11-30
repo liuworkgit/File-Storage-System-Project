@@ -1,5 +1,6 @@
 package test;
 
+import model.EventLog;
 import model.Paragraph;
 import org.json.JSONObject;
 import org.junit.jupiter.api.BeforeEach;
@@ -146,5 +147,10 @@ public class ParagraphTest {
     void testToJson() {
         JSONObject jsonPara = testParagraph.toJson();
         assertEquals("This is a paragraph!", jsonPara.getString("text"));
+    }
+
+    @Test
+    void testLogEvent() {
+        EventLog.getInstance().clear();
     }
 }
