@@ -2,6 +2,8 @@ package model;
 
 import org.json.JSONObject;
 
+// TODO - FINISH EVENT LOG STUFF
+
 // A paragraph on a page.
 public class Paragraph {
     private String text;
@@ -16,12 +18,12 @@ public class Paragraph {
     // MODIFIES: this
     // EFFECTS: adds text to the end of the paragraph
     public void addText(String text) {
+        String oldText = this.text;
+        this.text += text;
         EventLog.getInstance().logEvent(new Event("Updated text: "
-                + this.text
+                + oldText
                 + " -> "
-                + this.text
-                + text));
-        this.text = this.text + text;
+                + this.text));
     }
 
     // REQUIRES: text cannot be empty string and must be in this.text. text cannot equal this.text

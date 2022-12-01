@@ -1,10 +1,13 @@
 package test;
 
+import model.Event;
 import model.EventLog;
 import model.Paragraph;
 import org.json.JSONObject;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import java.util.Iterator;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -152,5 +155,15 @@ public class ParagraphTest {
     @Test
     void testLogEvent() {
         EventLog.getInstance().clear();
-    }
+        EventLog el = EventLog.getInstance();
+        Iterator<Event> itr = el.iterator();
+
+        testParagraph.addText("123");
+        assertTrue(itr.hasNext());
+        assertEquals("This is a paragraph!123", itr.next().getDescription());
+
+        testParagraph.deleteText("123");
+        assertTrue(itr.hasNext());
+        assertEquals("This is a paragraph!", itr.next().getDescription());
+    } // tODO
 }
