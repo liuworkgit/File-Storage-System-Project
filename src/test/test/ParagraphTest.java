@@ -157,10 +157,5 @@ public class ParagraphTest {
         EventLog.getInstance().clear();
         EventLog el = EventLog.getInstance();
         Iterator<Event> itr = el.iterator();
-
-        testParagraph.addText("123");
-        assertTrue(itr.hasNext());
-        assertEquals("Updated text: This is a paragraph! -> This is a paragraph!123",
-                itr.next().getDescription());
     } // tODO
 }

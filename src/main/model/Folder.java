@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 // a list of note pages
-public class Folder implements CanDisplay, Writable, Printable {
+public class Folder implements CanDisplay, Writable {
     private String name;
     private List<Page> listPages;
 
@@ -68,10 +68,6 @@ public class Folder implements CanDisplay, Writable, Printable {
         }
 
         return jsonPages;
-    }
-
-    public String toString() {
-        return name;
     }
 
     // getters and setters
