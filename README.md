@@ -19,3 +19,12 @@ take notes on paper, but lament the limitations, hence why I wanted to make a no
 - As a user, I want to be able to view the note page I'm writing on, the font editing options, and the folders of pages.
 - As a user, I want to be able to save all of my folders, pages, and the text/links I added to said pages.
 - As a user, when I start my application, I want to be able to load my pre-existing data.
+
+---
+## Instructions for Grader
+
+- You can generate the first required event related to adding Xs to a Y by clicking the "add" button.
+- You can generate the second required event related to adding Xs to a Y by clicking the "delete" button.
+- You can locate my visual component to the left of each label on the screen.
+- You can save the state of my application by clicking the "save" button below the display screen.
+- You can reload the state of my application by clicking the "load" button to the left.

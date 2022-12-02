@@ -160,10 +160,7 @@ public class ParagraphTest {
 
         testParagraph.addText("123");
         assertTrue(itr.hasNext());
-        assertEquals("This is a paragraph!123", itr.next().getDescription());
-
-        testParagraph.deleteText("123");
-        assertTrue(itr.hasNext());
-        assertEquals("This is a paragraph!", itr.next().getDescription());
+        assertEquals("Updated text: This is a paragraph! -> This is a paragraph!123",
+                itr.next().getDescription());
     } // tODO
 }
