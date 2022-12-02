@@ -32,7 +32,7 @@ public class Directory extends DataNode implements CanDisplay, Writable {
                 + listFolders.get(index).getName()
                 + "\""));
         listFolders.remove(index);
-        children.remove(index);
+//        children.remove(index);
     }
 
     public String displayChoices() {

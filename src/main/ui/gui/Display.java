@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Objects;
 import javax.swing.*;
+import javax.swing.tree.DefaultTreeCellRenderer;
 
 /**
  * SOLUTION, CREATE A DIRECTORY, PUT ONE FOLDER IN IT, AND HAVE THE ADD FUNCTION RELATE
@@ -23,6 +24,7 @@ public class Display implements ActionListener {
     private JPanel listArea;
     private JScrollPane listScrollPane;
     private JPanel buttonPane;
+    private ImageIcon icon;
 
     private Directory dt;
     private JsonWriter jsonWriter;
@@ -33,6 +35,8 @@ public class Display implements ActionListener {
     private static final String DELETE_COMMAND = "delete";
     private static final String SAVE_COMMAND = "save";
     private static final String LOAD_COMMAND = "load";
+    private static final int WIDTH = 600;
+    private static final int HEIGHT = 400;
 
     public Display() {
         window = new JFrame("NoteTaker Lite");
@@ -41,10 +45,13 @@ public class Display implements ActionListener {
         jsonReader = new JsonReader(JSON_STORE);
         jsonWriter = new JsonWriter(JSON_STORE);
 
-        listArea = new JPanel(); // TODO - ADD A LISTENER TO LISTAREA SO IT CAN RECEIVE UPDATES
+        listArea = new JPanel();
+        listArea.setLayout(new BoxLayout(listArea, BoxLayout.PAGE_AXIS));
         listScrollPane = new JScrollPane(listArea);
         listScrollPane.setBackground(Color.red);
-        listScrollPane.setPreferredSize(new Dimension(600, 300));
+        listScrollPane.setPreferredSize(new Dimension(WIDTH, 300));
+
+        icon = createImageIcon("icons/pageicon.png", "page icon");
 
         buttonPane = new JPanel();
         setButtonPane();
@@ -63,7 +70,7 @@ public class Display implements ActionListener {
             deleteFiles();
         }
         if (Objects.equals(command, SAVE_COMMAND)) {
-            // TODO
+            saveFiles();
         }
         if (Objects.equals(command, LOAD_COMMAND)) {
             loadFiles();
@@ -72,17 +79,46 @@ public class Display implements ActionListener {
 
     // MODIFIES: this
     // EFFECTS: adds a folder to the directory
-    public void addFiles() {}
+    public void addFiles() {
+        String name = JOptionPane.showInputDialog("Enter name:");
+        JLabel label = new JLabel(name, icon, JLabel.CENTER);
+
+        dt.addItem(name);
+        listArea.add(label);
+        listArea.revalidate();
+    }
 
     // MODIFIES: this
     // EFFECTS: deletes the last folder from the directory
-    public void deleteFiles() {}
+    public void deleteFiles() {
+        int index = dt.getListFolders().toArray().length - 1;
+        dt.deleteItem(index);
+        listArea.remove(index);
+        listArea.revalidate();
+        listArea.repaint();
+    }
+
+    // MODIFIES: this
+    // EFFECTS: saves data
+    public void saveFiles() {
+        try {
+            jsonWriter.open();
+            jsonWriter.write(dt);
+            jsonWriter.close();
+            System.out.println("The user has saved all files.");
+            JOptionPane.showMessageDialog(window, "Files saved.");
+        } catch (IOException e) {
+            JOptionPane.showMessageDialog(window, "Unable to save files.");
+        }
+    }
 
     // MODIFIES: this
     // EFFECTS: loads in the folders in the directory
     public void loadFiles() {
         try {
             dt = jsonReader.read(); // fill our directory with stuff from our file
+            listArea = updateLabels();
+            listArea.revalidate();
             JOptionPane.showMessageDialog(window, "Successfully loaded files.");
         } catch (IOException e) {
             JOptionPane.showMessageDialog(window,
@@ -94,18 +130,28 @@ public class Display implements ActionListener {
 
     // MODIFIES: this, listArea
     // EFFECTS: updates the appearance of listArea
-    // TODO - DO WE KNOW IF THIS WORKS? WON'T UNTIL WE IMPLEMENT ADD/DELETE
     public JPanel updateLabels() {
         List<Folder> listFolders = dt.getListFolders();
 
         if (!listFolders.isEmpty()) {
             for (Folder folder : listFolders) {
-                JLabel name = new JLabel(folder.getName());
+                JLabel name = new JLabel(folder.getName(), icon, JLabel.CENTER);
                 name.setVisible(true);
                 listArea.add(name);
             }
         }
         return listArea;
+    }
+
+    // EFFECTS: creates an image icon
+    public ImageIcon createImageIcon(String path, String description) {
+        java.net.URL url = getClass().getResource(path);
+        if (url != null) {
+            return new ImageIcon(url, description);
+        } else {
+            System.err.println("Couldn't find file: " + path);
+            return null;
+        }
     }
 
     // EFFECTS: initializes the directory
@@ -115,7 +161,8 @@ public class Display implements ActionListener {
 
     // eFFECTS: sets the settings for the window
     public void setWindow() {
-        window.setSize(new Dimension(700, 500));
+        window.setSize(new Dimension(WIDTH, HEIGHT));
+        window.setLayout(new BorderLayout());
         window.setVisible(true);
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         window.setBackground(Color.green);
@@ -144,6 +191,6 @@ public class Display implements ActionListener {
         buttonPane.add(loadButton);
 
         buttonPane.setBackground(Color.yellow);
-        buttonPane.setPreferredSize(new Dimension(600, 100));
+        buttonPane.setPreferredSize(new Dimension(WIDTH, 100));
     }
 }
