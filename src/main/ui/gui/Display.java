@@ -1,11 +1,14 @@
 package ui.gui;
 
 import model.Directory;
+import model.Folder;
 import persistence.JsonReader;
 import persistence.JsonWriter;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.io.IOException;
+import java.util.List;
 import java.util.Objects;
 import javax.swing.*;
 
@@ -24,6 +27,7 @@ public class Display implements ActionListener {
     private Directory dt;
     private JsonWriter jsonWriter;
     private JsonReader jsonReader;
+    private static final String JSON_STORE = "./data/guinotes.json";
 
     private static final String ADD_COMMAND = "add";
     private static final String DELETE_COMMAND = "delete";
@@ -34,27 +38,29 @@ public class Display implements ActionListener {
         window = new JFrame("NoteTaker Lite");
         setWindow();
         setDirectory();
+        jsonReader = new JsonReader(JSON_STORE);
+        jsonWriter = new JsonWriter(JSON_STORE);
 
-        listArea = new JPanel();
+        listArea = new JPanel(); // TODO - ADD A LISTENER TO LISTAREA SO IT CAN RECEIVE UPDATES
         listScrollPane = new JScrollPane(listArea);
-        listScrollPane.setPreferredSize(new Dimension(550, 250));
         listScrollPane.setBackground(Color.red);
+        listScrollPane.setPreferredSize(new Dimension(600, 300));
 
         buttonPane = new JPanel();
         setButtonPane();
 
         window.add(listScrollPane, BorderLayout.PAGE_START);
-        window.add(buttonPane, BorderLayout.PAGE_END);
+        window.add(buttonPane);
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         String command = e.getActionCommand();
         if (Objects.equals(command, ADD_COMMAND)) {
-            // TODO
+            addFiles();
         }
         if (Objects.equals(command, DELETE_COMMAND)) {
-            // TODO
+            deleteFiles();
         }
         if (Objects.equals(command, SAVE_COMMAND)) {
             // TODO
@@ -64,9 +70,42 @@ public class Display implements ActionListener {
         }
     }
 
-    // EFFECTS: loads in the pages of the first folder in the directory
-    public void loadFiles() {
+    // MODIFIES: this
+    // EFFECTS: adds a folder to the directory
+    public void addFiles() {}
 
+    // MODIFIES: this
+    // EFFECTS: deletes the last folder from the directory
+    public void deleteFiles() {}
+
+    // MODIFIES: this
+    // EFFECTS: loads in the folders in the directory
+    public void loadFiles() {
+        try {
+            dt = jsonReader.read(); // fill our directory with stuff from our file
+            JOptionPane.showMessageDialog(window, "Successfully loaded files.");
+        } catch (IOException e) {
+            JOptionPane.showMessageDialog(window,
+                    "Unable to load files.",
+                    "Warning",
+                    JOptionPane.WARNING_MESSAGE);
+        }
+    }
+
+    // MODIFIES: this, listArea
+    // EFFECTS: updates the appearance of listArea
+    // TODO - DO WE KNOW IF THIS WORKS? WON'T UNTIL WE IMPLEMENT ADD/DELETE
+    public JPanel updateLabels() {
+        List<Folder> listFolders = dt.getListFolders();
+
+        if (!listFolders.isEmpty()) {
+            for (Folder folder : listFolders) {
+                JLabel name = new JLabel(folder.getName());
+                name.setVisible(true);
+                listArea.add(name);
+            }
+        }
+        return listArea;
     }
 
     // EFFECTS: initializes the directory
@@ -76,7 +115,7 @@ public class Display implements ActionListener {
 
     // eFFECTS: sets the settings for the window
     public void setWindow() {
-        window.setSize(new Dimension(600, 400));
+        window.setSize(new Dimension(700, 500));
         window.setVisible(true);
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         window.setBackground(Color.green);
@@ -105,5 +144,6 @@ public class Display implements ActionListener {
         buttonPane.add(loadButton);
 
         buttonPane.setBackground(Color.yellow);
+        buttonPane.setPreferredSize(new Dimension(600, 100));
     }
 }
