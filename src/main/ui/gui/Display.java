@@ -40,8 +40,8 @@ public class Display implements ActionListener {
 
     public Display() {
         window = new JFrame("NoteTaker Lite");
-        setWindow();
         setDirectory();
+        setWindow();
         jsonReader = new JsonReader(JSON_STORE);
         jsonWriter = new JsonWriter(JSON_STORE);
 
@@ -57,7 +57,7 @@ public class Display implements ActionListener {
         setButtonPane();
 
         window.add(listScrollPane, BorderLayout.PAGE_START);
-        window.add(buttonPane);
+        window.add(buttonPane, BorderLayout.PAGE_END);
     }
 
     @Override
