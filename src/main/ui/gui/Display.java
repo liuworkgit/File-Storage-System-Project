@@ -91,11 +91,15 @@ public class Display implements ActionListener {
     // MODIFIES: this
     // EFFECTS: deletes the last folder from the directory
     public void deleteFiles() {
-        int index = dt.getListFolders().toArray().length - 1;
-        dt.deleteItem(index);
-        listArea.remove(index);
-        listArea.revalidate();
-        listArea.repaint();
+        if (!dt.getListFolders().isEmpty()) {
+            int index = dt.getListFolders().toArray().length - 1;
+            dt.deleteItem(index);
+            listArea.remove(index);
+            listArea.revalidate();
+            listArea.repaint();
+        } else {
+            JOptionPane.showMessageDialog(window, "There's nothing to delete.");
+        }
     }
 
     // MODIFIES: this
