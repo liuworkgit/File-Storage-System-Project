@@ -28,3 +28,20 @@ take notes on paper, but lament the limitations, hence why I wanted to make a no
 - You can locate my visual component to the left of each label on the screen.
 - You can save the state of my application by clicking the "save" button below the display screen.
 - You can reload the state of my application by clicking the "load" button to the left.
+
+---
+## Phase 4: Task 2
+Fri Dec 02 17:02:32 PST 2022
+Loaded files.
+Fri Dec 02 17:02:35 PST 2022
+Added folder "1"
+Fri Dec 02 17:02:36 PST 2022
+Added folder "2"
+Fri Dec 02 17:02:38 PST 2022
+Added folder "3"
+Fri Dec 02 17:02:39 PST 2022
+Removed folder "3"
+Fri Dec 02 17:02:39 PST 2022
+Removed folder "2"
+Fri Dec 02 17:02:41 PST 2022
+Saved files.

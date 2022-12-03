@@ -1,6 +1,8 @@
 package ui.gui;
 
 import model.Directory;
+import model.Event;
+import model.EventLog;
 import model.Folder;
 import persistence.JsonReader;
 import persistence.JsonWriter;
@@ -11,15 +13,9 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Objects;
 import javax.swing.*;
-import javax.swing.tree.DefaultTreeCellRenderer;
-
-/**
- * SOLUTION, CREATE A DIRECTORY, PUT ONE FOLDER IN IT, AND HAVE THE ADD FUNCTION RELATE
- * TO ADDING PAGES AND THAT ALONE
- * */
 
 // display window for the application
-public class Display implements ActionListener {
+public class Display implements ActionListener, WindowListener {
     private JFrame window;
     private JPanel listArea;
     private JScrollPane listScrollPane;
@@ -58,6 +54,7 @@ public class Display implements ActionListener {
 
         window.add(listScrollPane, BorderLayout.PAGE_START);
         window.add(buttonPane, BorderLayout.PAGE_END);
+        window.addWindowListener(this);
     }
 
     @Override
@@ -109,7 +106,7 @@ public class Display implements ActionListener {
             jsonWriter.open();
             jsonWriter.write(dt);
             jsonWriter.close();
-            System.out.println("The user has saved all files.");
+            EventLog.getInstance().logEvent(new Event("Saved files."));
             JOptionPane.showMessageDialog(window, "Files saved.");
         } catch (IOException e) {
             JOptionPane.showMessageDialog(window, "Unable to save files.");
@@ -123,6 +120,7 @@ public class Display implements ActionListener {
             dt = jsonReader.read(); // fill our directory with stuff from our file
             listArea = updateLabels();
             listArea.revalidate();
+            EventLog.getInstance().logEvent(new Event("Loaded files."));
             JOptionPane.showMessageDialog(window, "Successfully loaded files.");
         } catch (IOException e) {
             JOptionPane.showMessageDialog(window,
@@ -196,5 +194,42 @@ public class Display implements ActionListener {
 
         buttonPane.setBackground(Color.yellow);
         buttonPane.setPreferredSize(new Dimension(WIDTH, 100));
+    }
+
+    @Override
+    public void windowOpened(WindowEvent e) {
+
+    }
+
+    @Override
+    public void windowClosing(WindowEvent e) {
+        for (Event event : EventLog.getInstance()) {
+            System.out.println(event.toString());
+        }
+        System.exit(0);
+    }
+
+    @Override
+    public void windowClosed(WindowEvent e) {
+    }
+
+    @Override
+    public void windowIconified(WindowEvent e) {
+
+    }
+
+    @Override
+    public void windowDeiconified(WindowEvent e) {
+
+    }
+
+    @Override
+    public void windowActivated(WindowEvent e) {
+
+    }
+
+    @Override
+    public void windowDeactivated(WindowEvent e) {
+
     }
 }
