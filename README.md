@@ -45,3 +45,9 @@ Fri Dec 02 17:02:39 PST 2022
 Removed folder "2"
 Fri Dec 02 17:02:41 PST 2022
 Saved files.
+
+---
+## Phase 4: Task 3
+
+If I had more time to refactor my design, I don't think I'd do anything. Unless my design was much more complex, the way
+it is now is fine: there's minimal coupling between classes and cohesion is fine.

@@ -2,8 +2,6 @@ package model;
 
 import org.json.JSONObject;
 
-// TODO - FINISH EVENT LOG STUFF
-
 // A paragraph on a page.
 public class Paragraph {
     private String text;
