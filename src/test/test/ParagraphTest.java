@@ -151,11 +151,4 @@ public class ParagraphTest {
         JSONObject jsonPara = testParagraph.toJson();
         assertEquals("This is a paragraph!", jsonPara.getString("text"));
     }
-
-    @Test
-    void testLogEvent() {
-        EventLog.getInstance().clear();
-        EventLog el = EventLog.getInstance();
-        Iterator<Event> itr = el.iterator();
-    } // tODO
 }
