@@ -1,10 +1,4 @@
-{"listFolders": [
-    {
-        "name": "adasda",
-        "listPages": []
-    },
-    {
-        "name": "ssdad",
-        "listPages": []
-    }
-]}
+{"listFolders": [{
+    "name": "test",
+    "listPages": []
+}]}
