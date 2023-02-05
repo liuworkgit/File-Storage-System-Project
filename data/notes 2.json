@@ -1,0 +1,14 @@
+{"listFolders": [
+    {
+        "name": "test folder",
+        "listPages": [{
+            "listLinks": [],
+            "name": "page name",
+            "listParagraphs": []
+        }]
+    },
+    {
+        "name": "folder name",
+        "listPages": []
+    }
+]}
