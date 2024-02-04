@@ -1,4 +1,4 @@
-# CPSC 210 PROJECT PROPOSAL
+# File Storage System Project
 
 ## Purpose of application + Reason for choice
 
@@ -21,7 +21,7 @@ take notes on paper, but lament the limitations, hence why I wanted to make a no
 - As a user, when I start my application, I want to be able to load my pre-existing data.
 
 ---
-## Instructions for Grader
+## Instructions for User
 
 - You can generate the first required event related to adding Xs to a Y by clicking the "add" button.
 - You can generate the second required event related to adding Xs to a Y by clicking the "delete" button.
@@ -30,7 +30,7 @@ take notes on paper, but lament the limitations, hence why I wanted to make a no
 - You can reload the state of my application by clicking the "load" button to the left.
 
 ---
-## Phase 4: Task 2
+## Example Action Log
 Fri Dec 02 17:02:32 PST 2022
 Loaded files.
 Fri Dec 02 17:02:35 PST 2022
